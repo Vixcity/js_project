@@ -1,0 +1,35 @@
+{
+  "name": "stats.js",
+  "version": "0.17.0",
+  "description": "JavaScript Performance Monitor",
+  "main": "build/stats.js",
+  "module": "build/stats.module.js",
+  "repository": "mrdoob/stats.js",
+  "directories": {
+    "example": "examples"
+  },
+  "files": [
+    "build",
+    "src"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "build-closure": "rollup -c && google-closure-compiler --language_in=ECMASCRIPT5_STRICT --js build/stats.js --js_output_file build/stats.min.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "performance",
+    "fps",
+    "stats"
+  ],
+  "author": "mrdoob",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mrdoob/stats.js/issues"
+  },
+  "homepage": "https://github.com/mrdoob/stats.js",
+  "devDependencies": {
+    "rollup": "^2.3.2",
+    "google-closure-compiler": "20200224.0.0"
+  }
+}

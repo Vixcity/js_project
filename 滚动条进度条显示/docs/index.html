@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>myScroll基本用法</title>
+  <link href="https://cdn.bootcdn.net/ajax/libs/element-ui/2.13.1/theme-chalk/index.css" rel="stylesheet">
+  <link href="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.0.3/styles/atom-one-dark.min.css" rel="stylesheet">
+  <style>
+  </style>
+  <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.6/vue.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/element-ui/2.13.1/index.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
+  <script src="./MyScroll.min.js"></script>
+  <style>
+    html {
+      background: #cfcfcf;
+    }
+
+    pre,
+    code {
+      white-space: pre;
+      overflow-x: scroll;
+    }
+
+    .el-divider__text {
+      background: #cfcfcf;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <h3><a href="https://github.com/yimijianfang/MyScroll">MyScroll</a>，一款在顶部显示浏览进度同时支持丰富滚动事件的原生js插件。</h3>
+    可以实现：
+    <ul>
+      <li>顶部显示浏览进度</li>
+      <li>滚动到底部刷新数据</li>
+      <li>埋点动画</li>
+      <li>...</li>
+    </ul>
+    <h3>使用方法</h3>
+    <h4>1. 引入MyScroll.js文件</h4>
+    <h4>2. new MyScroll()</h4>
+    <el-divider content-position="left">基本用法</el-divider>
+    <code class="javascript">
+      // 默认参数
+      new MyScroll({
+       "showBar": true, //是否显示进度条
+       "color": "rgb(10, 116, 218)", //进度条颜色
+       "height": "3px", //进度条高度
+       "debug": false, //调试模式
+       "event": []
+      });
+    </code>
+    <el-alert title="tips" style="margin-top:5px" type="success" description="可以设置 #progressBar元素 bottom:0移动到底部。">
+    </el-alert>
+    <el-divider content-position="left">高级用法</el-divider>
+    <code class="javascript">
+      // 指定距离触发
+      new MyScroll({
+       "event": [{
+        "height": "100%", //触发条件 支持px和百分比
+        "loop": true, //是否循环使用 true/false 设置false后执行执行一次后会销毁
+        "type": "up-down", //触发方式 支持up-down down-up all三种方式
+        "func": function () {
+          alert('我到底部了')
+         } //触发后执行的方法
+       }]
+      });
+
+      // 指定元素触发
+      new MyScroll({
+       "event": [{
+       "el": document.querySelector("#submit"), //在当前元素可视区域时触发 支持原生dom或querySelector选择器
+       "loop": true, //是否循环使用 true/false 设置false后执行执行一次后会销毁
+       "func": function () {
+         alert('我看到#submit元素了')
+        } //触发后执行的方法
+       }]
+      });
+    </code>
+    <el-alert title="tips" style="margin-top:5px" type="success" description="设置el时如果元素在滚动条上部时也会触发，并不是严格意义上的在可视区域。">
+    </el-alert>
+    <el-alert style="margin-top:5px" type="success" description="可指定距离元素执行像素时触发事件，常用于动画">
+    </el-alert>
+    <el-link type="primary" href="./demo2.html" target="_blank">高级用法demo</el-link>
+    <div style="height: 200px;padding-top: 50px;">
+
+    </div>
+    <el-backtop></el-backtop>
+  </div>
+  <script>
+    var vue = new Vue({
+      el: "#app",
+      data: {
+
+      },
+      methods: {
+
+      }
+    })
+    const preEl = document.querySelectorAll('code')
+    preEl.forEach((el) => {
+      hljs.highlightBlock(el)
+    })
+  </script>
+  <script>
+    let scroll = new MyScroll({});
+  </script>
+</body>
+
+</html>

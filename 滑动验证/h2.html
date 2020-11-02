@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<style type="text/css">
+			.slideGroove {
+				position: relative;
+				width: 400px;
+				height: 50px;
+				line-height: 50px;
+				background: #E8E8E8;
+				margin: 100px auto;
+			}
+			.slideGroove .indication {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				font-size: 14px;
+				color: #666666;
+				text-align: center;
+				z-index: 10;
+			}
+			.slideHaveDrag {
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				height: 50px;
+				background: #7AC23C;
+			}
+			.slideBlock {
+				position: absolute;
+				left: 0px;
+				top: -1px;
+				width: 30px;
+				height: 52px;
+				background: #FFFFFF;
+				border: 1px solid #E0E0E0;
+				cursor: move;
+				z-index: 11;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="slideGroove" class="slideGroove">
+			<span id="indication" class="indication">请拖动滑块完成验证</span>
+			<div id="slideHaveDrag" class="slideHaveDrag"></div>
+			<i id="slideBlock" class="slideBlock"></i>
+		</div>
+		<div id="view"></div>
+		<script type="text/javascript">
+			var handler = {
+					$: function(selector) {
+						return document.getElementById(selector);
+					},
+					getEvent: function(e) {
+						var e = e || window.event;
+						return e;
+					},
+					stopBubble: function(e) {
+						var e = this.getEvent(e);
+						if (typeof e.preventDefault != 'undefined') {
+							e.preventDefault();
+						} else {
+							e.returnValue = false;
+						}
+					},
+					removeEvent: function(oRe) {
+						for(var i = 0, l = oRe.length; i < l; i++) {
+							var obj = oRe[i];
+							obj.o[obj.type] = function() {
+								return false;
+							}
+						}
+					}
+				},
+				Drag = {
+					isDrag: false,
+					X: 0,
+					sg: handler.$('slideGroove'),
+					sb: handler.$('slideBlock'),
+					sh: handler.$('slideHaveDrag'),
+					st: handler.$('indication')
+				},
+				maxWidth = Drag.sg.clientWidth - Drag.sb.clientWidth;
+			function dragStop() {
+				handler.removeEvent([
+					{o: Drag.sb, type: 'onmousedown'},
+					{o: Drag.sg, type: 'onmousemove'},
+					{o: Drag.sg, type: 'onmouseup'}
+				]);
+			};
+			Drag.sb.onmousedown = function(e) {
+				var e = handler.getEvent(e);
+				handler.stopBubble(e);
+				Drag.isDrag = true;
+				Drag.X = e.pageX - this.offsetLeft;
+			}
+			Drag.sg.onmousemove = function(e) {
+				var e = handler.getEvent(e),
+					_x = e.pageX - Drag.X;
+				if (Drag.isDrag) {
+					if(_x >= 0 && _x <= maxWidth) {
+						Drag.sb.style.left = _x + 'px';
+						Drag.sh.style.width = _x + 'px';
+					} else if(_x > maxWidth) {
+						dragStop();
+						Drag.st['innerHTML'] = '验证完成';
+						Drag.st.style['color'] = '#FFFFFF';
+					}
+				}
+			}
+			Drag.sg.onmouseup = function(e) {
+				var e = handler.getEvent(e),
+					_x = e.pageX - Drag.X;
+				Drag.isDrag = false;
+				if (_x < maxWidth) {
+					Drag.sb.style.left = 0 + 'px';
+					Drag.sh.style.width = 0 + 'px';
+				}
+			}
+		</script>
+	</body>
+
+</html>

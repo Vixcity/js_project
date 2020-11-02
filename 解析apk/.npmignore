@@ -1,0 +1,12 @@
+.vscode
+.eslintignore
+.eslintrc.js
+.gitignore
+.github
+
+packages/
+example/
+node_modules/
+lib/
+
+package-lock.json

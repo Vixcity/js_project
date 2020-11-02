@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+
+<meta charset="utf-8">
+
+<title>jQuery单页/全屏滚动插件onepage-scroll演示-不显示项目导航</title>
+
+<link rel="stylesheet" href="css/onepage-scroll.css" />
+
+<style>
+
+.page1 { background-color: #1bbc9b;}
+
+.page2 { background-color: #FF7F50;}
+
+.page3 { background-color: #4BBFC3;}
+
+.page4 { background-color: #f90;}
+
+p.title { position: relative; top: 35%; font: 700 40px "Microsoft Yahei"; color: #fff; text-align: center;}
+
+</style>
+
+<script src="http://www.jq22.com/jquery/1.9.1/jquery.min.js"></script>
+
+<script src="js/jquery.onepage-scroll.min.js"></script>
+
+<script>
+
+$(function(){
+
+	$('.main').onepage_scroll({
+
+		sectionContainer: '.page',
+
+		pagination: false
+
+	});
+
+});
+
+</script>
+
+</head>
+
+
+
+<body>
+
+<div class="main">
+
+	<div class="page page1">
+
+		<p class="title">右边的圆点项目导航不见了</p>
+
+	</div>
+
+	<div class="page page2">
+
+		<p class="title">第二屏</p>
+
+	</div>
+
+	<div class="page page3">
+
+		<p class="title">第三屏</p>
+
+	</div>
+
+	<div class="page page4">
+
+		<p class="title">第四屏</p>
+
+	</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

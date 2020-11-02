@@ -1,0 +1,181 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>计算机这样高产“优雅的”诗-jq22.com</title>
+<script src="https://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<style>
+html,body {
+	height:100%;
+	width:100%;
+}
+body {
+	margin:0;
+	background:linear-gradient(124deg,#ff2400,#e81d1d,#e8b71d,#cdd115,#16d836,#15c8d1,#2b1de8,#dd00f3,#dd00f3);
+	background-size:1800% 1800%;
+	animation:rainbow 15s ease infinite;
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+	align-items:center;
+	/*counter-reset:delay;
+	*/
+}
+@keyframes rainbow {
+	0% {
+	background-position:0% 82%;
+}
+25% {
+	background-position:50% 50%;
+}
+50% {
+	background-position:100% 19%;
+}
+75% {
+	background-position:100% 100%;
+}
+100% {
+	background-position:0% 82%;
+}
+}p {
+	font-size:30px;
+	height:50px;
+	line-height:50px;
+	animation:slideup .6s cubic-bezier(0,0.9,0.1,1);
+	margin:0;
+	/*纯CSS方法失败*/
+  /*counter-increment:delay;
+	animation-delay:calc( 50ms * ( counter(delay) - 1) );
+	*/
+  animation-delay:calc( 50ms * var(--order) );
+	animation-fill-mode:backwards;
+	color:white;
+}
+@keyframes slideup {
+	from {
+	color:transparent;
+	transform:translateY(50px);
+}
+to {
+	color:white;
+	transform:translateY(0);
+}
+}</style>
+</head>
+<body>
+<p style="--order: 0;">不要急</p>
+<p style="--order: 1;">正在加载</p>
+<p style="--order: 2;">马上就好</p>
+<noscript>
+  <p style="--order: 0;">要想诗歌</p>
+  <p style="--order: 1;">写得好</p>
+  <p style="--order: 2;">JavaScript</p>
+  <p style="--order: 3;">少不了</p>
+</noscript>
+
+<script>
+//Shift键磨损行为
+const 词汇 = {
+    2: [
+        "垂杨", "新柳", "金嫩", "柔条", "柳丝", "闲柳", "花海",
+        "芳甸", "吐嫩", "摇绿", "绿卷", "浓翠", "横翠", "金碧",
+        "舒卷", "款款", "片片", "缕缕", "新晴", "笼晴", "韶光",
+        "婉媚", "温丽", "芊绵", "春华", "空灵", "春柔", "清婉",
+        "馨烈", "和婉", "清蕊", "清芬", "素约", "红素", "旖旎",
+        "飞花", "浮花", "落英", "花影", "芳丛", "浮香", "锦花",
+        "绣草", "烂漫", "芳踪", "镂玉", "雕琼", "繁枝", "素景",
+        "密叶", "稠花", "点水", "扑面", "风轻", "水胧", "倚暖"
+    ],
+    3: [
+        "玉丝纶", "落纷纷", "胭脂色",
+        "水溶溶", "不留痕", "几点春",
+        "邀春驻", "花映柳", "花深浅",
+        "树高低", "翻微风", "香接天"
+    ],
+    4: [
+        "曲岸垂杨", "千花万柳", "浓露飘香",
+        "软软东风", "水逝云卷", "繁花盈枝",
+        "百卉团团", "和风轻暖", "春光满树",
+        "秀色灼灼", "红尘倦客", "柳带摇风",
+        "香坠庭户", "水阔花飞", "瘦叶和风",
+        "叶叶心心", "眼迷魂牵", "浅粉深红" // 不够的话来点儿《生僻字》的歌词
+    ]
+};
+const 短模板 = [ //三言及以下
+    //一言
+    "啊",
+    //二言
+    "2",
+    "人啊",
+    "人呢",
+    //三言
+    "3",
+    "2呢",
+    "2啊",
+    "是2"
+];
+const 长模板 = [ //四言及以上
+    //四言
+    "4",
+    "22",
+    "3兮",
+    //五言
+    "23",
+    "32",
+    "4兮",
+    "22兮",
+    "是4",
+    "是22",
+    //六言
+    "33",
+    "42",
+    "24",
+    "222",
+    //这里可以再兮一把，不过我懒得兮
+    //七言
+    "223",
+    "43",
+    "322",
+    "34",
+    "33兮",
+    "42兮",
+    "24兮",
+    "222兮"
+];
+const 长短模板 = [...短模板, ...长模板];
+const 套模板 = 模板 => 模板.replace(
+    /\d/g,
+    长度 => 随机抽取(词汇[长度])
+);
+const 随机抽取 = 数组 => 数组[
+    Math.round(
+        Math.random() * (数组.length - 1)
+    )
+];
+
+function 插入身体(诗句, 顺序) {
+    const 段落 = document.createElement('p');
+    段落.style.setProperty('--order', 顺序);
+    段落.append(诗句);
+    document.body.append(段落);
+}
+setInterval(() => {
+    for (let 旧句子 of document.querySelectorAll('p'))
+        旧句子.remove();
+    const 长度因素 = Math.random() * 2 | 0;
+    let 诗句;
+    if (Math.random() > 0.5) // true 代表它是错落诗
+        诗句 = Array(长度因素 + 6)
+        .fill(2333) //不填点什么map就不工作
+        .map(() => 随机抽取(长短模板));
+    else
+        诗句 = Array(长度因素 * 2 + 4)
+        .fill(随机抽取(长模板));
+    诗句
+        .map(套模板)
+        .forEach(插入身体);
+}, 1000);
+</script>
+
+</body>
+</html>

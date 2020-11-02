@@ -1,0 +1,122 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jQuery实现图片瀑布流-jq22.com</title>
+<script src="https://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<style>
+#main {
+	width:1200px;
+	margin:0 auto;
+	position:relative;
+}
+* {
+	margin:0;
+	padding:0;
+}
+.box {
+	width:200px;
+	padding:5px;
+	border:1px solid #ccc;
+	box-shadow:0 0 6px #ccc;
+	border-radius:5px;
+	margin:5px;
+	float:left;
+}
+.box img {
+	width:100%;
+}
+</style>
+</head>
+<body>
+<div id="main">
+    <div class="pubu">
+        <div class="box"><img src="http://www.jq22.com/img/cs/500x500-1.png" alt=""></div>
+        <div class="box"><img src="http://www.jq22.com/img/cs/500x300-1.png" alt=""></div>
+        <div class="box"><img src="http://www.jq22.com/img/cs/300x500-1.png" alt=""></div>
+        <div class="box"><img src="http://www.jq22.com/img/cs/500x500-2.png" alt=""></div>
+        <div class="box"><img src="http://www.jq22.com/img/cs/500x300-2.png" alt=""></div>
+        <div class="box"><img src="http://www.jq22.com/img/cs/500x500-1.png" alt=""></div>
+        <div class="box"><img src="http://www.jq22.com/img/cs/500x300-3.png" alt=""></div>
+        <div class="box"><img src="http://www.jq22.com/img/cs/300x500-5.png" alt=""></div>
+        <div class="box"><img src="http://www.jq22.com/img/cs/500x500-5.png" alt=""></div>
+        <div class="box"><img src="http://www.jq22.com/img/cs/500x300-6.png" alt=""></div>
+        <div class="box"><img src="http://www.jq22.com/img/cs/500x300-7.png" alt=""></div>
+        <div class="box"><img src="http://www.jq22.com/img/cs/300x500-6.png" alt=""></div>
+        <div class="box"><img src="http://www.jq22.com/img/cs/500x500-8.png" alt=""></div>
+        <div class="box"><img src="http://www.jq22.com/img/cs/500x300-4.png" alt=""></div>
+    </div>
+</div>
+
+<script>
+$(window).on('load', function() {
+    writerFull();
+    var dataInt = {
+        data: [{
+                src: 'http://www.jq22.com/img/cs/500x500-1.png'
+            },
+            {
+                src: 'http://www.jq22.com/img/cs/500x300-2.png'
+            },
+            {
+                src: 'http://www.jq22.com/img/cs/300x500-9.png'
+            },
+            {
+                src: 'http://www.jq22.com/img/cs/300x500-2.png'
+            },
+            {
+                src: 'http://www.jq22.com/img/cs/500x300-2.png'
+            },
+            {
+                src: 'http://www.jq22.com/img/cs/500x500-9.png'
+            },
+        ]
+    }
+    $(window).on('scroll', function() {
+        if (checkSlider()) {
+            $.each(dataInt.data, function(key, value) {
+                var oBox = $('<div>').addClass('box').appendTo($('.pubu'));
+                var oImg = $('<img>').attr('src', $(value).attr('src')).appendTo(oBox)
+            })
+        }
+        writerFull();
+    });
+})
+
+function writerFull() {
+    var arr = [];
+    var w = $('.box').outerWidth(true);
+    var cols = Math.floor($('#main').width() / w);
+    $('.pubu .box').each(function(i, item) {
+        let h = $(item).outerHeight(true);
+        if (i < cols) {
+            arr[i] = h;
+        } else {
+            var minH = Math.min.apply(null, arr);
+            var minHindex = $.inArray(minH, arr);
+            $(item).css({
+                'position': 'absolute',
+                'top': minH + 'px',
+                'left': minHindex * w + 'px'
+            });
+            arr[minHindex] += $(item).outerHeight(true);
+        }
+    });
+}
+
+function checkSlider() {
+    let hl = $('.pubu>div').last().offset().top + Math.floor($('.pubu>div').last().outerHeight() / 2);
+    var scrollTop = $(window).scrollTop();
+    var docH = $(window).height();
+    console.log(hl);
+    console.log(scrollTop + docH)
+    if (hl < scrollTop + docH) {
+        return true;
+    } else {
+        return false;
+    }
+}
+</script>
+
+</body>
+</html>

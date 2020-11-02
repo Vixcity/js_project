@@ -1,0 +1,70 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>将excel的数据转换为数组的形式（原创）-jq22.com</title>
+<script src="https://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<style>
+</style>
+</head>
+<body>
+<text>将excel的一列appid，转成数组，方便直接复制</text> <br>
+<textarea id="id-textarea-content" name="name" rows="15" cols="30"></textarea>
+<button id="id-button-submit" type="button" name="button">复制</button>
+<text>将数据粘贴进去，点击复制就可以直接粘贴到需要的地方了</text>
+
+<script>
+var log = console.log.bind(console)
+//查找元素
+var e = function(sel) {
+    return document.querySelector(sel)
+}
+//监听事件函数
+var bindEvent = function(element, event, callback) {
+    element.addEventListener(event, callback)
+}
+// 复制的剪贴板
+const copyToClipboard = str => {
+    const el = document.createElement('textarea');
+    el.value = str;
+    el.setAttribute('readonly', '');
+    el.style.position = 'absolute';
+    el.style.left = '-9999px';
+    document.body.appendChild(el);
+    const selected =
+        document.getSelection().rangeCount > 0 ? document.getSelection().getRangeAt(0) : false;
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+    if (selected) {
+        document.getSelection().removeAllRanges();
+        document.getSelection().addRange(selected);
+    }
+};
+//主要代码
+var getValue = function() {
+    // 监听点击事件
+    bindEvent(e('#id-button-submit'), 'click', function() {
+        // 获取复制的元素
+        var value = e('#id-textarea-content').value
+        // 将string拼接成数组（长度是11）
+        var arr = value.split(/\n/ig)
+        // 去除数组中的空的元素（长度是10）
+        arr = arr.filter(function(n) {
+            return n
+        });
+        log('转换的数组', arr)
+        // 转成字符串。方便下面的去复制
+        arr = JSON.stringify(arr, null, 2)
+        // 复制的剪贴板
+        copyToClipboard(arr)
+    })
+}
+var __main = function() {
+    getValue()
+}
+__main()
+</script>
+
+</body>
+</html>

@@ -1,0 +1,252 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>css3鼠标经过动画-jq22.com</title>
+<script src="https://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<style>
+.no_miss_tab li {
+	width:327px;
+	height:55px;
+	background:#FEEC7C;
+	float:left;
+	margin-left:9px;
+	color:#FE5278;
+	z-index:1;
+	overflow:hidden;
+	border-radius:10px;
+	font-size:16px;
+	font-weight:bold;
+	text-align:center;
+	line-height:55px;
+	cursor:pointer;
+}
+.no_miss_tab li.current {
+	background:#FFBC36;
+	color:#FE5278
+}
+.no_miss_tab li.current .first {
+	display:none;
+}
+.no_miss_tab li.current:hover .second {
+	display:none;
+}
+.no_miss_tab li.current .second {
+	display:none;
+}
+.no_miss_tab li.current .txt {
+	top:0px;
+}
+.no_miss_tab li:nth-child(10) {
+	margin-right:0;
+}
+.txt {
+	z-index:4;
+	position:relative;
+	width:327px;
+	height:55px;
+	position:relative;
+	top:-110px;
+	border-radius:10px;
+	display:block;
+	text-align:center;
+	line-height:55px;
+}
+.second {
+	background:#FFBC36;
+	-webkit-transform:translatex(-328px) skew(0deg);
+	-moz-transform:translatex(-328px) skew(0deg);
+	-ms-transform:translatex(-328px) skew(0deg);
+	-o-transform:translatex(-328px) skew(0deg);
+	transform:translatex(-328px) skew(0deg);
+	text-align:center;
+	z-index:3;
+	position:relative;
+	border-radius:10px;
+	text-align:center;
+	line-height:55px;
+	width:327px;
+	height:55px;
+	color:#FEEC7C;
+}
+.gg {
+	-webkit-animation:removesecond 1s reverse;
+	color:#FEEC7C;
+}
+.first {
+	width:327px;
+	height:55px;
+	background:#FEEC7C;
+	position:relative;
+	top:-46px;
+	z-index:2;
+	border-radius:10px;
+	display:block;
+	text-align:center;
+	line-height:55px;
+}
+.no_miss_tab li:hover .second {
+	display:block;
+	-webkit-animation:movesecond 1s forwards;
+	-moz-animation:movesecond 1s forwards;
+	-ms-animation:movesecond 1s forwards;
+	-o-animation:movesecond 1s forwards;
+	animation:movesecond 1s forwards;
+	color:#FEEC7C;
+}
+/*第一个按钮*/
+
+@-webkit-keyframes removesecond {
+	0% {
+	-webkit-transform:translateX(-328px) skew(0deg);
+}
+20% {
+	-webkit-transform:translateX(50px) skew(-20deg);
+}
+40% {
+	-webkit-transform:translateX(-50dpx) skew(20deg);
+}
+60% {
+	-webkit-transform:translateX(25dpx) skew(-8deg);
+}
+80% {
+	-webkit-transform:translateX(-15px) skew(8deg);
+}
+100% {
+	-webkit-transform:translateX(0px) skew(0deg);
+}
+}@-webkit-keyframes movesecond {
+	0% {
+	-webkit-transform:translateX(-328px) skew(0deg);
+}
+20% {
+	-webkit-transform:translateX(50px) skew(-20deg);
+}
+40% {
+	-webkit-transform:translateX(-50dpx) skew(20deg);
+}
+60% {
+	-webkit-transform:translateX(25dpx) skew(-8deg);
+}
+80% {
+	-webkit-transform:translateX(-15px) skew(8deg);
+}
+100% {
+	-webkit-transform:translateX(0px) skew(0deg);
+}
+}@-moz-keyframes movesecond {
+	0% {
+	-webkit-transform:translateX(-328px) skew(0deg);
+}
+20% {
+	-webkit-transform:translateX(50px) skew(-20deg);
+}
+40% {
+	-webkit-transform:translateX(-50dpx) skew(20deg);
+}
+60% {
+	-webkit-transform:translateX(25dpx) skew(-8deg);
+}
+80% {
+	-webkit-transform:translateX(-15px) skew(8deg);
+}
+100% {
+	-webkit-transform:translateX(0px) skew(0deg);
+}
+}@-ms-keyframes movesecond {
+	0% {
+	-webkit-transform:translateX(-328px) skew(0deg);
+}
+20% {
+	-webkit-transform:translateX(50px) skew(-20deg);
+}
+40% {
+	-webkit-transform:translateX(-50dpx) skew(20deg);
+}
+60% {
+	-webkit-transform:translateX(25dpx) skew(-8deg);
+}
+80% {
+	-webkit-transform:translateX(-15px) skew(8deg);
+}
+100% {
+	-webkit-transform:translateX(0px) skew(0deg);
+}
+}@-o-keyframes movesecond {
+	0% {
+	-webkit-transform:translateX(-328px) skew(0deg);
+}
+20% {
+	-webkit-transform:translateX(50px) skew(-20deg);
+}
+40% {
+	-webkit-transform:translateX(-50dpx) skew(20deg);
+}
+60% {
+	-webkit-transform:translateX(25dpx) skew(-8deg);
+}
+80% {
+	-webkit-transform:translateX(-15px) skew(8deg);
+}
+100% {
+	-webkit-transform:translateX(0px) skew(0deg);
+}
+}@keyframes movesecond {
+	0% {
+	-webkit-transform:translateX(-328px) skew(0deg);
+}
+20% {
+	-webkit-transform:translateX(50px) skew(-20deg);
+}
+40% {
+	-webkit-transform:translateX(-50dpx) skew(20deg);
+}
+60% {
+	-webkit-transform:translateX(25dpx) skew(-8deg);
+}
+80% {
+	-webkit-transform:translateX(-15px) skew(8deg);
+}
+100% {
+	-webkit-transform:translateX(0px) skew(0deg);
+}
+}</style>
+</head>
+<body>
+<ul class="no_miss_tab clearfix">
+    <li>
+        <div class="second">
+
+        </div>
+        <div class="first">
+        </div>
+        <div class="txt">
+            十元特价区
+        </div>
+    </li>
+    <li>
+        <div class="second">
+        </div>
+        <div class="first">
+        </div>
+        <div class="txt">
+            五十元优选区
+        </div>
+    </li>
+    <li>
+        <div class="second">
+        </div>
+        <div class="first">
+        </div>
+        <div class="txt">
+            百元精品区
+        </div>
+    </li>
+</ul>
+
+<script>
+
+</script>
+
+</body>
+</html>

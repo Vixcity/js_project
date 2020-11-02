@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="file" name="" id="file">
+    <script src="./dist/app-info-parser.js"></script>
+    <script>
+        function fileSelect (){
+            let files = document.getElementById('file').files
+            const parser = new AppInfoParser(files[0])
+            parser.parse().then(result => {
+            console.log('app info ----> ', result)
+            }).catch(err => {
+            console.log('err ----> ', err)
+            })
+        }
+        // package,label,versionName,icon
+    </script>
+</body>
+</html>

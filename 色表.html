@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <style>
+        @media screen and (min-width:1200px){
+            /*li{width:calc(20% - 5px)}*/
+        }
+        @media screen and (min-width:90px) and (max-width:1200px){
+            li{width:calc(20% - 5px) !important;}
+        }
+        @media screen and (min-width:600px) and (max-width:900px){
+            li{width:calc(33% - 5px) !important;}
+        }
+        @media screen and (max-width:600px){
+            li{width:100% !important;}
+        }
+        *{padding: 0;margin: 0;}
+        ul:after{content:"";display:block;clear:both;}
+        ul{zoom:1;max-width: 1200px;margin: 0 auto;}
+        li{
+            width:calc(20% - 5px);height:auto;
+            padding:50px 0;text-align:center;
+            margin:0 5px 10px 0;font-size:28px;
+            float:left;color:#fff;font-weight:bold;
+            list-style-type:none;
+        }
+    </style>
+</head>
+<body>
+    <h1>颜色表</h1>
+    <h4>点击复制</h4>
+    <ul id="ul"></ul>
+    <h4>如果有更多好看好用的颜色 可以私信</h4>
+</body>
+<script>
+
+const list = [
+  {color:"#48c0a4",name:"青碧"},
+  {color:"#549688",name:"铜绿"},
+  {color:"#69b0ac",name:"青磁"},
+  {color:"#91ad70",name:"柳染"},
+  {color:"#7398Ab",name:"苍青"},
+  {color:"#b4caa0",name:"裹柳"},
+  {color:"#5dac81",name:"若竹"},
+  {color:"#376b6d",name:"御招茶"},
+  {color:"#91b493",name:"薄青"},
+  {color:"#68b4b0",name:"松绿"},
+  {color:"#1B813E",name:"常磐"},
+  {color:"#3d6167",name:"绿"},
+  {color:"#005CAF",name:"坩青"},
+  {color:"#2D6D4B",name:"木贼"},
+  {color:"#24936E",name:"绿青"},
+  {color:"#00AA90",name:"青绿"},
+  {color:"#86c166",name:"苗"},
+  {color:"#838A2D",name:"苔"},
+  {color:"#90B44B",name:"鶸萌黄"},
+  {color:"#66BAB7",name:"水浅葱"},
+  {color:"#268785",name:"青碧"},
+  {color:"#70B9DE",name:"勿忘草"},
+  {color:"#33A6B8",name:"浅葱"},
+  {color:"#1E88A8",name:"花浅葱"},
+  {color:"#008947",name:"新桥"},
+  {color:"#2EA9DF",name:"露草"},
+  {color:"#005CAF",name:"琉璃"},
+  {color:"#005CAF",name:"缥"},
+  {color:"#F4A7B9",name:"斥染"},
+  {color:"#F8C3CD",name:"退红"},
+  {color:"#E16B8C",name:"红梅"},
+  {color:"#DC9FB4",name:"撫子"},
+  {color:"#F4A7B9",name:"桃"},
+  {color:"#B5495B",name:"莓"},
+  {color:"#E87A90",name:"薄红"},
+  {color:"#D05A6E",name:"今様"},
+  {color:"#DB4D6D",name:"中红"},
+  {color:"#D0104C",name:"韩红花"},
+  {color:"#EB7A77",name:"甚三红"},
+  {color:"#CB4042",name:"赤红"},
+  {color:"#AB3B3A",name:"真朱"},
+  {color:"#994639",name:"红鳶"},
+  {color:"#F19483",name:"曙"},
+  {color:"#B54434",name:"樺"},
+  {color:"#F17C67",name:"珊瑚朱"},
+  {color:"#E83015",name:"猩猩緋"},
+  {color:"#F75C2F",name:"红緋"},
+  {color:"#F05E1C",name:"黄丹"},
+  {color:"#ED784A",name:"纁"},
+  {color:"#FB9966",name:"深支子"},
+  {color:"#D75455",name:"铅丹"},
+  {color:"#9F353A",name:"燕脂"},
+  {color:"#E3916E",name:"赤香"},
+  {color:"#E3916E",name:"桦茶"},
+  {color:"#C73E3A",name:"银朱"},
+  {color:"#C46243",name:"照柿"},
+  {color:"#E8B647",name:"玉蜀"},
+  {color:"#F6C555",name:"栀子"},
+  {color:"#FBE251",name:"黄蘖"},
+  {color:"#FFB11B",name:"山吹"},
+  {color:"#FC9F4D",name:"萱草"},
+  {color:"#FAD689",name:"浅黄C"},
+  {color:"#FFC408",name:"藤黄"},
+  {color:"#F9BF45",name:"玉子"},
+  {color:"#E9CD4C",name:"刈安"},
+  {color:"#EFBB24",name:"鬱金"},
+  {color:"#D9AB42",name:"黄朽葉"},
+  {color:"#DDD23B",name:"女郎花"},
+  {color:"#CA7A2C",name:"琥珀"},
+  {color:"#C7802D",name:"金茶"},
+  {color:"#BEC23F",name:"鶸"},
+  {color:"#91AD70",name:"柳染"}
+];
+$("#ul").html(()=>{
+  let html = "";
+  list.forEach(function (v) {
+    // html+="<li style='background:"+v.color+"'>"+v.name+"<br/>"+v.color+"</li>";
+    html+="<li style='background:"+v.color+"' onclick='copy(this)'><input type=\"hidden\" value='"+v.color+"'>"+v.name+"<br/>"+v.color+"</li>";
+  });
+  return html;
+});
+//复制到剪切板 函数
+function copy(that){
+  $(that).children("input").attr("type","text").select();
+  document.execCommand("Copy"); // 执行浏览器复制命令
+  $(that).children("input").attr("type","hidden");
+}
+</script>
+</html>
