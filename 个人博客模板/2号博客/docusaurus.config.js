@@ -1,7 +1,7 @@
 const path = require("path");
 
 module.exports = {
-  title: "峰华前端工程师",
+  title: "Vixcity前端工程师",
   tagline: "帮助你提升前端开发技能",
   titleDelimiter: "-",
   url: "https://www.zxuqian.cn",
@@ -12,9 +12,9 @@ module.exports = {
   stylesheets: ["https://fonts.font.im/css?family=Raleway:500,700"],
   themeConfig: {
     navbar: {
-      title: "峰华前端工程师",
+      title: "Vixcity前端工程师",
       logo: {
-        alt: "峰华",
+        alt: "Vixcity",
         src: "img/logo.png",
         srcDark: "img/logo.png",
       },
@@ -117,7 +117,7 @@ module.exports = {
             },
             {
               label: "Bilibili 哔哩哔哩",
-              href: "https://space.bilibili.com/302954484",
+              href: "https://space.bilibili.com/260909298",
             },
             {
               label: "网易云课堂",
@@ -134,13 +134,13 @@ module.exports = {
           title: "友情链接",
           items: [
             {
-              label: "yuqing521のblog",
-              to: "https://yuqing521.github.io/",
+              label: "Vixcity的个人网站",
+              to: "https://Vixcity.xyz/",
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} 峰华 (张旭乾) Built with Docusaurus.<p>冀ICP备14007097号-3</p>`,
+      copyright: `Copyright © ${new Date().getFullYear()} Vixcity (温鑫) Built with Docusaurus.<p>冀ICP备14007097号-3</p>`,
     },
     prism: {
       darkTheme: require("prism-react-renderer/themes/vsDark"),
@@ -160,8 +160,8 @@ module.exports = {
           routeBasePath: "/",
           feedOptions: {
             type: "all",
-            title: "峰华前端工程师",
-            copyright: `Copyright © ${new Date().getFullYear()} 峰华 (张旭乾) Built with Docusaurus.<p>冀ICP备14007097号-3</p>`,
+            title: "Vixcity前端工程师",
+            copyright: `Copyright © ${new Date().getFullYear()} Vixcity (温鑫) Built with Docusaurus.<p>冀ICP备14007097号-3</p>`,
           },
         },
         theme: {

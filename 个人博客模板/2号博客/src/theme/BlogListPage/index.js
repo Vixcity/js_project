@@ -75,23 +75,20 @@ function BlogListPage(props) {
       <div className="hero">
         <div className="bloghome__intro">
           <animated.h1 style={animatedTexts[0]}>
-            Hello! 我是<span className="intro__name">峰华</span>
+            Hello! 我是<span className="intro__name">Vixcity</span>
           </animated.h1>
           <animated.p style={animatedTexts[1]}>
             致力于将编程和艺术相结合，以直观、生动、有趣的方式呈现枯燥的编程概念和原理，助你以最快的速度、愉快的心情掌握编程技巧，进而提升工作竞争力和创新创业能力。
           </animated.p>
           <animated.div style={animatedTexts[2]}>
             <a
-              href="https://space.bilibili.com/302954484?from=search&seid=1788147379248960737"
+              href="https://space.bilibili.com/260909298"
               className="bloghome__follow"
             >
-              去B站关注 ({(Math.round(followers) / 10000).toFixed(1)} 万)
+              去B站关注
             </a>
           </animated.div>
           <animated.p style={animatedTexts[3]}>
-            QQ 1 群：644722908
-            <br />
-            QQ 2 群：1004912565
           </animated.p>
           <SocialLinks animatedProps={animatedTexts[4]} />
         </div>
@@ -157,13 +154,13 @@ function SocialLinks({ animatedProps, ...props }) {
   const { isDarkTheme } = useThemeContext();
   return (
     <animated.div className="social__links" style={animatedProps}>
-      <a href="https://space.bilibili.com/302954484">
+      <a href="https://space.bilibili.com/260909298">
         <img
           src={useBaseUrl(`icons/bilibili${isDarkTheme ? "-dark" : ""}.svg`)}
           alt="bilibili"
         />
       </a>
-      <a href="https://www.linkedin.com/in/zxuqian/">
+      <a href="https://www.linkedin.com/in/%E9%91%AB-%E6%B8%A9-943694200/">
         <FontAwesomeIcon icon={faLinkedin} />
       </a>
       <a href="https://github.com/zxuqian">
