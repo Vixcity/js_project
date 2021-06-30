@@ -1,0 +1,1009 @@
+<!doctype html>
+<html class="export" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="Cascading grid layout library">
+
+  <title>Masonry &#xB7; Options</title>
+
+    <link rel="stylesheet" href="css/masonry-docs.css?3" media="screen">
+
+</head>
+<body class="page--" data-page="">
+
+
+  <div class="site-nav">
+    <div class="container">
+      <ol class="site-nav__list">
+        <li class="site-nav__item site-nav__item--homepage">
+          <a href=".">Masonry</a></li>
+        <li class="site-nav__item site-nav__item--layout">
+          <a href="layout.html">Layout</a></li>
+        <li class="site-nav__item site-nav__item--options">
+          <a href="options.html">Options</a></li>
+        <li class="site-nav__item site-nav__item--methods">
+          <a href="methods.html">Methods</a></li>
+        <li class="site-nav__item site-nav__item--events">
+          <a href="events.html">Events</a></li>
+        <li class="site-nav__item site-nav__item--extras">
+          <a href="extras.html">Extras</a></li>
+        <li class="site-nav__item site-nav__item--faq">
+          <a href="faq.html">FAQ</a></li>
+      </ol>
+    </div>
+  </div>
+
+
+  <div id="content" class="content container">
+
+      <h1>Options</h1>
+
+    <ul class="page-nav">
+<li class="page-nav__item page-nav__item--h2"><a href="#recommended">Recommended</a></li>
+<li class="page-nav__item page-nav__item--h3"><a href="#itemselector">itemSelector</a></li>
+<li class="page-nav__item page-nav__item--h3"><a href="#columnwidth">columnWidth</a></li>
+<li class="page-nav__item page-nav__item--h2"><a href="#layout">Layout</a></li>
+<li class="page-nav__item page-nav__item--h3"><a href="#element-sizing">Element sizing</a></li>
+<li class="page-nav__item page-nav__item--h3"><a href="#gutter">gutter</a></li>
+<li class="page-nav__item page-nav__item--h3"><a href="#horizontalorder">horizontalOrder</a></li>
+<li class="page-nav__item page-nav__item--h3"><a href="#percentposition">percentPosition</a></li>
+<li class="page-nav__item page-nav__item--h3"><a href="#stamp">stamp</a></li>
+<li class="page-nav__item page-nav__item--h3"><a href="#fitwidth">fitWidth</a></li>
+<li class="page-nav__item page-nav__item--h3"><a href="#originleft">originLeft</a></li>
+<li class="page-nav__item page-nav__item--h3"><a href="#origintop">originTop</a></li>
+<li class="page-nav__item page-nav__item--h2"><a href="#setup">Setup</a></li>
+<li class="page-nav__item page-nav__item--h3"><a href="#containerstyle">containerStyle</a></li>
+<li class="page-nav__item page-nav__item--h3"><a href="#transitionduration">transitionDuration</a></li>
+<li class="page-nav__item page-nav__item--h3"><a href="#stagger">stagger</a></li>
+<li class="page-nav__item page-nav__item--h3"><a href="#resize">resize</a></li>
+<li class="page-nav__item page-nav__item--h3"><a href="#initlayout">initLayout</a></li>
+</ul>
+
+
+<p>All options are optional, but <a href="#columnwidth"><code>columnWidth</code></a> and <a href="#itemselector"><code>itemSelector</code></a> are recommended.</p>
+
+<pre><code class="js"><span class="comment">// jQuery</span>
+$(<span class="string">&apos;.grid&apos;</span>).masonry({
+  <span class="attr">columnWidth</span>: <span class="number">200</span>,
+  <span class="attr">itemSelector</span>: <span class="string">&apos;.grid-item&apos;</span>
+});
+</code></pre>
+
+<pre><code class="js"><span class="comment">// vanilla JS</span>
+<span class="keyword">var</span> <span class="masonry_var">msnry</span> = <span class="keyword">new</span> <span class="masonry_keyword">Masonry</span>( <span class="string">&apos;.grid&apos;</span>, {
+  <span class="attr">columnWidth</span>: <span class="number">200</span>,
+  <span class="attr">itemSelector</span>: <span class="string">&apos;.grid-item&apos;</span>
+});
+</code></pre>
+
+<pre><code class="html"><span class="comment">&lt;!-- in HTML --&gt;</span>
+<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;grid&quot;</span> <span class="attr">data-masonry</span>=<span class="string">&apos;{ &quot;columnWidth&quot;: 200, &quot;itemSelector&quot;: &quot;.grid-item&quot; }&apos;</span>&gt;</span>
+</code></pre>
+
+
+<h2 id="recommended">Recommended</h2>
+
+
+<h3 id="itemselector">itemSelector</h3>
+
+<p>Specifies which child elements will be used as item elements in the layout.</p>
+
+<p>We recommend always setting <code>itemSelector</code>. <code>itemSelector</code> is useful to exclude <a href="#element-sizing">sizing elements</a> or other elements that are not part of the layout.</p>
+
+<div class="duo example">
+  <div class="duo__cell example__code">
+<pre><code class="js">itemSelector: <span class="string">&apos;.grid-item&apos;</span>
+</code></pre>
+
+<pre><code class="html"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;grid&quot;</span>&gt;</span>
+  <span class="comment">&lt;!-- do not use banner in Masonry layout --&gt;</span>
+  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;static-banner&quot;</span>&gt;</span>Static banner<span class="tag">&lt;/<span class="name">div</span>&gt;</span>
+  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;grid-item&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>
+  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;grid-item&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>
+  ...
+<span class="tag">&lt;/<span class="name">div</span>&gt;</span>
+</code></pre>
+  </div>
+  <div class="duo__cell example__demo">
+    <div class="grid grid--has-banner" data-masonry="{ &quot;itemSelector&quot;: &quot;.grid-item&quot;, &quot;columnWidth&quot;: 80 }">
+      <div class="static-banner">Static banner</div>
+      <div class="grid-item"></div>
+      <div class="grid-item grid-item--width2"></div>
+      <div class="grid-item grid-item--height3"></div>
+      <div class="grid-item grid-item--height2"></div>
+      <div class="grid-item grid-item--width2"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item grid-item--width2 grid-item--height3"></div>
+      <div class="grid-item grid-item--height2"></div>
+      <div class="grid-item grid-item--width2"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item grid-item--height2"></div>
+      <div class="grid-item"></div>
+    </div>
+    <p class="edit-demo">
+        <a href="https://codepen.io/desandro/pen/Jdbzvx">Edit this demo on CodePen</a>
+    </p>
+  </div>
+</div>
+
+
+<h3 id="columnwidth">columnWidth</h3>
+
+<p>Aligns items to a horizontal grid.</p>
+
+<div class="call-out">
+  <p>We recommend setting <code>columnWidth</code>. If <code>columnWidth</code> is not set, Masonry will use the outer width of the first item.</p>
+</div>
+
+<div class="duo example">
+  <div class="duo__cell example__code">
+<pre><code class="js">columnWidth: <span class="number">80</span>
+</code></pre>
+  </div>
+  <div class="duo__cell example__demo">
+    <div class="grid" data-masonry="{ &quot;columnWidth&quot;: 80 }">
+      <div class="grid-item"></div>
+      <div class="grid-item grid-item--width2"></div>
+      <div class="grid-item grid-item--height3"></div>
+      <div class="grid-item grid-item--height2"></div>
+      <div class="grid-item grid-item--width2"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item grid-item--width2 grid-item--height3"></div>
+      <div class="grid-item grid-item--height2"></div>
+      <div class="grid-item grid-item--width2"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item grid-item--height2"></div>
+      <div class="grid-item"></div>
+    </div>
+    <p class="edit-demo">
+        <a href="https://codepen.io/desandro/pen/osFxj">Edit this demo on CodePen</a>
+    </p>
+  </div>
+</div>
+
+<p>Use <a href="../options.html#element-sizing">element sizing</a> for responsive layouts with percentage widths. Set <code>columnWidth</code> to an <i>Element</i> or Selector <i>String</i> to use the outer width of the element for the size of the column.</p>
+
+<div class="duo example">
+  <div class="duo__cell example__code">
+<pre><code class="html"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;grid&quot;</span>&gt;</span>
+  <span class="comment">&lt;!-- .grid-sizer empty element, only used for element sizing --&gt;</span>
+  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;grid-sizer&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>
+  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;grid-item&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>
+  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;grid-item grid-item--width2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>
+  ...
+<span class="tag">&lt;/<span class="name">div</span>&gt;</span>
+</code></pre>
+
+<pre><code class="css"><span class="comment">/* fluid 5 columns */</span>
+<span class="selector-class">.grid-sizer</span>,
+<span class="selector-class">.grid-item</span> { <span class="attribute">width</span>: <span class="number">20%</span>; }
+<span class="comment">/* 2 columns wide */</span>
+<span class="selector-class">.grid-item--width2</span> { <span class="attribute">width</span>: <span class="number">40%</span>; }
+</code></pre>
+
+<pre><code class="js"><span class="comment">// use outer width of grid-sizer for columnWidth</span>
+columnWidth: <span class="string">&apos;.grid-sizer&apos;</span>,
+<span class="attr">itemSelector</span>: <span class="string">&apos;.grid-item&apos;</span>,
+<span class="attr">percentPosition</span>: <span class="literal">true</span>
+</code></pre>
+  </div>
+  <div class="duo__cell example__demo">
+    <div class="grid grid--fluid-5-col" data-masonry="{ &quot;itemSelector&quot;: &quot;.grid-item&quot;, &quot;columnWidth&quot;: &quot;.grid-sizer&quot;,  &quot;percentPosition&quot;: true }">
+      <div class="grid-sizer"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item grid-item--width2"></div>
+      <div class="grid-item grid-item--height3"></div>
+      <div class="grid-item grid-item--height2"></div>
+      <div class="grid-item grid-item--width2"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item grid-item--width2 grid-item--height3"></div>
+      <div class="grid-item grid-item--height2"></div>
+      <div class="grid-item grid-item--width2"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item grid-item--height2"></div>
+      <div class="grid-item"></div>
+    </div>
+    <p class="edit-demo">
+        <a href="https://codepen.io/desandro/pen/JFpeg">Edit this demo on CodePen</a>
+    </p>
+  </div>
+</div>
+
+
+<h2 id="layout">Layout</h2>
+
+
+<h3 id="element-sizing">Element sizing</h3>
+
+<p>Sizing options <a href="#columnwidth"><code>columnWidth</code></a> and <a href="#gutter"><code>gutter</code></a> can be set with an element. The size of the element is then used as the value of the option.</p>
+
+<div class="duo example">
+  <div class="duo__cell example__code">
+<pre><code class="html"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;grid&quot;</span>&gt;</span>
+  <span class="comment">&lt;!-- .grid-sizer empty element, only used for element sizing --&gt;</span>
+  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;grid-sizer&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>
+  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;grid-item&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>
+  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;grid-item grid-item--width2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>
+  ...
+<span class="tag">&lt;/<span class="name">div</span>&gt;</span>
+</code></pre>
+
+<pre><code class="css"><span class="comment">/* fluid 5 columns */</span>
+<span class="selector-class">.grid-sizer</span>,
+<span class="selector-class">.grid-item</span> { <span class="attribute">width</span>: <span class="number">20%</span>; }
+<span class="comment">/* 2 columns wide */</span>
+<span class="selector-class">.grid-item--width2</span> { <span class="attribute">width</span>: <span class="number">40%</span>; }
+</code></pre>
+
+<pre><code class="js"><span class="comment">// use outer width of grid-sizer for columnWidth</span>
+columnWidth: <span class="string">&apos;.grid-sizer&apos;</span>,
+<span class="comment">// do not use .grid-sizer in layout</span>
+itemSelector: <span class="string">&apos;.grid-item&apos;</span>,
+<span class="attr">percentPosition</span>: <span class="literal">true</span>
+</code></pre>
+  </div>
+  <div class="duo__cell example__demo">
+    <div class="grid grid--fluid-5-col" data-masonry="{ &quot;itemSelector&quot;: &quot;.grid-item&quot;, &quot;columnWidth&quot;: &quot;.grid-sizer&quot;,  &quot;percentPosition&quot;: true }">
+      <div class="grid-sizer"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item grid-item--width2"></div>
+      <div class="grid-item grid-item--height3"></div>
+      <div class="grid-item grid-item--height2"></div>
+      <div class="grid-item grid-item--width2"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item grid-item--width2 grid-item--height3"></div>
+      <div class="grid-item grid-item--height2"></div>
+      <div class="grid-item grid-item--width2"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item grid-item--height2"></div>
+      <div class="grid-item"></div>
+    </div>
+    <p class="edit-demo">
+        <a href="https://codepen.io/desandro/pen/JFpeg">Edit this demo on CodePen</a>
+    </p>
+  </div>
+</div>
+
+<p>The option can be set to a Selector <i>String</i> or an <i>Element</i>.</p>
+
+<pre><code class="js"><span class="comment">// set to a selector string</span>
+<span class="comment">// first matching element within container element will be used</span>
+columnWidth: <span class="string">&apos;.grid-sizer&apos;</span>
+
+<span class="comment">// set to an element</span>
+columnWidth: <span class="jquery_var">$grid</span>.find(<span class="string">&apos;.grid-sizer&apos;</span>)[<span class="number">0</span>]
+</code></pre>
+
+<p>Element sizing options allow you to control the sizing of the Masonry layout within your CSS. This is useful for responsive layouts and media queries.</p>
+
+<pre><code class="css"><span class="comment">/* 3 columns by default */</span>
+<span class="selector-class">.grid-sizer</span> { <span class="attribute">width</span>: <span class="number">33.333%</span>; }
+
+@<span class="keyword">media</span> screen and (min-width: <span class="number">768px</span>) {
+  <span class="comment">/* 5 columns for larger screens */</span>
+  <span class="selector-class">.grid-sizer</span> { <span class="attribute">width</span>: <span class="number">20%</span>; }
+}
+</code></pre>
+
+
+<h3 id="gutter">gutter</h3>
+
+<p>Adds horizontal space between item elements.</p>
+
+<div class="duo example">
+  <div class="duo__cell example__code">
+<pre><code class="js">gutter: <span class="number">10</span>
+</code></pre>
+  </div>
+  <div class="duo__cell example__demo">
+    <div class="grid grid--gutter" data-masonry="{ &quot;gutter&quot;: 10 }">
+      <div class="grid-item"></div>
+      <div class="grid-item grid-item--width2"></div>
+      <div class="grid-item grid-item--height3"></div>
+      <div class="grid-item grid-item--height2"></div>
+      <div class="grid-item grid-item--width2"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item grid-item--width2 grid-item--height3"></div>
+      <div class="grid-item grid-item--height2"></div>
+      <div class="grid-item grid-item--width2"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item grid-item--height2"></div>
+      <div class="grid-item"></div>
+    </div>
+    <p class="edit-demo">
+        <a href="https://codepen.io/desandro/pen/iIbgC">Edit this demo on CodePen</a>
+    </p>
+  </div>
+</div>
+
+<p>To set vertical space between elements, use <code>margin</code> CSS.</p>
+
+<div class="duo example">
+  <div class="duo__cell example__code">
+<pre><code class="js">gutter: <span class="number">10</span>
+</code></pre>
+
+<pre><code class="css"><span class="selector-class">.grid-item</span> {
+  <span class="attribute">margin-bottom</span>: <span class="number">10px</span>;
+}
+</code></pre>
+  </div>
+  <div class="duo__cell example__demo">
+    <div class="grid grid--gutter grid--gutter-bottom" data-masonry="{ &quot;gutter&quot;: 10 }">
+      <div class="grid-item"></div>
+      <div class="grid-item grid-item--width2"></div>
+      <div class="grid-item grid-item--height3"></div>
+      <div class="grid-item grid-item--height2"></div>
+      <div class="grid-item grid-item--width2"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item grid-item--width2 grid-item--height3"></div>
+      <div class="grid-item grid-item--height2"></div>
+      <div class="grid-item grid-item--width2"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item grid-item--height2"></div>
+      <div class="grid-item"></div>
+    </div>
+    <p class="edit-demo">
+        <a href="https://codepen.io/desandro/pen/gbnko">Edit this demo on CodePen</a>
+    </p>
+  </div>
+</div>
+
+<p>Use <a href="#element-sizing">element sizing</a> for responsive layouts with percentage widths. Set <code>gutter</code> to an <i>Element</i> or Selector <i>String</i> to use the outer width of the element.</p>
+
+<div class="duo example">
+  <div class="duo__cell example__code">
+<pre><code class="html"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;grid&quot;</span>&gt;</span>
+  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;grid-sizer&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>
+  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;gutter-sizer&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>
+  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;grid-item&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>
+  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;grid-item grid-item--width2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>
+  ...
+<span class="tag">&lt;/<span class="name">div</span>&gt;</span>
+</code></pre>
+
+<pre><code class="css"><span class="selector-class">.grid-sizer</span>,
+<span class="selector-class">.grid-item</span> { <span class="attribute">width</span>: <span class="number">22%</span>; }
+
+<span class="selector-class">.gutter-sizer</span> { <span class="attribute">width</span>: <span class="number">4%</span>; }
+
+<span class="selector-class">.grid-item--width2</span> { <span class="attribute">width</span>: <span class="number">48%</span>; }
+</code></pre>
+
+<pre><code class="js">columnWidth: <span class="string">&apos;.grid-sizer&apos;</span>,
+<span class="attr">gutter</span>: <span class="string">&apos;.gutter-sizer&apos;</span>,
+<span class="attr">itemSelector</span>: <span class="string">&apos;.grid-item&apos;</span>,
+<span class="attr">percentPosition</span>: <span class="literal">true</span>
+</code></pre>
+  </div>
+  <div class="duo__cell example__demo">
+    <div class="grid grid--fluid-gutter" data-masonry="{ &quot;itemSelector&quot;: &quot;.grid-item&quot;, &quot;columnWidth&quot;: &quot;.grid-sizer&quot;, &quot;gutter&quot;: &quot;.gutter-sizer&quot;, &quot;percentPosition&quot;: true }">
+      <div class="gutter-sizer"></div>
+      <div class="grid-sizer"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item grid-item--width2"></div>
+      <div class="grid-item grid-item--height3"></div>
+      <div class="grid-item grid-item--height2"></div>
+      <div class="grid-item grid-item--width2"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item grid-item--width2 grid-item--height3"></div>
+      <div class="grid-item grid-item--height2"></div>
+      <div class="grid-item grid-item--width2"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item grid-item--height2"></div>
+      <div class="grid-item"></div>
+    </div>
+    <p class="edit-demo">
+        <a href="https://codepen.io/desandro/pen/BAJKn">Edit this demo on CodePen</a>
+    </p>
+  </div>
+</div>
+
+
+<h3 id="horizontalorder">horizontalOrder</h3>
+
+<p>Lays out items to (mostly) maintain horizontal left-to-right order.</p>
+
+
+<div class="duo example">
+  <div class="duo__cell example__code">
+<pre><code class="js">horizontalOrder: <span class="literal">true</span>
+</code></pre>
+  </div>
+  <div class="duo__cell example__demo">
+    <div class="grid grid--counting" data-masonry="{ &quot;itemSelector&quot;: &quot;.grid-item&quot;, &quot;horizontalOrder&quot;: true }">
+      <div class="grid-item grid-item--height2"></div>
+      <div class="grid-item grid-item--height3"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item grid-item--height2"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item grid-item--height3"></div>
+      <div class="grid-item grid-item--height2"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item grid-item--height2"></div>
+      <div class="grid-item grid-item--height3"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item grid-item--height2"></div>
+      <div class="grid-item"></div>
+    </div>
+    <p class="edit-demo">
+        <a href="https://codepen.io/desandro/pen/EmKWdr">Edit this demo on CodePen</a>
+    </p>
+  </div>
+</div>
+
+<p>Look how items in the second row are ordered.</p>
+
+<div class="duo example">
+  <div class="duo__cell example__code">
+<pre><code class="js"><span class="comment">// default, items have no horizontal order</span>
+<span class="comment">// horizontalOrder: false</span>
+</code></pre>
+  </div>
+  <div class="duo__cell example__demo">
+    <div class="grid grid--counting" data-masonry="{ &quot;itemSelector&quot;: &quot;.grid-item&quot; }">
+      <div class="grid-item grid-item--height2"></div>
+      <div class="grid-item grid-item--height3"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item grid-item--height2"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item grid-item--height3"></div>
+      <div class="grid-item grid-item--height2"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item grid-item--height2"></div>
+      <div class="grid-item grid-item--height3"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item grid-item--height2"></div>
+      <div class="grid-item"></div>
+    </div>
+  </div>
+</div>
+
+
+<h3 id="percentposition">percentPosition</h3>
+
+<p>Sets item positions in percent values, rather than pixel values. <code>percentPosition: <span class="literal">true</span></code> works well with percent-width items, as items will not transition their position on resize.</p>
+
+<div class="duo example">
+  <div class="duo__cell example__code">
+<pre><code class="js"><span class="comment">// set positions with percent values</span>
+percentPosition: <span class="literal">true</span>,
+<span class="attr">columnWidth</span>: <span class="string">&apos;.grid-sizer&apos;</span>,
+<span class="attr">itemSelector</span>: <span class="string">&apos;.grid-item&apos;</span>
+</code></pre>
+
+<pre><code class="css"><span class="comment">/* fluid 5 columns */</span>
+<span class="selector-class">.grid-sizer</span>,
+<span class="selector-class">.grid-item</span> { <span class="attribute">width</span>: <span class="number">20%</span>; }
+</code></pre>
+  </div>
+  <div class="duo__cell example__demo">
+    <div class="grid grid--fluid-5-col" data-masonry="{ &quot;itemSelector&quot;: &quot;.grid-item&quot;, &quot;columnWidth&quot;: &quot;.grid-sizer&quot;,  &quot;percentPosition&quot;: true }">
+      <div class="grid-sizer"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item grid-item--width2"></div>
+      <div class="grid-item grid-item--height3"></div>
+      <div class="grid-item grid-item--height2"></div>
+      <div class="grid-item grid-item--width2"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item grid-item--width2 grid-item--height3"></div>
+      <div class="grid-item grid-item--height2"></div>
+      <div class="grid-item grid-item--width2"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item grid-item--height2"></div>
+      <div class="grid-item"></div>
+    </div>
+    <p class="edit-demo">
+        <a href="https://codepen.io/desandro/pen/JFpeg">Edit this demo on CodePen</a>
+    </p>
+  </div>
+</div>
+
+
+<h3 id="stamp">stamp</h3>
+
+<p>Specifies which elements are <em>stamped</em> within the layout. Masonry will layout items below stamped elements.</p>
+
+<p>The <code>stamp</code> option stamps elements only when the Masonry instance is first initialized. You can stamp additional elements afterwards with the <a href="methods.html#stamp"><code>stamp</code> method</a>.</p>
+
+<div class="duo example">
+  <div class="duo__cell example__code">
+<pre><code class="html"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;grid&quot;</span>&gt;</span>
+  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;stamp stamp1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>
+  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;stamp stamp2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>
+  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;grid-item&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>
+  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;grid-item&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>
+  ....
+<span class="tag">&lt;/<span class="name">div</span>&gt;</span>
+</code></pre>
+
+<pre><code class="js"><span class="comment">// specify itemSelector so stamps do get laid out</span>
+itemSelector: <span class="string">&apos;.grid-item&apos;</span>,
+<span class="comment">// stamp elements</span>
+stamp: <span class="string">&apos;.stamp&apos;</span>
+</code></pre>
+
+<pre><code class="css"><span class="comment">/* position stamp elements with CSS */</span>
+<span class="selector-class">.stamp</span> {
+  <span class="attribute">position</span>: absolute;
+  <span class="attribute">background</span>: orange;
+  <span class="attribute">border</span>: <span class="number">4px</span> dotted black;
+}
+<span class="selector-class">.stamp1</span> {
+  <span class="attribute">left</span>: <span class="number">30%</span>;
+  <span class="attribute">top</span>: <span class="number">10px</span>;
+  <span class="attribute">width</span>: <span class="number">20%</span>;
+  <span class="attribute">height</span>: <span class="number">100px</span>;
+}
+<span class="selector-class">.stamp2</span> {
+  <span class="attribute">right</span>: <span class="number">10%</span>;
+  <span class="attribute">top</span>: <span class="number">20px</span>;
+  <span class="attribute">width</span>: <span class="number">70%</span>;
+  <span class="attribute">height</span>: <span class="number">30px</span>;
+}
+</code></pre>
+  </div>
+  <div class="duo__cell example__demo">
+    <div class="grid grid--has-stamp" data-masonry="{ &quot;itemSelector&quot;: &quot;.grid-item&quot;, &quot;stamp&quot;: &quot;.stamp&quot; }">
+      <div class="stamp stamp--static-stamp1"></div>
+      <div class="stamp stamp--static-stamp2"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item grid-item--width2"></div>
+      <div class="grid-item grid-item--height3"></div>
+      <div class="grid-item grid-item--height2"></div>
+      <div class="grid-item grid-item--width2"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item grid-item--width2 grid-item--height3"></div>
+      <div class="grid-item grid-item--height2"></div>
+      <div class="grid-item grid-item--width2"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item grid-item--height2"></div>
+      <div class="grid-item"></div>
+    </div>
+    <p class="edit-demo">
+        <a href="https://codepen.io/desandro/pen/hsine">Edit this demo on CodePen</a>
+    </p>
+  </div>
+</div>
+
+
+<h3 id="fitwidth">fitWidth</h3>
+
+<p>Sets the width of the container to fit the available number of columns, based the size of container&apos;s parent element. When enabled, you can center the container with CSS.</p>
+
+<p><code>fitWidth</code> was previously <code>isFitWidth</code> in Masonry v3. <code>isFitWidth</code> will still work in Masonry v4.</p>
+
+<div class="call-out">
+  <p><code>fitWidth: <span class="literal">true</span></code> does not work with <a href="#element-sizing">element sizing</a> with percentage width. Either <code>columnWidth</code> needs to be set to a fixed size, like <code>columnWidth: 120</code>, or items need to have a fixed size in pixels, like <code>width: 120px</code>. Otherwise, the container and item widths will collapse on one another.</p>
+</div>
+
+<div class="duo example">
+  <div class="duo__cell example__code">
+<pre><code class="js">fitWidth: <span class="literal">true</span>
+</code></pre>
+
+<pre><code class="css"><span class="comment">/* center container with CSS */</span>
+<span class="selector-class">.grid</span> {
+  <span class="attribute">margin</span>: <span class="number">0</span> auto;
+}
+</code></pre>
+  </div>
+  <div class="duo__cell example__demo example__demo--fit-width">
+    <div class="grid grid--centered" data-masonry="{ &quot;fitWidth&quot;: true }">
+      <div class="grid-item grid-item--width2"></div>
+      <div class="grid-item grid-item--width2 grid-item--height2"></div>
+      <div class="grid-item grid-item--width2 grid-item--height3"></div>
+      <div class="grid-item grid-item--width2 grid-item--height2"></div>
+      <div class="grid-item grid-item--width2"></div>
+      <div class="grid-item grid-item--width2"></div>
+      <div class="grid-item grid-item--width2"></div>
+      <div class="grid-item grid-item--width2 grid-item--height2"></div>
+      <div class="grid-item grid-item--width2 grid-item--height3"></div>
+    </div>
+    <p class="edit-demo">
+        <a href="https://codepen.io/desandro/pen/nGLvx">Edit this demo on CodePen</a>
+    </p>
+  </div>
+</div>
+
+
+<h3 id="originleft">originLeft</h3>
+
+<p>Controls the horizontal flow of the layout. By default, item elements start positioning at the left, with <code><span class="comment">originLeft: true</span></code>. Set <code>originLeft: <span class="literal">false</span></code> for right-to-left layouts.</p>
+
+<p><code>originLeft</code> was previously <code>isOriginLeft</code> in Masonry v3. <code>isOriginLeft</code> will still work in Masonry v4.</p>
+
+<div class="duo example">
+  <div class="duo__cell example__code">
+<pre><code class="js">originLeft: <span class="literal">false</span>
+</code></pre>
+  </div>
+  <div class="duo__cell example__demo">
+    <div class="grid grid--counting" data-masonry="{ &quot;originLeft&quot;: false, &quot;columnWidth&quot;: 80 }">
+      <div class="grid-item"></div>
+      <div class="grid-item grid-item--width2"></div>
+      <div class="grid-item grid-item--height3"></div>
+      <div class="grid-item grid-item--height2"></div>
+      <div class="grid-item grid-item--width2"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item grid-item--width2 grid-item--height3"></div>
+      <div class="grid-item grid-item--height2"></div>
+      <div class="grid-item grid-item--width2"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item grid-item--height2"></div>
+      <div class="grid-item"></div>
+    </div>
+    <p class="edit-demo">
+        <a href="https://codepen.io/desandro/pen/adwgL">Edit this demo on CodePen</a>
+    </p>
+  </div>
+</div>
+
+
+<h3 id="origintop">originTop</h3>
+
+<p>Controls the vertical flow of the layout. By default, item elements start positioning at the top, with <code><span class="comment">originTop: true</span></code>. Set <code>originTop: <span class="literal">false</span></code> for bottom-up layouts. It&#x2019;s like Tetris!</p>
+
+<p><code>originTop</code> was previously <code>isOriginTop</code> in Masonry v3. <code>isOriginTop</code> will still work in Masonry v4.</p>
+
+<div class="duo example">
+  <div class="duo__cell example__code">
+<pre><code class="js">originTop: <span class="literal">false</span>
+</code></pre>
+  </div>
+  <div class="duo__cell example__demo">
+    <div class="grid grid--counting" data-masonry="{ &quot;originTop&quot;: false, &quot;columnWidth&quot;: 80 }">
+      <div class="grid-item"></div>
+      <div class="grid-item grid-item--width2"></div>
+      <div class="grid-item grid-item--height3"></div>
+      <div class="grid-item grid-item--height2"></div>
+      <div class="grid-item grid-item--width2"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item grid-item--width2 grid-item--height3"></div>
+      <div class="grid-item grid-item--height2"></div>
+      <div class="grid-item grid-item--width2"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item grid-item--height2"></div>
+      <div class="grid-item"></div>
+    </div>
+    <p class="edit-demo">
+        <a href="https://codepen.io/desandro/pen/uwtLs">Edit this demo on CodePen</a>
+    </p>
+  </div>
+</div>
+
+
+<h2 id="setup">Setup</h2>
+
+
+<h3 id="containerstyle">containerStyle</h3>
+
+<p>CSS styles that are applied to the container element.</p>
+
+<pre><code class="js"><span class="comment">// default</span>
+<span class="comment">// containerStyle: { position: &apos;relative&apos; }</span>
+
+<span class="comment">// disable any styles being set on container</span>
+<span class="comment">// useful if using absolute position on container</span>
+containerStyle: <span class="literal">null</span>
+</code></pre>
+
+
+<h3 id="transitionduration">transitionDuration</h3>
+
+<p>Duration of the transition when items change position or appearance, set in a CSS time format. Default: <code><span class="comment">transitionDuration: &apos;0.4s&apos;</span></code></p>
+
+<pre><code class="js"><span class="comment">// fast transitions</span>
+transitionDuration: <span class="string">&apos;0.2s&apos;</span>
+
+<span class="comment">// slow transitions</span>
+transitionDuration: <span class="string">&apos;0.8s&apos;</span>
+
+<span class="comment">// no transitions</span>
+transitionDuration: <span class="number">0</span>
+</code></pre>
+
+
+<h3 id="stagger">stagger</h3>
+
+<p>Staggers item transitions, so items transition incrementally after one another. Set as a CSS time format, <code><span class="string">&apos;0.03s&apos;</span></code>, or as a number in milliseconds, <code><span class="number">30</span></code>.</p>
+
+<div class="duo example">
+  <div class="duo__cell example__code">
+<pre><code class="js">stagger: <span class="number">30</span>
+</code></pre>
+  </div>
+  <div class="duo__cell example__demo" data-js="stagger">
+    <p class="instruction">Click item to toggle size</p>
+  
+    <div class="grid grid--clickable">
+      <div class="grid-item"></div>
+      <div class="grid-item grid-item--width2"></div>
+      <div class="grid-item grid-item--height3"></div>
+      <div class="grid-item grid-item--height2"></div>
+      <div class="grid-item grid-item--width2"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item grid-item--width2 grid-item--height3"></div>
+      <div class="grid-item grid-item--height2"></div>
+      <div class="grid-item grid-item--width2"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item grid-item--height2"></div>
+      <div class="grid-item"></div>
+    </div>
+  
+    <p class="edit-demo">
+        <a href="https://codepen.io/desandro/pen/rLdLdB">Edit this demo</a>
+        or <a href="https://codepen.io/desandro/pen/oLqLqW">vanilla JS demo</a> on CodePen
+    </p>
+  </div>
+</div>
+
+
+<h3 id="resize">resize</h3>
+
+<p>Adjusts sizes and positions when window is resized. Enabled by default <code><span class="comment">resize: true</span></code>.</p>
+
+<p><code>resize</code> was previously <code>isResizeBound</code> in Masonry v3. <code>isResizeBound</code> will still work in Masonry v4.</p>
+
+<div class="duo example">
+  <div class="duo__cell example__code">
+<pre><code class="js"><span class="comment">// disable window resize behavior</span>
+resize: <span class="literal">false</span>
+</code></pre>
+
+<pre><code class="css"><span class="comment">/* grid has fixed width */</span>
+<span class="selector-class">.grid</span> {
+  <span class="attribute">width</span>: <span class="number">320px</span>;
+}
+</code></pre>
+  </div>
+  <div class="duo__cell example__demo">
+    <div class="grid grid--fixed-width" data-masonry="{ &quot;columnWidth&quot;: 80, &quot;resize&quot;: false }">
+      <div class="grid-item"></div>
+      <div class="grid-item grid-item--width2"></div>
+      <div class="grid-item grid-item--height3"></div>
+      <div class="grid-item grid-item--height2"></div>
+      <div class="grid-item grid-item--width2"></div>
+      <div class="grid-item"></div>
+      <div class="grid-item grid-item--width2 grid-item--height3"></div>
+      <div class="grid-item grid-item--height2"></div>
+    </div>
+    <p class="edit-demo">
+        <a href="https://codepen.io/desandro/pen/doOLoo">Edit this demo on CodePen</a>
+    </p>
+  </div>
+</div>
+
+
+<h3 id="initlayout">initLayout</h3>
+
+<p>Enables layout on initialization.
+  Enabled by default <code><span class="comment">initLayout: true</span></code>.</p>
+
+<p>Set <code>initLayout: <span class="literal">false</span></code> to disable layout on initialization, so you can use <a href="methods.html">methods</a> or add <a href="events.html">events</a> before the initial layout.</p>
+
+<p><code>initLayout</code> was previously <code>isInitLayout</code> in Masonry v3. <code>isInitLayout</code> will still work in Masonry v4.</p>
+
+<pre><code class="js"><span class="keyword">var</span> <span class="jquery_var">$grid</span> = $(<span class="string">&apos;.grid&apos;</span>).masonry({
+  <span class="comment">// disable initial layout</span>
+  initLayout: <span class="literal">false</span>,
+  <span class="comment">//...</span>
+});
+<span class="comment">// bind event</span>
+<span class="jquery_var">$grid</span>.masonry( <span class="string">&apos;on&apos;</span>, <span class="string">&apos;layoutComplete&apos;</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{
+  <span class="built_in">console</span>.log(<span class="string">&apos;layout is complete&apos;</span>);
+});
+<span class="comment">// trigger initial layout</span>
+<span class="jquery_var">$grid</span>.masonry();
+</code></pre>
+
+<p class="edit-demo">
+    <a href="https://codepen.io/desandro/pen/zrdVbg">Edit this demo</a>
+    or <a href="https://codepen.io/desandro/pen/QyMXPB">vanilla JS demo</a> on CodePen
+</p>
+
+
+
+  </div>
+
+  <div class="site-nav">
+    <div class="container">
+      <ol class="site-nav__list">
+        <li class="site-nav__item site-nav__item--homepage">
+          <a href=".">Masonry</a></li>
+        <li class="site-nav__item site-nav__item--layout">
+          <a href="layout.html">Layout</a></li>
+        <li class="site-nav__item site-nav__item--options">
+          <a href="options.html">Options</a></li>
+        <li class="site-nav__item site-nav__item--methods">
+          <a href="methods.html">Methods</a></li>
+        <li class="site-nav__item site-nav__item--events">
+          <a href="events.html">Events</a></li>
+        <li class="site-nav__item site-nav__item--extras">
+          <a href="extras.html">Extras</a></li>
+        <li class="site-nav__item site-nav__item--faq">
+          <a href="faq.html">FAQ</a></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="site-footer">
+    <div class="container">
+  
+      <p class="site-footer__copy">
+        Masonry is made by <a href="https://desandro.com">David DeSandro</a>.
+        Make something rad with it.
+      </p>
+  
+      <div class="showcase">
+      
+        <ul class="showcase-item-list">
+            <li class="showcase-item">
+              <a class="showcase-item__link" href="https://isotope.metafizzy.co">
+                <div class="showcase-item__image">
+                    <svg class="isotope-illo" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 350 350" width="100" height="100">
+                      <path class="isotope-illo__color1" fill="#6C6" d="M80 170H30c-6 0-10-5-10-10v-50c0-6 5-10 10-10h50c6 0 10 5 10 10v50C90 166 86 170 80 170z"/>
+                      <path class="isotope-illo__color1" fill="#6C6" d="M80 90H30c-6 0-10-5-10-10V30c0-6 5-10 10-10h50c6 0 10 5 10 10v50C90 86 86 90 80 90z"/>
+                      <path class="isotope-illo__color1" fill="#6C6" d="M160 90h-50c-6 0-10-5-10-10V30c0-6 5-10 10-10h50c6 0 10 5 10 10v50C170 86 166 90 160 90z"/>
+                      <path class="isotope-illo__color1" fill="#6C6" d="M240 90h-50c-6 0-10-5-10-10V30c0-6 5-10 10-10h50c6 0 10 5 10 10v50C250 86 246 90 240 90z"/>
+                      <path class="isotope-illo__color1" fill="#6C6" d="M320 90h-50c-6 0-10-5-10-10V30c0-6 5-10 10-10h50c6 0 10 5 10 10v50C330 86 326 90 320 90z"/>
+                      <path class="isotope-illo__color1" fill="#6C6" d="M155 165h-40c-6 0-10-5-10-10v-40c0-6 5-10 10-10h40c6 0 10 5 10 10v40 C165 161 161 165 155 165z"/>
+                      <path class="isotope-illo__color1" fill="#6C6" d="M230 160h-30c-6 0-10-5-10-10v-30c0-6 5-10 10-10h30c6 0 10 5 10 10v30 C240 156 236 160 230 160z"/>
+                      <path class="isotope-illo__color1" fill="#6C6" d="M305 155h-20c-6 0-10-5-10-10v-20c0-6 5-10 10-10h20c6 0 10 5 10 10v20 C315 151 311 155 305 155z"/>
+                      <path class="isotope-illo__color1" fill="#6C6" d="M65 235H45c-6 0-10-5-10-10v-20c0-6 5-10 10-10h20c6 0 10 5 10 10v20C75 231 71 235 65 235z"/>
+                      <path class="isotope-illo__color1" fill="#6C6" d="M140 230h-10c-6 0-10-5-10-10v-10c0-6 5-10 10-10h10c6 0 10 5 10 10v10 C150 226 146 230 140 230z"/>
+                      <path class="isotope-illo__color2" fill="#19F" d="M305 235h-20c-6 0-10-5-10-10v-20c0-6 5-10 10-10h20c6 0 10 5 10 10v20 C315 231 311 235 305 235z"/>
+                      <path class="isotope-illo__color2" fill="#19F" d="M65 315H45c-6 0-10-5-10-10v-20c0-6 5-10 10-10h20c6 0 10 5 10 10v20C75 311 71 315 65 315z"/>
+                      <path class="isotope-illo__color2" fill="#19F" d="M150 320h-30c-6 0-10-5-10-10v-30c0-6 5-10 10-10h30c6 0 10 5 10 10v30 C160 316 156 320 150 320z"/>
+                      <path class="isotope-illo__color2" fill="#19F" d="M220 230h-10c-6 0-10-5-10-10v-10c0-6 5-10 10-10h10c6 0 10 5 10 10v10 C230 226 226 230 220 230z"/>
+                      <path class="isotope-illo__color2" fill="#19F" d="M235 325h-40c-6 0-10-5-10-10v-40c0-6 5-10 10-10h40c6 0 10 5 10 10v40 C245 321 241 325 235 325z"/>
+                      <path class="isotope-illo__color2" fill="#19F" d="M320 330h-50c-6 0-10-5-10-10v-50c0-6 5-10 10-10h50c6 0 10 5 10 10v50 C330 326 326 330 320 330z"/>
+                    </svg>
+                </div>
+                <div class="showcase-item__text">
+                  <h3 class="showcase-item__title">Isotope</h3>
+                  <p class="showcase-item__description">Filter &amp; sort magical layouts</p>
+                </div>
+              </a>
+            </li>
+      
+            <li class="showcase-item">
+              <a class="showcase-item__link" href="https://infinite-scroll.com">
+                <div class="showcase-item__image">
+                    <svg class="infinite-scroll-illo" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 520 520" width="200" height="200">
+                      <path class="infinite-scroll-illo__page infinite-scroll-illo__page--back" d="M90,110H10V90c0-22,18-40,40-40h40V110z"/>
+                      <path class="infinite-scroll-illo__page infinite-scroll-illo__page--front1" d="M270,90L270,90c0-22-18-40-40-40h0H50h0c22,0,40,18,40,40v0v0v160h180V90z"/>
+                      <path class="infinite-scroll-illo__page infinite-scroll-illo__page--front2" d="M170,330v-20H90v20v0c0,22,18,40,40,40h0h40V330z"/>
+                      <path class="infinite-scroll-illo__page infinite-scroll-illo__page--back" d="M350,150H210c-22,0-40,18-40,40v140v0c0,22-18,40-40,40h0h220V150z"/>
+                      <path class="infinite-scroll-illo__page infinite-scroll-illo__page--front3" d="M430,470V270H250v160c0,22,18,40,40,40H430z"/>
+                      <path class="infinite-scroll-illo__page infinite-scroll-illo__page--front2" d="M250,190v20h180v-20c0-22-18-40-40-40H210h0C232,150,250,168,250,190L250,190z"/>
+                      <path class="infinite-scroll-illo__page infinite-scroll-illo__page--back" d="M330,410v20v0c0,22-18,40-40,40h0h180c22,0,40-18,40-40v-20H330z"/>
+                    </svg>
+                </div>
+                <div class="showcase-item__text">
+                  <h3 class="showcase-item__title">Infinite Scroll</h3>
+                  <p class="showcase-item__description">Automatically add next page</p>
+                </div>
+              </a>
+            </li>
+      
+            <li class="showcase-item">
+              <a class="showcase-item__link" href="https://flickity.metafizzy.co">
+                <div class="showcase-item__image">
+                    <svg class="flickity-illo" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 360 360" width="100" height="100">
+                      <path class="flickity-illo__color1" fill="#19F" d="M300 220L300 220c-11 0-20-9-20-20v-80c0-11 9-20 20-20h0V220z"/>
+                      <path class="flickity-illo__color1" fill="#19F" d="M340 220L340 220c-11 0-20-9-20-20v-80c0-11 9-20 20-20h0V220z"/>
+                      <path class="flickity-illo__color2" fill="#333" d="M320 290V180c0-18-10-35-27-43L240 110v180H320z"/>
+                      <path class="flickity-illo__color3" fill="white" d="M240 300H120c-11 0-20-9-20-20V40c0-11 9-20 20-20h120c11 0 20 9 20 20v240C260 291 251 300 240 300z"/>
+                      <path class="flickity-illo__color4" fill="#ED0" d="M230 260H130c-6 0-10-5-10-10V70c0-6 5-10 10-10h100c6 0 10 5 10 10v180 C240 256 236 260 230 260z"/>
+                      <path class="flickity-illo__color2" fill="#333" d="M260 200h60v81c0 32-26 59-59 59h0c-34 0-61-27-61-61V240h20 C242 240 260 222 260 200L260 200z"/>
+                      <path class="flickity-illo__color5" fill="#C25" d="M180 220h-60V100h60c6 0 10 5 10 10v100C190 216 186 220 180 220z"/>
+                      <path class="flickity-illo__color1" fill="#19F" d="M240 220h-20c-6 0-10-5-10-10V110c0-6 5-10 10-10h20V220z"/>
+                      <rect class="flickity-illo__color2" fill="#333" x="230" y="280" width="90" height="80"/>
+                      <circle class="flickity-illo__color4" fill="#ED0" cx="180" cy="280" r="10"/>
+                      <line class="flickity-illo__thumb" stroke="#333" stroke-width="60" stroke-linecap="round" x1="262" y1="290" x2="152" y2="240"/>
+                      <path class="flickity-illo__color4" fill="#ED0" d="M190 50h-20c-6 0-10-5-10-10v0c0-6 5-10 10-10h20c6 0 10 5 10 10v0C200 46 196 50 190 50z"/>
+                      <path class="flickity-illo__color5" fill="#C25" d="M80 220L80 220c-11 0-20-9-20-20v-80c0-11 9-20 20-20h0V220z"/>
+                      <path class="flickity-illo__color5" fill="#C25" d="M40 220L40 220c-11 0-20-9-20-20v-80c0-11 9-20 20-20h0V220z"/>
+                    </svg>
+                </div>
+                <div class="showcase-item__text">
+                  <h3 class="showcase-item__title">Flickity</h3>
+                  <p class="showcase-item__description">Touch, responsive, flickable carousels</p>
+                </div>
+              </a>
+            </li>
+      
+            <li class="showcase-item">
+              <a class="showcase-item__link" href="https://packery.metafizzy.co">
+                <div class="showcase-item__image">
+                    <svg class="packery-illo" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 700 700" width="100" height="100">
+                      <path class="packery-illo__item" fill="#C09" d="M172 180H48c-4 0-8-4-8-8V48c0-4 4-8 8-8h124c4 0 8 4 8 8v124C180 176 176 180 172 180z"/>
+                      <path class="packery-illo__item" fill="#C09" d="M172 340H48c-4 0-8-4-8-8V208c0-4 4-8 8-8h124c4 0 8 4 8 8v124C180 336 176 340 172 340z"/>
+                      <path class="packery-illo__item" fill="#C09" d="M492 660H368c-4 0-8-4-8-8V528c0-4 4-8 8-8h124c4 0 8 4 8 8v124C500 656 496 660 492 660z"/>
+                      <path class="packery-illo__item" fill="#C09" d="M652 660H528c-4 0-8-4-8-8V528c0-4 4-8 8-8h124c4 0 8 4 8 8v124C660 656 656 660 652 660z"/>
+                      <path class="packery-illo__item" fill="#C09" d="M652 500H368c-4 0-8-4-8-8V368c0-4 4-8 8-8h284c4 0 8 4 8 8v124C660 496 656 500 652 500z"/>
+                      <path class="packery-illo__item" fill="#C09" d="M332 660H48c-4 0-8-4-8-8V368c0-4 4-8 8-8h284c4 0 8 4 8 8v284C340 656 336 660 332 660z"/>
+                      <path class="packery-illo__item" fill="#C09" d="M652 340H528c-4 0-8-4-8-8V48c0-4 4-8 8-8h124c4 0 8 4 8 8v284C660 336 656 340 652 340z"/>
+                      <path class="packery-illo__draggie" fill="#EA0" d="M572 440H288c-4 0-8-4-8-8V148c0-4 4-8 8-8h284c4 0 8 4 8 8v284C580 436 576 440 572 440z"/>
+                      <g>
+                        <path class="packery-illo__hand" fill="white" d="M530 250c-11 0-20 9-20 20v-10c0-11-9-20-20-20s-20 9-20 20c0-11-9-20-20-20s-20 9-20 20c0-11-9-20-20-20
+                          s-20 9-20 20v20c-17 0-30 13-30 30c0 11 6 20 14 25l19 35c10 18 30 30 51 30h28
+                          c43 0 78-35 78-78V270C550 259 541 250 530 250z"/>
+                        <line class="packery-illo__hand-line" stroke="#EA0" fill="none" stroke-width="16" stroke-linecap="round" x1="430" y1="300" x2="430" y2="340"/>
+                        <line class="packery-illo__hand-line" stroke="#EA0" fill="none" stroke-width="16" stroke-linecap="round" x1="470" y1="300" x2="470" y2="340"/>
+                        <line class="packery-illo__hand-line" stroke="#EA0" fill="none" stroke-width="16" stroke-linecap="round" x1="510" y1="300" x2="510" y2="340"/>
+                      </g>
+                    </svg>
+                </div>
+                <div class="showcase-item__text">
+                  <h3 class="showcase-item__title">Packery</h3>
+                  <p class="showcase-item__description">Gapless, draggable grid layouts</p>
+                </div>
+              </a>
+            </li>
+      
+            <li class="showcase-item">
+              <a class="showcase-item__link" href="http://logo.pizza">
+                <div class="showcase-item__image">
+                    <svg class="logo-pizza-illo" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 700 700" width="100" height="100">
+                      <path class="logo-pizza-illo__outline" fill="#C25" d="M513 91c-9-0-17 5-21 12l-80 160c-3 5-6 10-11 15l-47 47
+                        c-5 5-12-1-9-7l32-64c5-11-2-23-14-23h-0c-121 0-268 70-327 180
+                        C-9 497 35 609 196 609c138 0 279-85 327-180v0c5-11-2-23-14-23h-77c-13 0-19-15-10-24
+                        l81-81c5-5 11-8 18-8l0 0c13 0 19 15 10 24L494 354c-6 6-6 14 0 20c3 3 6 4 10 4
+                        c4 0 7-1 10-4l80-80h53c9 0 17-5 21-13C707 190 656 97 513 91z M334 281l-59 117
+                        c-2 5-7 8-13 8H97c-4 0-6-4-3-7c49-64 143-114 236-124C333 275 335 278 334 281z
+                         M70 441c2-4 6-7 10-7h168c4 0 7 4 5 8l-59 118c-2 4-6 6-11 6
+                        C106 565 38 521 70 441z M466 441c-49 64-143 114-236 124c-3 0-6-3-4-6l59-117
+                        c2-5 7-8 13-8h166C466 434 468 438 466 441z M446 318l-81 81c-5 5-11 8-18 8l0 0
+                        c-13 0-19-15-10-24l81-81c5-5 11-8 18-8l0 0C449 294 455 309 446 318z M447 258L506 139
+                        c2-4 6-7 11-6c101 7 140 60 114 126c-2 4-6 7-10 7H452C448 266 445 262 447 258z"/>
+                      <path class="logo-pizza-illo__slice" fill="#ED0" d="M334 281l-59 117c-2 5-7 8-13 8H97c-4 0-6-4-3-7
+                        c49-64 143-114 236-124C333 275 335 278 334 281z"/>
+                      <path class="logo-pizza-illo__slice" fill="#ED0" d="M70 441c2-4 6-7 10-7h168c4 0 7 4 5 8l-59 118c-2 4-6 6-11 6
+                        C106 565 38 521 70 441z"/>
+                      <path class="logo-pizza-illo__slice" fill="#ED0" d="M466 441c-49 64-143 114-236 124c-3 0-6-3-4-6l59-117
+                        c2-5 7-8 13-8h166C466 434 468 438 466 441z"/>
+                      <path class="logo-pizza-illo__slice" fill="#ED0" d="M447 258L506 139c2-4 6-7 11-6c101 7 140 60 114 126c-2 4-6 7-10 7H452
+                        C448 266 445 262 447 258z"/>
+                    </svg>
+                </div>
+                <div class="showcase-item__text">
+                  <h3 class="showcase-item__title">Logo Pizza</h3>
+                  <p class="showcase-item__description">Hot &amp; ready logos for sale</p>
+                </div>
+              </a>
+            </li>
+      
+            <li class="showcase-item">
+              <a class="showcase-item__link" href="http://fizzy.school">
+                <div class="showcase-item__image">
+                    <svg class="witchie-logo" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 1000 1000" width="200" height="200">
+                      <circle class="witchie-logo__moon" fill="white" cx="500" cy="500" r="500"/>
+                      <path class="witchie-logo__broom" fill="#EA0" d="M582 675a35 35 0 0 0 8-20 3 3 0 0 1 3-2h71a3 3 0 0 1 3 3 59 59 0 0 0 0 20 3 3 0 0 1-3 3h-79A3 3 0 0 1 582 675Zm219 4a13 13 0 0 0 13-14c-1-7-7-12-14-12h-44a3 3 0 0 0-3 3v21a3 3 0 0 0 3 3ZM299 660a203 203 0 0 1-27-36 8 8 0 0 0-4-3L178 582a13 13 0 0 0-18 12v77a8 8 0 0 0 8 8h22a5 5 0 0 1 2 10L164 703a8 8 0 0 0-4 7v28a13 13 0 0 0 18 12l146-63a3 3 0 0 0 1-5A197 197 0 0 1 299 660Z"/>
+                      <path class="witchie-logo__dress" fill="#333" d="M326 705h4a13 13 0 0 1 13 13v8a13 13 0 0 0 4 9l13 13a13 13 0 0 1 0 19l-56 56c-10 10-26-0-22-13L314 714A13 13 0 0 1 326 705Zm397-79c-27 0-47 26-37 54 3 7 11 16 17 19a42 42 0 0 0 19 5 38 38 0 0 0 7-1 8 8 0 0 0 6-8v-62a8 8 0 0 0-6-8 38 38 0 0 0-7-1M840 397c-3-15-33-23-77-23a521 521 0 0 0-59 4 5 5 0 0 1-5-2L567 177a8 8 0 0 0-7-4 8 8 0 0 0-8 8l1 227a5 5 0 0 1-4 5c-74 24-123 55-119 76 2 8 11 14 26 18a3 3 0 0 1 1 4l-11 11c-20 20-56 30-92 30-31 0-63-8-84-23a5 5 0 0 0-3-1 5 5 0 0 0-5 5c0 78 68 173 183 173h75a10 10 0 0 0 7-3l38-38a16 16 0 0 0 0-23l-34-34a10 10 0 0 1 0-14l15-15a3 3 0 0 1 5 2v15a5 5 0 0 0 5 5H674a4 4 0 0 0 3-7l-90-90a3 3 0 0 1 1-4c34-19 59-49 67-84a3 3 0 0 1 2-2c6-1 12-1 17-1 22 0 37 5 39 14 1 6 3 11 2 17-5 17 1 31 8 31a6 6 0 0 0 2-0C797 448 845 419 840 397Z"/>
+                    </svg>
+                </div>
+                <div class="showcase-item__text">
+                  <h3 class="showcase-item__title">Fizzy School</h3>
+                  <p class="showcase-item__description">Lessons in JavaScript for jQuery newbies</p>
+                </div>
+              </a>
+            </li>
+      
+        </ul> 
+      
+      </div>
+  
+    </div>
+  </div>
+
+  <script src="js/masonry-docs.min.js?2"></script>
+
+
+</body>
+</html>

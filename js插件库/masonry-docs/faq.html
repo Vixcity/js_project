@@ -1,0 +1,344 @@
+<!doctype html>
+<html class="export" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="Cascading grid layout library">
+
+  <title>Masonry &#xB7; FAQ</title>
+
+    <link rel="stylesheet" href="css/masonry-docs.css?3" media="screen">
+
+</head>
+<body class="page--" data-page="">
+
+
+  <div class="site-nav">
+    <div class="container">
+      <ol class="site-nav__list">
+        <li class="site-nav__item site-nav__item--homepage">
+          <a href=".">Masonry</a></li>
+        <li class="site-nav__item site-nav__item--layout">
+          <a href="layout.html">Layout</a></li>
+        <li class="site-nav__item site-nav__item--options">
+          <a href="options.html">Options</a></li>
+        <li class="site-nav__item site-nav__item--methods">
+          <a href="methods.html">Methods</a></li>
+        <li class="site-nav__item site-nav__item--events">
+          <a href="events.html">Events</a></li>
+        <li class="site-nav__item site-nav__item--extras">
+          <a href="extras.html">Extras</a></li>
+        <li class="site-nav__item site-nav__item--faq">
+          <a href="faq.html">FAQ</a></li>
+      </ol>
+    </div>
+  </div>
+
+
+  <div id="content" class="content container">
+
+      <h1>FAQ</h1>
+
+    <ul class="page-nav">
+<li class="page-nav__item page-nav__item--h2"><a href="#how-do-i-fix-overlapping-item-elements">How do I fix overlapping item elements?</a></li>
+<li class="page-nav__item page-nav__item--h2"><a href="#what-is-the-difference-between-masonry-isotope-and-packery">What is the difference between Masonry, Isotope, and Packery?</a></li>
+<li class="page-nav__item page-nav__item--h2"><a href="#the-first-item-breaks-the-grid">The first item breaks the grid!</a></li>
+<li class="page-nav__item page-nav__item--h2"><a href="#error-cannot-call-methods-on-masonry-prior-to-initialization-attempted-to-call-___">Error: &#x201C;cannot call methods on masonry prior to initialization; attempted to call &apos;___&apos;&#x201D;</a></li>
+</ul>
+
+
+
+<h2 id="how-do-i-fix-overlapping-item-elements">How do I fix overlapping item elements?</h2>
+
+<p>If your layout has images, you probably need to use <a href="layout.html#imagesloaded">imagesLoaded</a>.</p>
+
+<p>Overlaping items are caused by items that change size after a layout. This is caused by unloaded media: images, <a href="extras.html#web-fonts">web fonts</a>, embedded buttons. To fix it, you need to initialize or <a href="methods.html#layout"><code>layout</code></a> after all the items have their proper size.</p>
+
+
+<h2 id="what-is-the-difference-between-masonry-isotope-and-packery">What is the difference between Masonry, Isotope, and Packery?</h2>
+
+<p>Masonry, <a href="https://isotope.metafizzy.co">Isotope</a>, and <a href="https://packery.metafizzy.co">Packery</a> are all similar in that they are layout libraries. Many of their options and methods are the same.</p>
+
+<p>Masonry does cascading grid &quot;masonry&quot; layouts. Packery does bin-packing layouts, which allow it to be used for <a href="">draggable interactions</a>.</p>
+
+<p>Isotope does sorting and filtering. Isotope uses masonry layouts, as well as other layouts. </p>
+
+<p>Masonry is licensed MIT and is freely available for use and distribution. Isotope and Packery have a proprietary license, where you can purchase a license for commercial projects, or use it freely for open-source projects.</p>
+
+
+<h2 id="the-first-item-breaks-the-grid">The first item breaks the grid!</h2>
+
+<p>You most likely need to set the <a href="options.html#columnwidth"><code>columnWidth</code> option</a>. Without <code>columnWidth</code> set, Masonry will use the width of the first item for the size of its columns.</p>
+
+<pre><code class="js"><span class="comment">// jQuery</span>
+$(<span class="string">&apos;.grid&apos;</span>).masonry({
+  <span class="attr">columnWidth</span>: <span class="number">200</span>
+});
+<span class="comment">// vanilla JS</span>
+<span class="keyword">var</span> <span class="masonry_var">msnry</span> = <span class="keyword">new</span> <span class="masonry_keyword">Masonry</span>( <span class="string">&apos;.grid&apos;</span>, {
+  <span class="attr">columnWidth</span>: <span class="number">200</span>
+});
+</code></pre>
+
+
+<h2 id="error-cannot-call-methods-on-masonry-prior-to-initialization-attempted-to-call-___">Error: &#x201C;cannot call methods on masonry prior to initialization; attempted to call &apos;___&apos;&#x201D;</h2>
+
+<p>This error occurs when your code attempts to use a <a href="methods.html">method</a> before the Masonry instance has been initialized.</p>
+
+<pre><code class="js"><span class="comment">// This code will trigger the &quot;cannot call methods&quot; error</span>
+
+<span class="jquery_var">$grid</span>.append( $items )
+  <span class="comment">// masonry method</span>
+  .masonry( <span class="string">&apos;appended&apos;</span>, $items );
+
+<span class="comment">// init Masonry</span>
+<span class="jquery_var">$grid</span>.masonry({
+  <span class="comment">// options...</span>
+});
+</code></pre>
+
+
+<p>This can happen if you have a race condition &#x2014; when one piece of logic may occur before another. This could happen with <a href="layout.html#imagesloaded">imagesLoaded</a>, Infinite Scroll, or Ajaxing content.</p>
+
+<pre><code class="js"><span class="comment">// race condition with imagesLoaded</span>
+
+<span class="jquery_var">$grid</span>.imagesLoaded( <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{
+  <span class="comment">// init Masonry</span>
+  <span class="jquery_var">$grid</span>.masonry({
+    <span class="comment">// options...</span>
+  });
+});
+
+<span class="comment">// imagesLoaded will trigger after this</span>
+<span class="jquery_var">$grid</span>.append( $items )
+  .masonry( <span class="string">&apos;appended&apos;</span>, $items );
+</code></pre>
+
+<p>To resolve this, make sure that the Masonry instance has been initialized before the method is called.</p>
+
+<pre><code class="js"><span class="jquery_var">$grid</span>.imagesLoaded( <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{
+  <span class="comment">// init Masonry</span>
+  <span class="jquery_var">$grid</span>.masonry({
+    <span class="comment">// options...</span>
+  });
+  <span class="comment">// Masonry has been initialized, okay to call methods</span>
+  <span class="jquery_var">$grid</span>.append( $items )
+    .masonry( <span class="string">&apos;appended&apos;</span>, $items );
+});
+</code></pre>
+
+<pre><code class="js"><span class="comment">// another fix, init Masonry first, before imagesLoaded</span>
+<span class="jquery_var">$grid</span>.masonry({
+  <span class="comment">// options...</span>
+});
+<span class="comment">// okay to call methods</span>
+<span class="jquery_var">$grid</span>.append( $items )
+  .masonry( <span class="string">&apos;appended&apos;</span>, $items );
+<span class="comment">// just do layout on imagesLoaded</span>
+<span class="jquery_var">$grid</span>.imagesLoaded( <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{
+  <span class="jquery_var">$grid</span>.masonry(<span class="string">&apos;layout&apos;</span>);
+});
+</code></pre>
+
+
+
+  </div>
+
+  <div class="site-nav">
+    <div class="container">
+      <ol class="site-nav__list">
+        <li class="site-nav__item site-nav__item--homepage">
+          <a href=".">Masonry</a></li>
+        <li class="site-nav__item site-nav__item--layout">
+          <a href="layout.html">Layout</a></li>
+        <li class="site-nav__item site-nav__item--options">
+          <a href="options.html">Options</a></li>
+        <li class="site-nav__item site-nav__item--methods">
+          <a href="methods.html">Methods</a></li>
+        <li class="site-nav__item site-nav__item--events">
+          <a href="events.html">Events</a></li>
+        <li class="site-nav__item site-nav__item--extras">
+          <a href="extras.html">Extras</a></li>
+        <li class="site-nav__item site-nav__item--faq">
+          <a href="faq.html">FAQ</a></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="site-footer">
+    <div class="container">
+  
+      <p class="site-footer__copy">
+        Masonry is made by <a href="https://desandro.com">David DeSandro</a>.
+        Make something rad with it.
+      </p>
+  
+      <div class="showcase">
+      
+        <ul class="showcase-item-list">
+            <li class="showcase-item">
+              <a class="showcase-item__link" href="https://isotope.metafizzy.co">
+                <div class="showcase-item__image">
+                    <svg class="isotope-illo" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 350 350" width="100" height="100">
+                      <path class="isotope-illo__color1" fill="#6C6" d="M80 170H30c-6 0-10-5-10-10v-50c0-6 5-10 10-10h50c6 0 10 5 10 10v50C90 166 86 170 80 170z"/>
+                      <path class="isotope-illo__color1" fill="#6C6" d="M80 90H30c-6 0-10-5-10-10V30c0-6 5-10 10-10h50c6 0 10 5 10 10v50C90 86 86 90 80 90z"/>
+                      <path class="isotope-illo__color1" fill="#6C6" d="M160 90h-50c-6 0-10-5-10-10V30c0-6 5-10 10-10h50c6 0 10 5 10 10v50C170 86 166 90 160 90z"/>
+                      <path class="isotope-illo__color1" fill="#6C6" d="M240 90h-50c-6 0-10-5-10-10V30c0-6 5-10 10-10h50c6 0 10 5 10 10v50C250 86 246 90 240 90z"/>
+                      <path class="isotope-illo__color1" fill="#6C6" d="M320 90h-50c-6 0-10-5-10-10V30c0-6 5-10 10-10h50c6 0 10 5 10 10v50C330 86 326 90 320 90z"/>
+                      <path class="isotope-illo__color1" fill="#6C6" d="M155 165h-40c-6 0-10-5-10-10v-40c0-6 5-10 10-10h40c6 0 10 5 10 10v40 C165 161 161 165 155 165z"/>
+                      <path class="isotope-illo__color1" fill="#6C6" d="M230 160h-30c-6 0-10-5-10-10v-30c0-6 5-10 10-10h30c6 0 10 5 10 10v30 C240 156 236 160 230 160z"/>
+                      <path class="isotope-illo__color1" fill="#6C6" d="M305 155h-20c-6 0-10-5-10-10v-20c0-6 5-10 10-10h20c6 0 10 5 10 10v20 C315 151 311 155 305 155z"/>
+                      <path class="isotope-illo__color1" fill="#6C6" d="M65 235H45c-6 0-10-5-10-10v-20c0-6 5-10 10-10h20c6 0 10 5 10 10v20C75 231 71 235 65 235z"/>
+                      <path class="isotope-illo__color1" fill="#6C6" d="M140 230h-10c-6 0-10-5-10-10v-10c0-6 5-10 10-10h10c6 0 10 5 10 10v10 C150 226 146 230 140 230z"/>
+                      <path class="isotope-illo__color2" fill="#19F" d="M305 235h-20c-6 0-10-5-10-10v-20c0-6 5-10 10-10h20c6 0 10 5 10 10v20 C315 231 311 235 305 235z"/>
+                      <path class="isotope-illo__color2" fill="#19F" d="M65 315H45c-6 0-10-5-10-10v-20c0-6 5-10 10-10h20c6 0 10 5 10 10v20C75 311 71 315 65 315z"/>
+                      <path class="isotope-illo__color2" fill="#19F" d="M150 320h-30c-6 0-10-5-10-10v-30c0-6 5-10 10-10h30c6 0 10 5 10 10v30 C160 316 156 320 150 320z"/>
+                      <path class="isotope-illo__color2" fill="#19F" d="M220 230h-10c-6 0-10-5-10-10v-10c0-6 5-10 10-10h10c6 0 10 5 10 10v10 C230 226 226 230 220 230z"/>
+                      <path class="isotope-illo__color2" fill="#19F" d="M235 325h-40c-6 0-10-5-10-10v-40c0-6 5-10 10-10h40c6 0 10 5 10 10v40 C245 321 241 325 235 325z"/>
+                      <path class="isotope-illo__color2" fill="#19F" d="M320 330h-50c-6 0-10-5-10-10v-50c0-6 5-10 10-10h50c6 0 10 5 10 10v50 C330 326 326 330 320 330z"/>
+                    </svg>
+                </div>
+                <div class="showcase-item__text">
+                  <h3 class="showcase-item__title">Isotope</h3>
+                  <p class="showcase-item__description">Filter &amp; sort magical layouts</p>
+                </div>
+              </a>
+            </li>
+      
+            <li class="showcase-item">
+              <a class="showcase-item__link" href="https://infinite-scroll.com">
+                <div class="showcase-item__image">
+                    <svg class="infinite-scroll-illo" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 520 520" width="200" height="200">
+                      <path class="infinite-scroll-illo__page infinite-scroll-illo__page--back" d="M90,110H10V90c0-22,18-40,40-40h40V110z"/>
+                      <path class="infinite-scroll-illo__page infinite-scroll-illo__page--front1" d="M270,90L270,90c0-22-18-40-40-40h0H50h0c22,0,40,18,40,40v0v0v160h180V90z"/>
+                      <path class="infinite-scroll-illo__page infinite-scroll-illo__page--front2" d="M170,330v-20H90v20v0c0,22,18,40,40,40h0h40V330z"/>
+                      <path class="infinite-scroll-illo__page infinite-scroll-illo__page--back" d="M350,150H210c-22,0-40,18-40,40v140v0c0,22-18,40-40,40h0h220V150z"/>
+                      <path class="infinite-scroll-illo__page infinite-scroll-illo__page--front3" d="M430,470V270H250v160c0,22,18,40,40,40H430z"/>
+                      <path class="infinite-scroll-illo__page infinite-scroll-illo__page--front2" d="M250,190v20h180v-20c0-22-18-40-40-40H210h0C232,150,250,168,250,190L250,190z"/>
+                      <path class="infinite-scroll-illo__page infinite-scroll-illo__page--back" d="M330,410v20v0c0,22-18,40-40,40h0h180c22,0,40-18,40-40v-20H330z"/>
+                    </svg>
+                </div>
+                <div class="showcase-item__text">
+                  <h3 class="showcase-item__title">Infinite Scroll</h3>
+                  <p class="showcase-item__description">Automatically add next page</p>
+                </div>
+              </a>
+            </li>
+      
+            <li class="showcase-item">
+              <a class="showcase-item__link" href="https://flickity.metafizzy.co">
+                <div class="showcase-item__image">
+                    <svg class="flickity-illo" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 360 360" width="100" height="100">
+                      <path class="flickity-illo__color1" fill="#19F" d="M300 220L300 220c-11 0-20-9-20-20v-80c0-11 9-20 20-20h0V220z"/>
+                      <path class="flickity-illo__color1" fill="#19F" d="M340 220L340 220c-11 0-20-9-20-20v-80c0-11 9-20 20-20h0V220z"/>
+                      <path class="flickity-illo__color2" fill="#333" d="M320 290V180c0-18-10-35-27-43L240 110v180H320z"/>
+                      <path class="flickity-illo__color3" fill="white" d="M240 300H120c-11 0-20-9-20-20V40c0-11 9-20 20-20h120c11 0 20 9 20 20v240C260 291 251 300 240 300z"/>
+                      <path class="flickity-illo__color4" fill="#ED0" d="M230 260H130c-6 0-10-5-10-10V70c0-6 5-10 10-10h100c6 0 10 5 10 10v180 C240 256 236 260 230 260z"/>
+                      <path class="flickity-illo__color2" fill="#333" d="M260 200h60v81c0 32-26 59-59 59h0c-34 0-61-27-61-61V240h20 C242 240 260 222 260 200L260 200z"/>
+                      <path class="flickity-illo__color5" fill="#C25" d="M180 220h-60V100h60c6 0 10 5 10 10v100C190 216 186 220 180 220z"/>
+                      <path class="flickity-illo__color1" fill="#19F" d="M240 220h-20c-6 0-10-5-10-10V110c0-6 5-10 10-10h20V220z"/>
+                      <rect class="flickity-illo__color2" fill="#333" x="230" y="280" width="90" height="80"/>
+                      <circle class="flickity-illo__color4" fill="#ED0" cx="180" cy="280" r="10"/>
+                      <line class="flickity-illo__thumb" stroke="#333" stroke-width="60" stroke-linecap="round" x1="262" y1="290" x2="152" y2="240"/>
+                      <path class="flickity-illo__color4" fill="#ED0" d="M190 50h-20c-6 0-10-5-10-10v0c0-6 5-10 10-10h20c6 0 10 5 10 10v0C200 46 196 50 190 50z"/>
+                      <path class="flickity-illo__color5" fill="#C25" d="M80 220L80 220c-11 0-20-9-20-20v-80c0-11 9-20 20-20h0V220z"/>
+                      <path class="flickity-illo__color5" fill="#C25" d="M40 220L40 220c-11 0-20-9-20-20v-80c0-11 9-20 20-20h0V220z"/>
+                    </svg>
+                </div>
+                <div class="showcase-item__text">
+                  <h3 class="showcase-item__title">Flickity</h3>
+                  <p class="showcase-item__description">Touch, responsive, flickable carousels</p>
+                </div>
+              </a>
+            </li>
+      
+            <li class="showcase-item">
+              <a class="showcase-item__link" href="https://packery.metafizzy.co">
+                <div class="showcase-item__image">
+                    <svg class="packery-illo" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 700 700" width="100" height="100">
+                      <path class="packery-illo__item" fill="#C09" d="M172 180H48c-4 0-8-4-8-8V48c0-4 4-8 8-8h124c4 0 8 4 8 8v124C180 176 176 180 172 180z"/>
+                      <path class="packery-illo__item" fill="#C09" d="M172 340H48c-4 0-8-4-8-8V208c0-4 4-8 8-8h124c4 0 8 4 8 8v124C180 336 176 340 172 340z"/>
+                      <path class="packery-illo__item" fill="#C09" d="M492 660H368c-4 0-8-4-8-8V528c0-4 4-8 8-8h124c4 0 8 4 8 8v124C500 656 496 660 492 660z"/>
+                      <path class="packery-illo__item" fill="#C09" d="M652 660H528c-4 0-8-4-8-8V528c0-4 4-8 8-8h124c4 0 8 4 8 8v124C660 656 656 660 652 660z"/>
+                      <path class="packery-illo__item" fill="#C09" d="M652 500H368c-4 0-8-4-8-8V368c0-4 4-8 8-8h284c4 0 8 4 8 8v124C660 496 656 500 652 500z"/>
+                      <path class="packery-illo__item" fill="#C09" d="M332 660H48c-4 0-8-4-8-8V368c0-4 4-8 8-8h284c4 0 8 4 8 8v284C340 656 336 660 332 660z"/>
+                      <path class="packery-illo__item" fill="#C09" d="M652 340H528c-4 0-8-4-8-8V48c0-4 4-8 8-8h124c4 0 8 4 8 8v284C660 336 656 340 652 340z"/>
+                      <path class="packery-illo__draggie" fill="#EA0" d="M572 440H288c-4 0-8-4-8-8V148c0-4 4-8 8-8h284c4 0 8 4 8 8v284C580 436 576 440 572 440z"/>
+                      <g>
+                        <path class="packery-illo__hand" fill="white" d="M530 250c-11 0-20 9-20 20v-10c0-11-9-20-20-20s-20 9-20 20c0-11-9-20-20-20s-20 9-20 20c0-11-9-20-20-20
+                          s-20 9-20 20v20c-17 0-30 13-30 30c0 11 6 20 14 25l19 35c10 18 30 30 51 30h28
+                          c43 0 78-35 78-78V270C550 259 541 250 530 250z"/>
+                        <line class="packery-illo__hand-line" stroke="#EA0" fill="none" stroke-width="16" stroke-linecap="round" x1="430" y1="300" x2="430" y2="340"/>
+                        <line class="packery-illo__hand-line" stroke="#EA0" fill="none" stroke-width="16" stroke-linecap="round" x1="470" y1="300" x2="470" y2="340"/>
+                        <line class="packery-illo__hand-line" stroke="#EA0" fill="none" stroke-width="16" stroke-linecap="round" x1="510" y1="300" x2="510" y2="340"/>
+                      </g>
+                    </svg>
+                </div>
+                <div class="showcase-item__text">
+                  <h3 class="showcase-item__title">Packery</h3>
+                  <p class="showcase-item__description">Gapless, draggable grid layouts</p>
+                </div>
+              </a>
+            </li>
+      
+            <li class="showcase-item">
+              <a class="showcase-item__link" href="http://logo.pizza">
+                <div class="showcase-item__image">
+                    <svg class="logo-pizza-illo" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 700 700" width="100" height="100">
+                      <path class="logo-pizza-illo__outline" fill="#C25" d="M513 91c-9-0-17 5-21 12l-80 160c-3 5-6 10-11 15l-47 47
+                        c-5 5-12-1-9-7l32-64c5-11-2-23-14-23h-0c-121 0-268 70-327 180
+                        C-9 497 35 609 196 609c138 0 279-85 327-180v0c5-11-2-23-14-23h-77c-13 0-19-15-10-24
+                        l81-81c5-5 11-8 18-8l0 0c13 0 19 15 10 24L494 354c-6 6-6 14 0 20c3 3 6 4 10 4
+                        c4 0 7-1 10-4l80-80h53c9 0 17-5 21-13C707 190 656 97 513 91z M334 281l-59 117
+                        c-2 5-7 8-13 8H97c-4 0-6-4-3-7c49-64 143-114 236-124C333 275 335 278 334 281z
+                         M70 441c2-4 6-7 10-7h168c4 0 7 4 5 8l-59 118c-2 4-6 6-11 6
+                        C106 565 38 521 70 441z M466 441c-49 64-143 114-236 124c-3 0-6-3-4-6l59-117
+                        c2-5 7-8 13-8h166C466 434 468 438 466 441z M446 318l-81 81c-5 5-11 8-18 8l0 0
+                        c-13 0-19-15-10-24l81-81c5-5 11-8 18-8l0 0C449 294 455 309 446 318z M447 258L506 139
+                        c2-4 6-7 11-6c101 7 140 60 114 126c-2 4-6 7-10 7H452C448 266 445 262 447 258z"/>
+                      <path class="logo-pizza-illo__slice" fill="#ED0" d="M334 281l-59 117c-2 5-7 8-13 8H97c-4 0-6-4-3-7
+                        c49-64 143-114 236-124C333 275 335 278 334 281z"/>
+                      <path class="logo-pizza-illo__slice" fill="#ED0" d="M70 441c2-4 6-7 10-7h168c4 0 7 4 5 8l-59 118c-2 4-6 6-11 6
+                        C106 565 38 521 70 441z"/>
+                      <path class="logo-pizza-illo__slice" fill="#ED0" d="M466 441c-49 64-143 114-236 124c-3 0-6-3-4-6l59-117
+                        c2-5 7-8 13-8h166C466 434 468 438 466 441z"/>
+                      <path class="logo-pizza-illo__slice" fill="#ED0" d="M447 258L506 139c2-4 6-7 11-6c101 7 140 60 114 126c-2 4-6 7-10 7H452
+                        C448 266 445 262 447 258z"/>
+                    </svg>
+                </div>
+                <div class="showcase-item__text">
+                  <h3 class="showcase-item__title">Logo Pizza</h3>
+                  <p class="showcase-item__description">Hot &amp; ready logos for sale</p>
+                </div>
+              </a>
+            </li>
+      
+            <li class="showcase-item">
+              <a class="showcase-item__link" href="http://fizzy.school">
+                <div class="showcase-item__image">
+                    <svg class="witchie-logo" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 1000 1000" width="200" height="200">
+                      <circle class="witchie-logo__moon" fill="white" cx="500" cy="500" r="500"/>
+                      <path class="witchie-logo__broom" fill="#EA0" d="M582 675a35 35 0 0 0 8-20 3 3 0 0 1 3-2h71a3 3 0 0 1 3 3 59 59 0 0 0 0 20 3 3 0 0 1-3 3h-79A3 3 0 0 1 582 675Zm219 4a13 13 0 0 0 13-14c-1-7-7-12-14-12h-44a3 3 0 0 0-3 3v21a3 3 0 0 0 3 3ZM299 660a203 203 0 0 1-27-36 8 8 0 0 0-4-3L178 582a13 13 0 0 0-18 12v77a8 8 0 0 0 8 8h22a5 5 0 0 1 2 10L164 703a8 8 0 0 0-4 7v28a13 13 0 0 0 18 12l146-63a3 3 0 0 0 1-5A197 197 0 0 1 299 660Z"/>
+                      <path class="witchie-logo__dress" fill="#333" d="M326 705h4a13 13 0 0 1 13 13v8a13 13 0 0 0 4 9l13 13a13 13 0 0 1 0 19l-56 56c-10 10-26-0-22-13L314 714A13 13 0 0 1 326 705Zm397-79c-27 0-47 26-37 54 3 7 11 16 17 19a42 42 0 0 0 19 5 38 38 0 0 0 7-1 8 8 0 0 0 6-8v-62a8 8 0 0 0-6-8 38 38 0 0 0-7-1M840 397c-3-15-33-23-77-23a521 521 0 0 0-59 4 5 5 0 0 1-5-2L567 177a8 8 0 0 0-7-4 8 8 0 0 0-8 8l1 227a5 5 0 0 1-4 5c-74 24-123 55-119 76 2 8 11 14 26 18a3 3 0 0 1 1 4l-11 11c-20 20-56 30-92 30-31 0-63-8-84-23a5 5 0 0 0-3-1 5 5 0 0 0-5 5c0 78 68 173 183 173h75a10 10 0 0 0 7-3l38-38a16 16 0 0 0 0-23l-34-34a10 10 0 0 1 0-14l15-15a3 3 0 0 1 5 2v15a5 5 0 0 0 5 5H674a4 4 0 0 0 3-7l-90-90a3 3 0 0 1 1-4c34-19 59-49 67-84a3 3 0 0 1 2-2c6-1 12-1 17-1 22 0 37 5 39 14 1 6 3 11 2 17-5 17 1 31 8 31a6 6 0 0 0 2-0C797 448 845 419 840 397Z"/>
+                    </svg>
+                </div>
+                <div class="showcase-item__text">
+                  <h3 class="showcase-item__title">Fizzy School</h3>
+                  <p class="showcase-item__description">Lessons in JavaScript for jQuery newbies</p>
+                </div>
+              </a>
+            </li>
+      
+        </ul> 
+      
+      </div>
+  
+    </div>
+  </div>
+
+  <script src="js/masonry-docs.min.js?2"></script>
+
+
+</body>
+</html>
