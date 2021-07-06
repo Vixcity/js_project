@@ -1,0 +1,6 @@
+<script src="https://unpkg.com/vuescroll"></script>
+<!-- 引入vuescroll-slide -->
+<script src="https://unpkg.com/vuescroll/dist/vuescroll-slide.js"></script>
+<!-- 引入vuescroll-native -->
+<script src="https://unpkg.com/vuescroll/dist/vuescroll-native.js"></script>
+https://vuescrolljs.yvescoding.org/zh/guide/getting-started.html#%E5%AE%89%E8%A3%85
