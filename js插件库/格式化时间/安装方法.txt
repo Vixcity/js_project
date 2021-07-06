@@ -1,8 +1,44 @@
 格式化日期插件
-
 npm install moment --save   # npm
 yarn add moment             # Yarn
 Install-Package Moment.js   # NuGet
 spm install moment --save   # spm
 meteor add momentjs:moment  # meteor
 bower install moment --save # bower (废弃)
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+日期格式化
+moment().format('MMMM Do YYYY, h:mm:ss a'); // 七月 6日 2021, 4:06:26 下午
+moment().format('dddd');                    // 星期二
+moment().format("MMM Do YY");               // 7月 6日 21
+moment().format('YYYY [escaped] YYYY');     // 2021 escaped 2021
+moment().format();                          // 2021-07-06T16:06:26+08:00
+相对时间
+moment("20111031", "YYYYMMDD").fromNow(); // 10 年前
+moment("20120620", "YYYYMMDD").fromNow(); // 9 年前
+moment().startOf('day').fromNow();        // 16 小时前
+moment().endOf('day').fromNow();          // 8 小时内
+moment().startOf('hour').fromNow();       // 6 分钟前
+日历时间
+moment().subtract(10, 'days').calendar(); // 2021/06/26
+moment().subtract(6, 'days').calendar();  // 上星期三16:06
+moment().subtract(3, 'days').calendar();  // 上星期六16:06
+moment().subtract(1, 'days').calendar();  // 昨天16:06
+moment().calendar();                      // 今天16:06
+moment().add(1, 'days').calendar();       // 明天16:06
+moment().add(3, 'days').calendar();       // 下星期五16:06
+moment().add(10, 'days').calendar();      // 2021/07/16
+多语言支持
+moment.locale();         // zh-cn
+moment().format('LT');   // 16:06
+moment().format('LTS');  // 16:06:26
+moment().format('L');    // 2021/07/06
+moment().format('l');    // 2021/7/6
+moment().format('LL');   // 2021年7月6日
+moment().format('ll');   // 2021年7月6日
+moment().format('LLL');  // 2021年7月6日下午4点06分
+moment().format('lll');  // 2021年7月6日 16:06
+moment().format('LLLL'); // 2021年7月6日星期二下午4点06分
+moment().format('llll'); // 2021年7月6日星期二 16:06
