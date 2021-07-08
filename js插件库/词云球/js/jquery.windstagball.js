@@ -19,7 +19,7 @@ window.$ = $
             fontsize: 12
         },
         param = $.extend({}, defaults, options || {}),
-        selector = $(this).selector,
+        selector = '#'+$(this)[0].id,
         warp = $(this),
         items = $(selector + ' a'),
         dtr = Math.PI / 180,
@@ -30,7 +30,7 @@ window.$ = $
         distr = true,
         mouseX = 0,
         mouseY = 0,
-        sb, sa, sc, ca, cb, cc, oItem, oEvent,per;
+        sb, sa, sc, ca, cb, cc, oItem, oEvent,per; 
         items.each(function() {
             oItem = {};
             oItem.width = $(this).width();
