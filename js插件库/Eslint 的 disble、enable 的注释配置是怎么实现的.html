@@ -16,25 +16,25 @@
         
 
   
-  <meta name="description" content="前端性能指标">
-  <meta name="author" content="sisterAn">
+  <meta name="description" content="eslint-disable、eslint-enable 的实现原理">
+  <meta name="author" content="神说要有光zxg">
 
   
-  <meta property="og:title" content="当谈及 Web 性能优化时，我们该关注哪些性能指标">
-  <meta property="og:url" content="http://mp.weixin.qq.com/s?__biz=MzIxNjgwMDIzMA==&amp;mid=2247493248&amp;idx=1&amp;sn=6e703de3c3ff30bce24f829741a83089&amp;chksm=97812809a0f6a11f2af0ffecb413b240bde090ef5bc095373533c24bc954b91ef25bf7d1200d#rd">
-  <meta property="og:image" content="http://mmbiz.qpic.cn/sz_mmbiz_jpg/udZl15qqib0Pn2N2hNqkcibnkSjMvlKEqUbLTZuwFVlvGWqNsVJic89J2lK0ibU5BeiaHmKPILql06wqHHTLoH2J5QQ/0?wx_fmt=jpeg">
-  <meta property="og:description" content="前端性能指标">
+  <meta property="og:title" content="Eslint 的 disble、enable 的注释配置是怎么实现的">
+  <meta property="og:url" content="http://mp.weixin.qq.com/s?__biz=Mzg3OTYzMDkzMg==&amp;mid=2247485833&amp;idx=1&amp;sn=8939e1e733e3b40997e112a874e0411e&amp;chksm=cf00c6b2f8774fa4e04f4cf44c243d790add0b708f3b7726fdbb06d73ff71d00c2e90948c7e6#rd">
+  <meta property="og:image" content="http://mmbiz.qpic.cn/mmbiz_jpg/YprkEU0TtGgNdHOOZHGnLYtym8iclGrH40XribQsj80YD3MIsbiat6xbLPSxy3SW9DkgicBYhUsFxdKOibLQVzYCexg/0?wx_fmt=jpeg">
+  <meta property="og:description" content="eslint-disable、eslint-enable 的实现原理">
   <meta property="og:site_name" content="微信公众平台">
   <meta property="og:type" content="article">
-  <meta property="og:article:author" content="sisterAn">
+  <meta property="og:article:author" content="神说要有光zxg">
 
   
   <meta property="twitter:card" content="summary">
-  <meta property="twitter:image" content="http://mmbiz.qpic.cn/sz_mmbiz_jpg/udZl15qqib0Pn2N2hNqkcibnkSjMvlKEqUbLTZuwFVlvGWqNsVJic89J2lK0ibU5BeiaHmKPILql06wqHHTLoH2J5QQ/0?wx_fmt=jpeg">
-  <meta property="twitter:title" content="当谈及 Web 性能优化时，我们该关注哪些性能指标">
-  <meta property="twitter:creator" content="sisterAn">
+  <meta property="twitter:image" content="http://mmbiz.qpic.cn/mmbiz_jpg/YprkEU0TtGgNdHOOZHGnLYtym8iclGrH40XribQsj80YD3MIsbiat6xbLPSxy3SW9DkgicBYhUsFxdKOibLQVzYCexg/0?wx_fmt=jpeg">
+  <meta property="twitter:title" content="Eslint 的 disble、enable 的注释配置是怎么实现的">
+  <meta property="twitter:creator" content="神说要有光zxg">
   <meta property="twitter:site" content="微信公众平台">
-  <meta property="twitter:description" content="前端性能指标">
+  <meta property="twitter:description" content="eslint-disable、eslint-enable 的实现原理">
 
 
         <script nonce="" type="text/javascript">
@@ -56,7 +56,7 @@
             window.LANG= "zh_CN"; 
 
         </script>
-        <title>当谈及 Web 性能优化时，我们该关注哪些性能指标</title>
+        <title>Eslint 的 disble、enable 的注释配置是怎么实现的</title>
         <!---请求录制 by gabyliu-->
         <!--todo 这里要加cookie或actionType才加载 -->
                 
@@ -129,9 +129,9 @@
 
         
 <script nonce="" type="text/javascript">
-    var biz = "MzIxNjgwMDIzMA==" || "";
-    var sn = "6e703de3c3ff30bce24f829741a83089" || "" || "";
-    var mid = "2247493248" || "" || "";
+    var biz = "Mzg3OTYzMDkzMg==" || "";
+    var sn = "8939e1e733e3b40997e112a874e0411e" || "" || "";
+    var mid = "2247485833" || "" || "";
     var idx = "1" || "" || "";
     window.__allowLoadResFromMp = true; 
     
@@ -319,7 +319,7 @@ this[e](t,r);
                     
                     
                     
-当谈及 Web 性能优化时，我们该关注哪些性能指标
+Eslint 的 disble、enable 的注释配置是怎么实现的
                 </h1>
                 
 
@@ -340,13 +340,7 @@ this[e](t,r);
                                                                 
 
                 
-                                    
-                    <div class="original_area_primary" style="margin-bottom: 0;">
-                                                                                                </div>
-
-                    
-                                            
-                                                    
+                                
 
 
                 
@@ -364,7 +358,7 @@ this[e](t,r);
                     
                     
                     
-                    <section data-tool="mdnice编辑器" data-website="https://www.mdnice.com" style="font-size: 16px;color: black;padding-right: 10px;padding-left: 10px;line-height: 1.6;letter-spacing: 0px;word-break: break-word;text-align: left;font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, &quot;PingFang SC&quot;, Cambria, Cochin, Georgia, Times, &quot;Times New Roman&quot;, serif;"><p data-tool="mdnice编辑器" style="margin-bottom: 20px;line-height: 1.8em;color: rgb(58, 58, 58);">前端页面性能是影响用户体验的关键因素，用户打开网站时间太久、白屏时间过长、操作卡顿等，都会导致用户离开页面，严重影响用户的留存率。Google DoubleClick 研究表明：如果一个移动端页面加载时长超过 3 秒，用户就会放弃而离开。BBC 发现网页加载时长每增加 1 秒，用户就会流失 10%。</p><p data-tool="mdnice编辑器" style="margin-bottom: 20px;line-height: 1.8em;color: rgb(58, 58, 58);">那么，如何去计算页面的性能，以便于更好地衡量和改进前端页面性能，这就需要前端性能指标，本文简单介绍每一种性能指标的定义，旨在帮助你理解性能指标，具体优化及详细解读将在后面章节中介绍</p><h2 data-tool="mdnice编辑器" style="font-weight: bold;font-size: 22px;line-height: 1.5em;margin-top: 2.2em;margin-bottom: 35px;"><span style="display: none;"></span><span style="display: inline-block;background-image: linear-gradient(rgb(255, 255, 255) 60%, rgb(255, 177, 27) 40%);background-position: initial;background-size: initial;background-repeat: initial;background-attachment: initial;background-origin: initial;background-clip: initial;color: rgb(81, 81, 81);padding: 2px 13px;margin-right: 3px;">性能指标</span></h2><p data-tool="mdnice编辑器" style="margin-bottom: 20px;line-height: 1.8em;color: rgb(58, 58, 58);">以下分为三个过程来看性能指标：</p><ul data-tool="mdnice编辑器" style="margin-top: 8px;margin-bottom: 8px;padding-left: 25px;" class="list-paddingleft-2"><li><section style="margin-top: 5px;margin-bottom: 5px;line-height: 26px;color: rgb(1, 1, 1);">文档加载过程</section></li><li><section style="margin-top: 5px;margin-bottom: 5px;line-height: 26px;color: rgb(1, 1, 1);">文档渲染呈现过程</section></li><li><section style="margin-top: 5px;margin-bottom: 5px;line-height: 26px;color: rgb(1, 1, 1);">交互过程</section></li></ul><h3 data-tool="mdnice编辑器" style="font-weight: bold;font-size: 20px;line-height: 1.4;padding-top: 10px;margin-top: 10px;margin-bottom: 5px;"><span style="display: none;"></span><span style="color: rgb(81, 81, 81);font-size: 1em;padding-left: 20px;border-left: 3px solid rgb(249, 191, 69);">文档加载过程</span><span style="display: none;"></span></h3><p data-tool="mdnice编辑器" style="margin-bottom: 20px;line-height: 1.8em;color: rgb(58, 58, 58);">下图是 W3C 的 Navigation Timing 的处理模型，从当前浏览器窗口卸载旧页面开始，到新页面加载完成，整个过程一共被切分为 9 个小块：</p><ul data-tool="mdnice编辑器" style="margin-top: 8px;margin-bottom: 8px;padding-left: 25px;" class="list-paddingleft-2"><li><section style="margin-top: 5px;margin-bottom: 5px;line-height: 26px;color: rgb(1, 1, 1);">提示卸载旧文档</section></li><li><section style="margin-top: 5px;margin-bottom: 5px;line-height: 26px;color: rgb(1, 1, 1);">重定向/卸载</section></li><li><section style="margin-top: 5px;margin-bottom: 5px;line-height: 26px;color: rgb(1, 1, 1);">应用缓存</section></li><li><section style="margin-top: 5px;margin-bottom: 5px;line-height: 26px;color: rgb(1, 1, 1);">DNS 解析</section></li><li><section style="margin-top: 5px;margin-bottom: 5px;line-height: 26px;color: rgb(1, 1, 1);">TCP 握手</section></li><li><section style="margin-top: 5px;margin-bottom: 5px;line-height: 26px;color: rgb(1, 1, 1);">HTTP 请求处理</section></li><li><section style="margin-top: 5px;margin-bottom: 5px;line-height: 26px;color: rgb(1, 1, 1);">HTTP 响应处理</section></li><li><section style="margin-top: 5px;margin-bottom: 5px;line-height: 26px;color: rgb(1, 1, 1);">DOM 处理</section></li><li><section style="margin-top: 5px;margin-bottom: 5px;line-height: 26px;color: rgb(1, 1, 1);">文档装载完成</section></li></ul><p data-tool="mdnice编辑器" style="margin-bottom: 20px;line-height: 1.8em;color: rgb(58, 58, 58);">每个小块，取 Unix 时间戳，两两事件之间计算时间差，从而获取中间过程的耗时（精确到毫秒级别）。</p><figure data-tool="mdnice编辑器" style="margin-top: 10px;margin-bottom: 10px;display: flex;flex-direction: column;justify-content: center;align-items: center;"><img data-ratio="0.4392857142857143" data-src="https://mmbiz.qpic.cn/mmbiz_png/bwG40XYiaOKktbju3nkFYIZreKQXuiaJiaibV48BLW3icj4GuoLeiaC9gcQRTSbcNmyT57h8L1sA1Ol3PG9dC06OcZJQ/640?wx_fmt=png" data-type="png" data-w="2800" style="margin-right: auto; margin-left: auto; border-radius: 5px; display: block; margin-bottom: 15px; width: 100% !important; height: auto !important; visibility: visible !important;" _width="100%" class="" src="https://mmbiz.qpic.cn/mmbiz_png/bwG40XYiaOKktbju3nkFYIZreKQXuiaJiaibV48BLW3icj4GuoLeiaC9gcQRTSbcNmyT57h8L1sA1Ol3PG9dC06OcZJQ/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" crossorigin="anonymous" alt="图片" data-fail="0"></figure><h4 data-tool="mdnice编辑器" style="line-height: 1.5em;margin-top: 30px;margin-bottom: 15px;font-weight: bold;font-size: 18px;"><span style="display: none;"></span>解读<span style="display: none;"></span></h4><figure data-tool="mdnice编辑器" style="margin-top: 10px;margin-bottom: 10px;display: flex;flex-direction: column;justify-content: center;align-items: center;"><img data-ratio="1.475" data-src="https://mmbiz.qpic.cn/mmbiz_png/bwG40XYiaOKktbju3nkFYIZreKQXuiaJiaibGCcHicSRCkmuf0kgxpgNN3z9AicyEsYGVPE2Uhia0Gx51MYzMqIAJUvRw/640?wx_fmt=png" data-type="png" data-w="600" style="margin-right: auto; margin-left: auto; border-radius: 5px; display: block; margin-bottom: 15px; width: 100% !important; height: auto !important; visibility: visible !important;" _width="100%" class="" src="https://mmbiz.qpic.cn/mmbiz_png/bwG40XYiaOKktbju3nkFYIZreKQXuiaJiaibGCcHicSRCkmuf0kgxpgNN3z9AicyEsYGVPE2Uhia0Gx51MYzMqIAJUvRw/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" crossorigin="anonymous" alt="图片" data-fail="0"></figure><p data-tool="mdnice编辑器" style="margin-bottom: 20px;line-height: 1.8em;color: rgb(58, 58, 58);">文档加载过程主要包含以下 几个性能指标：</p><h4 data-tool="mdnice编辑器" style="line-height: 1.5em;margin-top: 30px;margin-bottom: 15px;font-weight: bold;font-size: 18px;"><span style="display: none;"></span>TTFB<span style="display: none;"></span></h4><p data-tool="mdnice编辑器" style="margin-bottom: 20px;line-height: 1.8em;color: rgb(58, 58, 58);">Time to First Byte，是发出页面请求到接收到应答数据第一个字节所花费的毫秒数，这个时间段内包括 DNS 查找、TCP 连接和 SSL 连接</p><p data-tool="mdnice编辑器" style="margin-bottom: 20px;line-height: 1.8em;color: rgb(58, 58, 58);">TTFB 不仅仅是在服务器上花费的时间，还包括设备请求发送到服务器，再从服务器返回到设备的时间，它计算的是整个延迟的往返时间。</p><h4 data-tool="mdnice编辑器" style="line-height: 1.5em;margin-top: 30px;margin-bottom: 15px;font-weight: bold;font-size: 18px;"><span style="display: none;"></span>DCL<span style="display: none;"></span></h4><p data-tool="mdnice编辑器" style="margin-bottom: 20px;line-height: 1.8em;color: rgb(58, 58, 58);">DOMContentLoaded，下图更直观的表示下</p><figure data-tool="mdnice编辑器" style="margin-top: 10px;margin-bottom: 10px;display: flex;flex-direction: column;justify-content: center;align-items: center;"><img data-ratio="0.19791666666666666" data-src="https://mmbiz.qpic.cn/mmbiz_jpg/bwG40XYiaOKktbju3nkFYIZreKQXuiaJiaibcHfXgAEJXyszul5GQibjgTtLJ4CYlLPEpVh2n3O9JqcJjMvxSqSibQPQ/640?wx_fmt=jpeg" data-type="jpeg" data-w="1440" style="margin-right: auto; margin-left: auto; border-radius: 5px; display: block; margin-bottom: 15px; width: 100% !important; height: auto !important; visibility: visible !important;" _width="100%" class="" src="https://mmbiz.qpic.cn/mmbiz_jpg/bwG40XYiaOKktbju3nkFYIZreKQXuiaJiaibcHfXgAEJXyszul5GQibjgTtLJ4CYlLPEpVh2n3O9JqcJjMvxSqSibQPQ/640?wx_fmt=jpeg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" crossorigin="anonymous" alt="图片" data-fail="0"></figure><p data-tool="mdnice编辑器" style="margin-bottom: 20px;line-height: 1.8em;color: rgb(58, 58, 58);">什么是 DOMContentLoaded？</p><p data-tool="mdnice编辑器" style="margin-bottom: 20px;line-height: 1.8em;color: rgb(58, 58, 58);">首先我们先思考一下，如何衡量网页的加载性能？有人认为可以通过计算从空白到完全加载的过程，但其实有些图片等可能加载较慢，但不影响整个页面的正常使用，所以，我们仅仅需要在空白网页看到内容即可</p><p data-tool="mdnice编辑器" style="margin-bottom: 20px;line-height: 1.8em;color: rgb(58, 58, 58);">所以，我们也可以通过计算这个网页从空白到出现内容所花费的时间，来衡量网页文档的加载性能，那么该如何计算这段时间喃？DOMContentLoaded 就是，当初始的&nbsp;<strong style="color: black;">HTML</strong>&nbsp;文档被完全加载和解析完成之后，<strong style="color: black;">DOMContentLoaded</strong>&nbsp;事件被触发，而无需等待样式表、图像和子框架的完全加载</p><h4 data-tool="mdnice编辑器" style="line-height: 1.5em;margin-top: 30px;margin-bottom: 15px;font-weight: bold;font-size: 18px;"><span style="display: none;"></span>L<span style="display: none;"></span></h4><p data-tool="mdnice编辑器" style="margin-bottom: 20px;line-height: 1.8em;color: rgb(58, 58, 58);">Load，onLoad 事件触发所需时间，仅在页面所有资源都加载完毕后（比如图片，CSS），onLoad 事件才被触发</p><h3 data-tool="mdnice编辑器" style="font-weight: bold;font-size: 20px;line-height: 1.4;padding-top: 10px;margin-top: 10px;margin-bottom: 5px;"><span style="display: none;"></span><span style="color: rgb(81, 81, 81);font-size: 1em;padding-left: 20px;border-left: 3px solid rgb(249, 191, 69);">文档渲染呈现过程</span><span style="display: none;"></span></h3><h4 data-tool="mdnice编辑器" style="line-height: 1.5em;margin-top: 30px;margin-bottom: 15px;font-weight: bold;font-size: 18px;"><span style="display: none;"></span>FP&amp;FCP<span style="display: none;"></span></h4><ul data-tool="mdnice编辑器" style="margin-top: 8px;margin-bottom: 8px;padding-left: 25px;" class="list-paddingleft-2"><li><section style="margin-top: 5px;margin-bottom: 5px;line-height: 26px;color: rgb(1, 1, 1);">FP（First Paint）：首次绘制，这个指标用于记录页面第一次绘制像素的时间</section></li><li><section style="margin-top: 5px;margin-bottom: 5px;line-height: 26px;color: rgb(1, 1, 1);">FCP（First Contentful Paint）：首次内容绘制，这个指标用于记录页面首次绘制文本、图片、非空白 Canvas 或 SVG 的时间，也包括带有正在加载中的 Web 字体的文本</section></li></ul><p data-tool="mdnice编辑器" style="margin-bottom: 20px;line-height: 1.8em;color: rgb(58, 58, 58);">这两个指标看起来大同小异，但是 FP 发生的时间一定大于等于 FCP，如下图是掘金的指标：</p><figure data-tool="mdnice编辑器" style="margin-top: 10px;margin-bottom: 10px;display: flex;flex-direction: column;justify-content: center;align-items: center;"><img data-ratio="0.24719101123595505" data-src="https://mmbiz.qpic.cn/mmbiz_png/bwG40XYiaOKktbju3nkFYIZreKQXuiaJiaib5Jbrfiagpse2gB5P0z1EDoibxpNoF5swKkZCKCl0NbvibKPjpAk2tuKlQ/640?wx_fmt=png" data-type="png" data-w="1780" style="margin-right: auto; margin-left: auto; border-radius: 5px; display: block; margin-bottom: 15px; width: 100% !important; height: auto !important; visibility: visible !important;" _width="100%" class="" src="https://mmbiz.qpic.cn/mmbiz_png/bwG40XYiaOKktbju3nkFYIZreKQXuiaJiaib5Jbrfiagpse2gB5P0z1EDoibxpNoF5swKkZCKCl0NbvibKPjpAk2tuKlQ/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" crossorigin="anonymous" alt="图片" data-fail="0"></figure><p data-tool="mdnice编辑器" style="margin-bottom: 20px;line-height: 1.8em;color: rgb(58, 58, 58);">FP 指的是绘制像素，比如说页面的背景色是灰色的，那么在显示灰色背景时就记录下了 FP 指标</p><p data-tool="mdnice编辑器" style="margin-bottom: 20px;line-height: 1.8em;color: rgb(58, 58, 58);">但是此时 DOM 内容还没开始绘制，可能需要文件下载、解析等过程，只有当 DOM 内容发生变化才会触发，比如说渲染出了一段文字，此时就会记录下 FCP 指标</p><p data-tool="mdnice编辑器" style="margin-bottom: 20px;line-height: 1.8em;color: rgb(58, 58, 58);">我们可以把这两个指标认为是和白屏时间相关的指标</p><figure data-tool="mdnice编辑器" style="margin-top: 10px;margin-bottom: 10px;display: flex;flex-direction: column;justify-content: center;align-items: center;"><img data-ratio="0.3241590214067278" data-src="https://mmbiz.qpic.cn/mmbiz_png/bwG40XYiaOKktbju3nkFYIZreKQXuiaJiaib1xic8EnwSkBdZqt13p1Swibcl7oHdVH0F5a5t6RS069jicARm1xlG5iazA/640?wx_fmt=png" data-type="png" data-w="1308" style="margin-right: auto; margin-left: auto; border-radius: 5px; display: block; margin-bottom: 15px; width: 100% !important; height: auto !important; visibility: visible !important;" _width="100%" class="" src="https://mmbiz.qpic.cn/mmbiz_png/bwG40XYiaOKktbju3nkFYIZreKQXuiaJiaib1xic8EnwSkBdZqt13p1Swibcl7oHdVH0F5a5t6RS069jicARm1xlG5iazA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" crossorigin="anonymous" alt="图片" data-fail="0"></figure><h4 data-tool="mdnice编辑器" style="line-height: 1.5em;margin-top: 30px;margin-bottom: 15px;font-weight: bold;font-size: 18px;"><span style="display: none;"></span>FMP<span style="display: none;"></span></h4><p data-tool="mdnice编辑器" style="margin-bottom: 20px;line-height: 1.8em;color: rgb(58, 58, 58);">First Meaningful Paint，是指页面的首要内容出现在屏幕上的时间，对于不同的站点，首要内容是不同的，例如：</p><ul data-tool="mdnice编辑器" style="margin-top: 8px;margin-bottom: 8px;padding-left: 25px;" class="list-paddingleft-2"><li><section style="margin-top: 5px;margin-bottom: 5px;line-height: 26px;color: rgb(1, 1, 1);">博客文章：【大标题 + 首屏文字】是首要内容；</section></li><li><section style="margin-top: 5px;margin-bottom: 5px;line-height: 26px;color: rgb(1, 1, 1);">百度或 Google 的搜索结果页：【首屏的结果】就是首要内容；</section></li><li><section style="margin-top: 5px;margin-bottom: 5px;line-height: 26px;color: rgb(1, 1, 1);">淘宝等购物网站：【图片】会极为重要，因此它是首要内容；</section></li></ul><p data-tool="mdnice编辑器" style="margin-bottom: 20px;line-height: 1.8em;color: rgb(58, 58, 58);">在 Lighthouse 6.0 中已不推荐使用&nbsp;FMP，建议使用&nbsp;LCP 代替</p><h4 data-tool="mdnice编辑器" style="line-height: 1.5em;margin-top: 30px;margin-bottom: 15px;font-weight: bold;font-size: 18px;"><span style="display: none;"></span>LCP<span style="display: none;"></span></h4><p data-tool="mdnice编辑器" style="margin-bottom: 20px;line-height: 1.8em;color: rgb(58, 58, 58);">Largest Contentful Paint，最大内容绘制，用于记录视窗内最大的元素绘制的时间，该时间会随着页面渲染变化而变化，因为页面中的最大元素在渲染过程中可能会发生改变，另外该指标会在用户第一次交互后停止记录。指标变化如下图：</p><figure data-tool="mdnice编辑器" style="margin-top: 10px;margin-bottom: 10px;display: flex;flex-direction: column;justify-content: center;align-items: center;"><img data-ratio="0.7978142076502732" data-src="https://mmbiz.qpic.cn/mmbiz_png/bwG40XYiaOKktbju3nkFYIZreKQXuiaJiaibo778mXTA1iaaPYEwnvqcRZ1Opbo2urrE2ezwRnPNoicXoUKpXkvWTfcQ/640?wx_fmt=png" data-type="png" data-w="732" style="margin-right: auto; margin-left: auto; border-radius: 5px; display: block; margin-bottom: 15px; width: 100% !important; height: auto !important; visibility: visible !important;" _width="100%" class="" src="https://mmbiz.qpic.cn/mmbiz_png/bwG40XYiaOKktbju3nkFYIZreKQXuiaJiaibo778mXTA1iaaPYEwnvqcRZ1Opbo2urrE2ezwRnPNoicXoUKpXkvWTfcQ/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" crossorigin="anonymous" alt="图片" data-fail="0"></figure><p data-tool="mdnice编辑器" style="margin-bottom: 20px;line-height: 1.8em;color: rgb(58, 58, 58);">LCP 其实能比 FP、FCP、FMP 更能体现一个页面的性能好坏程度，因为这个指标会持续更新。举个例子：当页面出现骨架屏或者 Loading 动画时 FCP 其实已经被记录下来了，但此时页面内容其实并未呈现</p><p data-tool="mdnice编辑器" style="margin-bottom: 20px;line-height: 1.8em;color: rgb(58, 58, 58);">在 2.5 秒内表示体验优秀</p><figure data-tool="mdnice编辑器" style="margin-top: 10px;margin-bottom: 10px;display: flex;flex-direction: column;justify-content: center;align-items: center;"><img data-ratio="0.30381679389312977" data-src="https://mmbiz.qpic.cn/mmbiz_png/bwG40XYiaOKktbju3nkFYIZreKQXuiaJiaibDdE19pDr87nW8ymGuzict5CsBCeooOWeEKg2iapVaY7f89Gu616Xsnxw/640?wx_fmt=png" data-type="png" data-w="1310" style="margin-right: auto; margin-left: auto; border-radius: 5px; display: block; margin-bottom: 15px; width: 100% !important; height: auto !important; visibility: visible !important;" _width="100%" class="" src="https://mmbiz.qpic.cn/mmbiz_png/bwG40XYiaOKktbju3nkFYIZreKQXuiaJiaibDdE19pDr87nW8ymGuzict5CsBCeooOWeEKg2iapVaY7f89Gu616Xsnxw/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" crossorigin="anonymous" alt="图片" data-fail="0"></figure><p data-tool="mdnice编辑器" style="margin-bottom: 20px;line-height: 1.8em;color: rgb(58, 58, 58);"><code style="font-size: 14px;border-radius: 4px;font-family: &quot;Operator Mono&quot;, Consolas, Monaco, Menlo, monospace;word-break: break-all;color: rgb(155, 110, 35);background-color: rgb(255, 245, 227);padding: 3px;margin: 3px;">LCP</code> 目前并不会计算所有元素，因为这样会使这个指标变得非常复杂，它现在只关注下面的元素：</p><ul data-tool="mdnice编辑器" style="margin-top: 8px;margin-bottom: 8px;padding-left: 25px;" class="list-paddingleft-2"><li><section style="margin-top: 5px;margin-bottom: 5px;line-height: 26px;color: rgb(1, 1, 1);"><code style="font-size: 14px;border-radius: 4px;font-family: &quot;Operator Mono&quot;, Consolas, Monaco, Menlo, monospace;word-break: break-all;color: rgb(155, 110, 35);background-color: rgb(255, 245, 227);padding: 3px;margin: 3px;">&lt;img&gt;</code> 元素</section></li><li><section style="margin-top: 5px;margin-bottom: 5px;line-height: 26px;color: rgb(1, 1, 1);"><code style="font-size: 14px;border-radius: 4px;font-family: &quot;Operator Mono&quot;, Consolas, Monaco, Menlo, monospace;word-break: break-all;color: rgb(155, 110, 35);background-color: rgb(255, 245, 227);padding: 3px;margin: 3px;">&lt;image&gt;</code>元素内的<code style="font-size: 14px;border-radius: 4px;font-family: &quot;Operator Mono&quot;, Consolas, Monaco, Menlo, monospace;word-break: break-all;color: rgb(155, 110, 35);background-color: rgb(255, 245, 227);padding: 3px;margin: 3px;">&lt;svg&gt;</code>元素</section></li><li><section style="margin-top: 5px;margin-bottom: 5px;line-height: 26px;color: rgb(1, 1, 1);"><code style="font-size: 14px;border-radius: 4px;font-family: &quot;Operator Mono&quot;, Consolas, Monaco, Menlo, monospace;word-break: break-all;color: rgb(155, 110, 35);background-color: rgb(255, 245, 227);padding: 3px;margin: 3px;">&lt;video&gt;</code> 元素</section></li><li><section style="margin-top: 5px;margin-bottom: 5px;line-height: 26px;color: rgb(1, 1, 1);">通过 <code style="font-size: 14px;border-radius: 4px;font-family: &quot;Operator Mono&quot;, Consolas, Monaco, Menlo, monospace;word-break: break-all;color: rgb(155, 110, 35);background-color: rgb(255, 245, 227);padding: 3px;margin: 3px;">url()</code> 函数加载背景图片的元素</section></li><li><section style="margin-top: 5px;margin-bottom: 5px;line-height: 26px;color: rgb(1, 1, 1);">包含文本节点或其他内联文本元素子级的块级元素。</section></li></ul><h4 data-tool="mdnice编辑器" style="line-height: 1.5em;margin-top: 30px;margin-bottom: 15px;font-weight: bold;font-size: 18px;"><span style="display: none;"></span>SI<span style="display: none;"></span></h4><p data-tool="mdnice编辑器" style="margin-bottom: 20px;line-height: 1.8em;color: rgb(58, 58, 58);">Speed Index，用于度量页面加载过程中内容可视化显示的速度，是 Lighthouse 的六个度量标准之一</p><figure data-tool="mdnice编辑器" style="margin-top: 10px;margin-bottom: 10px;display: flex;flex-direction: column;justify-content: center;align-items: center;"><img data-ratio="0.74" data-src="https://mmbiz.qpic.cn/mmbiz_png/bwG40XYiaOKktbju3nkFYIZreKQXuiaJiaib1Gb9Hn6shMSTwEJgCbxZjG55VEtTgt0jdEvbXzt6JHtcn1DJ8IP9Mw/640?wx_fmt=png" data-type="png" data-w="1600" style="margin-right: auto; margin-left: auto; border-radius: 5px; display: block; margin-bottom: 15px; width: 100% !important; height: auto !important; visibility: visible !important;" _width="100%" class="" src="https://mmbiz.qpic.cn/mmbiz_png/bwG40XYiaOKktbju3nkFYIZreKQXuiaJiaib1Gb9Hn6shMSTwEJgCbxZjG55VEtTgt0jdEvbXzt6JHtcn1DJ8IP9Mw/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" crossorigin="anonymous" alt="图片" data-fail="0"></figure><p data-tool="mdnice编辑器" style="margin-bottom: 20px;line-height: 1.8em;color: rgb(58, 58, 58);">具体如何测量喃？首先在浏览器中捕获页面加载的视频，然后对每 100 毫秒间隔的页面截图计算页面填充的百分比，可以得到这样一个曲线（纵轴是页面可视区域内容填充完成度，横轴是时间）</p><figure data-tool="mdnice编辑器" style="margin-top: 10px;margin-bottom: 10px;display: flex;flex-direction: column;justify-content: center;align-items: center;"><img data-ratio="0.7340637450199203" data-src="https://mmbiz.qpic.cn/mmbiz_png/bwG40XYiaOKktbju3nkFYIZreKQXuiaJiaib1ZOpVQnN6FGtAu9jqslwNoicsz1Prk1qRZ02rsMo8KROZmtfg7ahvHg/640?wx_fmt=png" data-type="png" data-w="1004" style="margin-right: auto; margin-left: auto; border-radius: 5px; display: block; margin-bottom: 15px; width: 100% !important; height: auto !important; visibility: visible !important;" _width="100%" class="" src="https://mmbiz.qpic.cn/mmbiz_png/bwG40XYiaOKktbju3nkFYIZreKQXuiaJiaib1ZOpVQnN6FGtAu9jqslwNoicsz1Prk1qRZ02rsMo8KROZmtfg7ahvHg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" crossorigin="anonymous" alt="图片" data-fail="0"></figure><p data-tool="mdnice编辑器" style="margin-bottom: 20px;line-height: 1.8em;color: rgb(58, 58, 58);">上图中的两个都是在 10s 时页面填充完成，但Example 1（左图）在 2s 是就已经填充了 80% 的内容，而 Example 2（右图）在 8s 时才填充 80%</p><blockquote data-tool="mdnice编辑器" style="border-top: none;border-right: none;border-bottom: none;font-size: 0.9em;overflow: auto;color: rgb(106, 115, 125);padding: 10px 10px 10px 20px;margin-bottom: 20px;margin-top: 20px;border-left-color: rgb(255, 177, 27);background: rgb(255, 245, 227);"><p style="font-size: 16px;line-height: 26px;color: rgb(89, 89, 89);">计算 SI ：</p><p style="font-size: 16px;line-height: 26px;color: rgb(89, 89, 89);">Example 1：Speed Index = (80% * 2) + （20% * 10）= 3.6</p><p style="font-size: 16px;line-height: 26px;color: rgb(89, 89, 89);">Example 2：Speed Index = (80% * 8) + （20% * 10）= 8.4</p></blockquote><p data-tool="mdnice编辑器" style="margin-bottom: 20px;line-height: 1.8em;color: rgb(58, 58, 58);">其中，SI：0-3.4 为最优</p><figure data-tool="mdnice编辑器" style="margin-top: 10px;margin-bottom: 10px;display: flex;flex-direction: column;justify-content: center;align-items: center;"><img data-ratio="0.28313253012048195" data-src="https://mmbiz.qpic.cn/mmbiz_png/bwG40XYiaOKktbju3nkFYIZreKQXuiaJiaibVFuYqPhrsxT46KcbJTWxicXspW4Iyw37UickQnwKBVj2xmG96jCqOickw/640?wx_fmt=png" data-type="png" data-w="1660" style="margin-right: auto; margin-left: auto; border-radius: 5px; display: block; margin-bottom: 15px; width: 100% !important; height: auto !important; visibility: visible !important;" _width="100%" class="" src="https://mmbiz.qpic.cn/mmbiz_png/bwG40XYiaOKktbju3nkFYIZreKQXuiaJiaibVFuYqPhrsxT46KcbJTWxicXspW4Iyw37UickQnwKBVj2xmG96jCqOickw/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" crossorigin="anonymous" alt="图片" data-fail="0"></figure><h4 data-tool="mdnice编辑器" style="line-height: 1.5em;margin-top: 30px;margin-bottom: 15px;font-weight: bold;font-size: 18px;"><span style="display: none;"></span>FSP<span style="display: none;"></span></h4><p data-tool="mdnice编辑器" style="margin-bottom: 20px;line-height: 1.8em;color: rgb(58, 58, 58);">First Screen Paint，即页面从开始加载到首屏内容全部绘制完成的时间，用户可以看到首屏的全部内容</p><h3 data-tool="mdnice编辑器" style="font-weight: bold;font-size: 20px;line-height: 1.4;padding-top: 10px;margin-top: 10px;margin-bottom: 5px;"><span style="display: none;"></span><span style="color: rgb(81, 81, 81);font-size: 1em;padding-left: 20px;border-left: 3px solid rgb(249, 191, 69);">交互过程</span><span style="display: none;"></span></h3><h4 data-tool="mdnice编辑器" style="line-height: 1.5em;margin-top: 30px;margin-bottom: 15px;font-weight: bold;font-size: 18px;"><span style="display: none;"></span>TTI<span style="display: none;"></span></h4><p data-tool="mdnice编辑器" style="margin-bottom: 20px;line-height: 1.8em;color: rgb(58, 58, 58);">Time to Interactive，用于表示网页首次完全达到可交互状态的时间点</p><p data-tool="mdnice编辑器" style="margin-bottom: 20px;line-height: 1.8em;color: rgb(58, 58, 58);">完全达到可交互状态的时间点是从 FCP 开始，在最后一个长任务（Long Task）完成的时间，并且在随后的 5 秒内网络和主线程是空闲的，如下图：</p><figure data-tool="mdnice编辑器" style="margin-top: 10px;margin-bottom: 10px;display: flex;flex-direction: column;justify-content: center;align-items: center;"><img data-ratio="0.5905511811023622" data-src="https://mmbiz.qpic.cn/mmbiz_svg/SQd7RF5caa2crcv2atiarMCIVje2iaydzJzqUu00rkdb0CiaX8icSfJqiaT65Wu7lovYFWI32fEpiaekPlT6wmVZc5ZMibFvYqwSLuI/640?wx_fmt=svg" data-type="svg" data-w="254" style="margin-right: auto; margin-left: auto; border-radius: 5px; display: block; margin-bottom: 15px; width: 100% !important; height: auto !important; visibility: visible !important;" _width="100%" class="" src="https://mmbiz.qpic.cn/mmbiz_svg/SQd7RF5caa2crcv2atiarMCIVje2iaydzJzqUu00rkdb0CiaX8icSfJqiaT65Wu7lovYFWI32fEpiaekPlT6wmVZc5ZMibFvYqwSLuI/640?wx_fmt=svg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" crossorigin="anonymous" alt="图片" data-fail="0"></figure><p data-tool="mdnice编辑器" style="margin-bottom: 20px;line-height: 1.8em;color: rgb(58, 58, 58);">Google 提出了一个 RAIL 模型：对于用户交互（比如点击事件），推荐的响应时间是 100ms 以内。那么为了达成这个目标，推荐在空闲时间里执行任务不超过 50ms（W3C 也有这样的标准规定），这样能在用户无感知的情况下响应用户的交互，否则就会造成延迟感</p><figure data-tool="mdnice编辑器" style="margin-top: 10px;margin-bottom: 10px;display: flex;flex-direction: column;justify-content: center;align-items: center;"><img data-ratio="0.362962962962963" data-src="https://mmbiz.qpic.cn/mmbiz_png/bwG40XYiaOKktbju3nkFYIZreKQXuiaJiaibAQh3ngX07F7FvbCXN6eyQGQ8nLjHDWAicV1GEBwavNmIQZHoSNYGGibw/640?wx_fmt=png" data-type="png" data-w="1080" style="margin-right: auto; margin-left: auto; border-radius: 5px; display: block; margin-bottom: 15px; width: 100% !important; height: auto !important; visibility: visible !important;" _width="100%" class="" src="https://mmbiz.qpic.cn/mmbiz_png/bwG40XYiaOKktbju3nkFYIZreKQXuiaJiaibAQh3ngX07F7FvbCXN6eyQGQ8nLjHDWAicV1GEBwavNmIQZHoSNYGGibw/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" crossorigin="anonymous" alt="图片" data-fail="0"></figure><p data-tool="mdnice编辑器" style="margin-bottom: 20px;line-height: 1.8em;color: rgb(58, 58, 58);">这是一个很重要的用户体验指标，代表着页面何时真正进入可用的状态。毕竟光内容渲染的快也不够，还要能迅速响应用户的交互。想必大家应该体验过某些网站，虽然内容渲染出来了，但是响应交互很卡顿，只能过一会才能流畅交互的情况。</p><h4 data-tool="mdnice编辑器" style="line-height: 1.5em;margin-top: 30px;margin-bottom: 15px;font-weight: bold;font-size: 18px;"><span style="display: none;"></span>FCI<span style="display: none;"></span></h4><p data-tool="mdnice编辑器" style="margin-bottom: 20px;line-height: 1.8em;color: rgb(58, 58, 58);">First CPU Idle，页面首可交互时间</p><p data-tool="mdnice编辑器" style="margin-bottom: 20px;line-height: 1.8em;color: rgb(58, 58, 58);">与 TTI 不同的是：FCI 发生在用户可以开始与页面交互时；TTI 发生在用户完全能够（可持续）与页面交互时</p><h4 data-tool="mdnice编辑器" style="line-height: 1.5em;margin-top: 30px;margin-bottom: 15px;font-weight: bold;font-size: 18px;"><span style="display: none;"></span>FID<span style="display: none;"></span></h4><p data-tool="mdnice编辑器" style="margin-bottom: 20px;line-height: 1.8em;color: rgb(58, 58, 58);">First Input Delay，首次输入延迟，用于记录在 FCP 和 TTI 之间用户首次与页面交互时响应的延迟</p><p data-tool="mdnice编辑器" style="margin-bottom: 20px;line-height: 1.8em;color: rgb(58, 58, 58);">就是看用户交互事件触发到页面响应中间耗时多少，如果其中有长任务发生的话那么势必会造成响应时间变长</p><figure data-tool="mdnice编辑器" style="margin-top: 10px;margin-bottom: 10px;display: flex;flex-direction: column;justify-content: center;align-items: center;"><img data-ratio="0.4766666666666667" data-src="https://mmbiz.qpic.cn/mmbiz_svg/SQd7RF5caa2crcv2atiarMCIVje2iaydzJPKmg6icUC643h5zG6YgcYMlk8icDFmskUnZUNUEC0or0mHFKn3GAwl4IFfzwvFiavbf/640?wx_fmt=svg" data-type="svg" data-w="300" style="margin-right: auto; margin-left: auto; border-radius: 5px; display: block; margin-bottom: 15px; width: 100% !important; height: auto !important; visibility: visible !important;" _width="100%" class="" src="https://mmbiz.qpic.cn/mmbiz_svg/SQd7RF5caa2crcv2atiarMCIVje2iaydzJPKmg6icUC643h5zG6YgcYMlk8icDFmskUnZUNUEC0or0mHFKn3GAwl4IFfzwvFiavbf/640?wx_fmt=svg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" crossorigin="anonymous" alt="图片" data-fail="0"></figure><figure data-tool="mdnice编辑器" style="margin-top: 10px;margin-bottom: 10px;display: flex;flex-direction: column;justify-content: center;align-items: center;"><img data-ratio="0.3171471927162367" data-src="https://mmbiz.qpic.cn/mmbiz_png/bwG40XYiaOKktbju3nkFYIZreKQXuiaJiaibI423xbVMTlW2icfvxFNwsCjaTzpvwUPAv8hrUbwHVox6LmtQCTibWduQ/640?wx_fmt=png" data-type="png" data-w="1318" style="margin-right: auto; margin-left: auto; border-radius: 5px; display: block; margin-bottom: 15px; width: 100% !important; height: auto !important; visibility: visible !important;" _width="100%" class="" src="https://mmbiz.qpic.cn/mmbiz_png/bwG40XYiaOKktbju3nkFYIZreKQXuiaJiaibI423xbVMTlW2icfvxFNwsCjaTzpvwUPAv8hrUbwHVox6LmtQCTibWduQ/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" crossorigin="anonymous" alt="图片" data-fail="0"></figure><h4 data-tool="mdnice编辑器" style="line-height: 1.5em;margin-top: 30px;margin-bottom: 15px;font-weight: bold;font-size: 18px;"><span style="display: none;"></span>FPS<span style="display: none;"></span></h4><p data-tool="mdnice编辑器" style="margin-bottom: 20px;line-height: 1.8em;color: rgb(58, 58, 58);">Frames Per Second，用于表示每秒可以重新绘制的帧数，是衡量应用流畅度的一个非常重要的指标，60fps（每次绘制 16.7ms） 是页面流畅的目标，否则用户便会感觉到页面卡顿</p><h3 data-tool="mdnice编辑器" style="font-weight: bold;font-size: 20px;line-height: 1.4;padding-top: 10px;margin-top: 10px;margin-bottom: 5px;"><span style="display: none;"></span><span style="color: rgb(81, 81, 81);font-size: 1em;padding-left: 20px;border-left: 3px solid rgb(249, 191, 69);">核心性能指标</span><span style="display: none;"></span></h3><p data-tool="mdnice编辑器" style="margin-bottom: 20px;line-height: 1.8em;color: rgb(58, 58, 58);">以上我们学习了 13 个性能指标，但最常用、最关键的是以下四个核心指标：</p><ul data-tool="mdnice编辑器" style="margin-top: 8px;margin-bottom: 8px;padding-left: 25px;" class="list-paddingleft-2"><li><section style="margin-top: 5px;margin-bottom: 5px;line-height: 26px;color: rgb(1, 1, 1);">白屏时间：页面空白时间，FP&amp;FCP</section></li><li><section style="margin-top: 5px;margin-bottom: 5px;line-height: 26px;color: rgb(1, 1, 1);">首屏时间：页面可视区域内容以完全呈现时间，FSP</section></li><li><section style="margin-top: 5px;margin-bottom: 5px;line-height: 26px;color: rgb(1, 1, 1);">可交互时间：用户首次可交互时间，FCI</section></li><li><section style="margin-top: 5px;margin-bottom: 5px;line-height: 26px;color: rgb(1, 1, 1);">可持续交互时间：用户首次可完全可持续交互时间，TTI</section></li></ul><h3 data-tool="mdnice编辑器" style="font-weight: bold;font-size: 20px;line-height: 1.4;padding-top: 10px;margin-top: 10px;margin-bottom: 5px;"><span style="display: none;"></span><span style="color: rgb(81, 81, 81);font-size: 1em;padding-left: 20px;border-left: 3px solid rgb(249, 191, 69);">总结与思考</span><span style="display: none;"></span></h3><p data-tool="mdnice编辑器" style="margin-bottom: 20px;line-height: 1.8em;color: rgb(58, 58, 58);">本文，我们学习了从文档加载到用户交互所涉及的性能指标：</p><ul data-tool="mdnice编辑器" style="margin-top: 8px;margin-bottom: 8px;padding-left: 25px;" class="list-paddingleft-2"><li><section style="margin-top: 5px;margin-bottom: 5px;line-height: 26px;color: rgb(1, 1, 1);">文档加载过程：</section></li><ul style="margin-top: 8px;margin-bottom: 8px;padding-left: 25px;color: black;list-style-type: square;" class="list-paddingleft-2"><li><section style="margin-top: 5px;margin-bottom: 5px;line-height: 26px;color: rgb(1, 1, 1);">TTFB：从请求开始到接收第一字节的时间</section></li><li><section style="margin-top: 5px;margin-bottom: 5px;line-height: 26px;color: rgb(1, 1, 1);">DCL：空白到出现内容所花费的时间</section></li><li><section style="margin-top: 5px;margin-bottom: 5px;line-height: 26px;color: rgb(1, 1, 1);">L：onLoad 事件触发所需时间</section></li></ul><li><section style="margin-top: 5px;margin-bottom: 5px;line-height: 26px;color: rgb(1, 1, 1);">渲染呈现过程：</section></li><ul style="margin-top: 8px;margin-bottom: 8px;padding-left: 25px;color: black;list-style-type: square;" class="list-paddingleft-2"><li><section style="margin-top: 5px;margin-bottom: 5px;line-height: 26px;color: rgb(1, 1, 1);">FP&amp;FCP：首次绘制（FP，可能是背景色或loading），首次内容绘制时间（FCP）</section></li><li><section style="margin-top: 5px;margin-bottom: 5px;line-height: 26px;color: rgb(1, 1, 1);">FMP：首要内容出现在屏幕上的时间</section></li><li><section style="margin-top: 5px;margin-bottom: 5px;line-height: 26px;color: rgb(1, 1, 1);">LCP：视窗内最大的元素绘制的时</section></li><li><section style="margin-top: 5px;margin-bottom: 5px;line-height: 26px;color: rgb(1, 1, 1);">SI：页面加载过程中内容可视化显示的速度</section></li><li><section style="margin-top: 5px;margin-bottom: 5px;line-height: 26px;color: rgb(1, 1, 1);">FSP：从开始加载到首屏内容全部绘制完成的时间</section></li></ul><li><section style="margin-top: 5px;margin-bottom: 5px;line-height: 26px;color: rgb(1, 1, 1);">交互过程：</section></li><ul style="margin-top: 8px;margin-bottom: 8px;padding-left: 25px;color: black;list-style-type: square;" class="list-paddingleft-2"><li><section style="margin-top: 5px;margin-bottom: 5px;line-height: 26px;color: rgb(1, 1, 1);">TTI：网页首次完全达到可交互状态的时间点</section></li><li><section style="margin-top: 5px;margin-bottom: 5px;line-height: 26px;color: rgb(1, 1, 1);">FCI：页面首可交互时间</section></li><li><section style="margin-top: 5px;margin-bottom: 5px;line-height: 26px;color: rgb(1, 1, 1);">FID：首次输入延迟</section></li><li><section style="margin-top: 5px;margin-bottom: 5px;line-height: 26px;color: rgb(1, 1, 1);">FPS：每秒可以重新绘制的帧数，用于衡量应用流畅度</section></li></ul></ul><p data-tool="mdnice编辑器" style="margin-bottom: 20px;line-height: 1.8em;color: rgb(58, 58, 58);">其中最重要的是白屏时间（FP&amp;FCP）、首屏时间（FSP）、可交互时间（FCI）、可持续交互时间（TTI），下一章，我们将走进新一代性能指标 Web Vitals</p><h4 data-tool="mdnice编辑器" style="line-height: 1.5em;margin-top: 30px;margin-bottom: 15px;font-weight: bold;font-size: 18px;"><span style="display: none;"></span>参考链接<span style="display: none;"></span></h4><ul data-tool="mdnice编辑器" style="margin-top: 8px;margin-bottom: 8px;padding-left: 25px;" class="list-paddingleft-2"><li><section style="margin-top: 5px;margin-bottom: 5px;line-height: 26px;color: rgb(1, 1, 1);">MDN</section></li><li><section style="margin-top: 5px;margin-bottom: 5px;line-height: 26px;color: rgb(1, 1, 1);">Web 性能指标：https://juejin.cn/post/6844904153869713416</section></li></ul></section>
+                    <p style="font-size: 16px;padding-top: 1em;padding-bottom: 8px;line-height: 1.75em;color: rgb(74, 74, 74);font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, &quot;PingFang SC&quot;, Cambria, Cochin, Georgia, Times, &quot;Times New Roman&quot;, serif;letter-spacing: 0.544px;text-align: left;white-space: normal;background-color: rgb(255, 255, 255);" data-mpa-powered-by="yiban.io">不知道大家有没有用过 eslint 的注释的配置方式：</p><pre style="font-size: 16px;font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace;margin-top: 10px;margin-bottom: 10px;overflow: auto;border-radius: 5px;box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;color: rgb(63, 63, 63);letter-spacing: 0.544px;text-align: left;background-color: rgb(255, 255, 255);"><code style="font-size: 12px;font-family: &quot;Operator Mono&quot;, Consolas, Monaco, Menlo, monospace;display: -webkit-box;overflow-x: auto;padding: 15px 16px 16px;color: rgb(56, 58, 66);background: rgb(250, 250, 250);border-radius: 5px;"><span style="color: rgb(160, 161, 167);font-style: italic;line-height: 26px;">/*&nbsp;eslint-disable&nbsp;no-alert,&nbsp;no-console&nbsp;*/</span><br>alert(<span style="color: rgb(80, 161, 79);line-height: 26px;">'foo'</span>);<br><span style="color: rgb(193, 132, 1);line-height: 26px;">console</span>.log(<span style="color: rgb(80, 161, 79);line-height: 26px;">'bar'</span>);<br><span style="color: rgb(160, 161, 167);font-style: italic;line-height: 26px;">/*&nbsp;eslint-enable&nbsp;no-alert,&nbsp;no-console&nbsp;*/</span><br><br><span style="color: rgb(160, 161, 167);font-style: italic;line-height: 26px;">//&nbsp;eslint-disable-next-line</span><br>alert(<span style="color: rgb(80, 161, 79);line-height: 26px;">'foo'</span>);<br></code></pre><p style="font-size: 16px;padding-top: 1em;padding-bottom: 8px;line-height: 1.75em;color: rgb(74, 74, 74);font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, &quot;PingFang SC&quot;, Cambria, Cochin, Georgia, Times, &quot;Times New Roman&quot;, serif;letter-spacing: 0.544px;text-align: left;white-space: normal;background-color: rgb(255, 255, 255);">eslint 支持 eslint-disable、eslint-enable、eslint-disable-next-line 等指定某个 rule 是否生效的行内配置，叫做 inline config。</p><p style="font-size: 16px;padding-top: 1em;padding-bottom: 8px;line-height: 1.75em;color: rgb(74, 74, 74);font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, &quot;PingFang SC&quot;, Cambria, Cochin, Georgia, Times, &quot;Times New Roman&quot;, serif;letter-spacing: 0.544px;text-align: left;white-space: normal;background-color: rgb(255, 255, 255);">webpack 中也有这种配置方式，可以在动态引入一个模块的时候配置代码分割的方式，叫做 magic comment。</p><pre style="font-size: 16px;font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace;margin-top: 10px;margin-bottom: 10px;overflow: auto;border-radius: 5px;box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;color: rgb(63, 63, 63);letter-spacing: 0.544px;text-align: left;background-color: rgb(255, 255, 255);"><code style="font-size: 12px;font-family: &quot;Operator Mono&quot;, Consolas, Monaco, Menlo, monospace;display: -webkit-box;overflow-x: auto;padding: 15px 16px 16px;color: rgb(56, 58, 66);background: rgb(250, 250, 250);border-radius: 5px;"><span style="color: rgb(166, 38, 164);line-height: 26px;">import</span>(<br>&nbsp;&nbsp;<span style="color: rgb(160, 161, 167);font-style: italic;line-height: 26px;">/*&nbsp;webpackChunkName:&nbsp;"my-chunk-name"&nbsp;*/</span><br>&nbsp;&nbsp;<span style="color: rgb(160, 161, 167);font-style: italic;line-height: 26px;">/*&nbsp;webpackMode:&nbsp;"lazy"&nbsp;*/</span><br>&nbsp;&nbsp;<span style="color: rgb(160, 161, 167);font-style: italic;line-height: 26px;">/*&nbsp;webpackExports:&nbsp;["default",&nbsp;"named"]&nbsp;*/</span><br>&nbsp;&nbsp;<span style="color: rgb(80, 161, 79);line-height: 26px;">'module'</span><br>);<br></code></pre><p style="font-size: 16px;padding-top: 1em;padding-bottom: 8px;line-height: 1.75em;color: rgb(74, 74, 74);font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, &quot;PingFang SC&quot;, Cambria, Cochin, Georgia, Times, &quot;Times New Roman&quot;, serif;letter-spacing: 0.544px;text-align: left;white-space: normal;background-color: rgb(255, 255, 255);">类似的，terser 也有这种机制，叫做 annotation，可以指定某个 api 是否是纯的，纯函数的话如果没用到可以直接删除。</p><pre style="font-size: 16px;font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace;margin-top: 10px;margin-bottom: 10px;overflow: auto;border-radius: 5px;box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;color: rgb(63, 63, 63);letter-spacing: 0.544px;text-align: left;background-color: rgb(255, 255, 255);"><code style="font-size: 12px;font-family: &quot;Operator Mono&quot;, Consolas, Monaco, Menlo, monospace;display: -webkit-box;overflow-x: auto;padding: 15px 16px 16px;color: rgb(56, 58, 66);background: rgb(250, 250, 250);border-radius: 5px;"><span style="color: rgb(166, 38, 164);line-height: 26px;">var</span>&nbsp;a&nbsp;=&nbsp;<span style="color: rgb(160, 161, 167);font-style: italic;line-height: 26px;">/*#__PURE__*/</span>React.createElement(<span style="color: rgb(80, 161, 79);line-height: 26px;">"div"</span>,&nbsp;<span style="color: rgb(1, 132, 187);line-height: 26px;">null</span>);<br></code></pre><p style="font-size: 16px;padding-top: 1em;padding-bottom: 8px;line-height: 1.75em;color: rgb(74, 74, 74);font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, &quot;PingFang SC&quot;, Cambria, Cochin, Georgia, Times, &quot;Times New Roman&quot;, serif;letter-spacing: 0.544px;text-align: left;white-space: normal;background-color: rgb(255, 255, 255);">可以看到，很多库都用到了这种通过注释来配置的方式，不管是叫 annotation 也好、magic comment 也好，或者 inline config 也好，都指的同一个东西。</p><p style="font-size: 16px;padding-top: 1em;padding-bottom: 8px;line-height: 1.75em;color: rgb(74, 74, 74);font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, &quot;PingFang SC&quot;, Cambria, Cochin, Georgia, Times, &quot;Times New Roman&quot;, serif;letter-spacing: 0.544px;text-align: left;white-space: normal;background-color: rgb(255, 255, 255);">既然是这么常见的配置方式，那么他们是怎么实现的呢？</p><h2 style="margin-top: 1em;margin-bottom: 10px;color: black;font-weight: bold;font-size: 22px;text-align: center;background: url(&quot;https://mmbiz.qpic.cn/mmbiz_png/YprkEU0TtGgNdHOOZHGnLYtym8iclGrH4zTWBHcbgKytzfPkBjrtia9XiaSYFwsL8xWYwJpiclY7YjImjHdR2lK3DA/640?wx_fmt=png&quot;) center center / 50px no-repeat rgb(255, 255, 255);font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, &quot;PingFang SC&quot;, Cambria, Cochin, Georgia, Times, &quot;Times New Roman&quot;, serif;letter-spacing: 0.544px;white-space: normal;"><span style="display: inline-block;height: 38px;line-height: 42px;color: rgb(72, 179, 120);background-position: left center;background-repeat: no-repeat;background-attachment: initial;background-origin: initial;background-clip: initial;background-size: 63px;margin-top: 38px;font-size: 18px;margin-bottom: 10px;">注释中配置的实现原理</span></h2><p style="font-size: 16px;padding-top: 1em;padding-bottom: 8px;line-height: 1.75em;color: rgb(74, 74, 74);font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, &quot;PingFang SC&quot;, Cambria, Cochin, Georgia, Times, &quot;Times New Roman&quot;, serif;letter-spacing: 0.544px;text-align: left;white-space: normal;background-color: rgb(255, 255, 255);">我们拿 eslint 的 inline config 的实现来看一下。</p><p style="font-size: 16px;padding-top: 1em;padding-bottom: 8px;line-height: 1.75em;color: rgb(74, 74, 74);font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, &quot;PingFang SC&quot;, Cambria, Cochin, Georgia, Times, &quot;Times New Roman&quot;, serif;letter-spacing: 0.544px;text-align: left;white-space: normal;background-color: rgb(255, 255, 255);">eslint 会把源码 parse 成 AST，然后对把 AST 传入一系列 rule 来做检查，检查结果会用 formatter 格式化后输出。</p><p style="font-size: 16px;padding-top: 1em;padding-bottom: 8px;line-height: 1.75em;color: rgb(74, 74, 74);font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, &quot;PingFang SC&quot;, Cambria, Cochin, Georgia, Times, &quot;Times New Roman&quot;, serif;letter-spacing: 0.544px;text-align: left;white-space: normal;background-color: rgb(255, 255, 255);">注释的配置是在哪一步生效的呢？</p><p style="font-size: 16px;padding-top: 1em;padding-bottom: 8px;line-height: 1.75em;color: rgb(74, 74, 74);font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, &quot;PingFang SC&quot;, Cambria, Cochin, Georgia, Times, &quot;Times New Roman&quot;, serif;letter-spacing: 0.544px;text-align: left;white-space: normal;background-color: rgb(255, 255, 255);">我简化了一下源码，是这样的：</p><pre style="font-size: 16px;font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace;margin-top: 10px;margin-bottom: 10px;overflow: auto;border-radius: 5px;box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;color: rgb(63, 63, 63);letter-spacing: 0.544px;text-align: left;background-color: rgb(255, 255, 255);"><code style="font-size: 12px;font-family: &quot;Operator Mono&quot;, Consolas, Monaco, Menlo, monospace;display: -webkit-box;overflow-x: auto;padding: 15px 16px 16px;color: rgb(56, 58, 66);background: rgb(250, 250, 250);border-radius: 5px;">verify(text)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(160, 161, 167);font-style: italic;line-height: 26px;">//&nbsp;parse&nbsp;源码</span><br>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(166, 38, 164);line-height: 26px;">const</span>&nbsp;ast&nbsp;=&nbsp;parse(text);<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(160, 161, 167);font-style: italic;line-height: 26px;">//&nbsp;调用&nbsp;rule，拿到&nbsp;lint&nbsp;的问题</span><br>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(166, 38, 164);line-height: 26px;">const</span>&nbsp;lintingProblems&nbsp;=&nbsp;runRules(ast);<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(160, 161, 167);font-style: italic;line-height: 26px;">//&nbsp;通过&nbsp;AST&nbsp;拿到注释中的配置</span><br>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(166, 38, 164);line-height: 26px;">const</span>&nbsp;commentDirectives&nbsp;=&nbsp;getDirectiveComments(ast);<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(160, 161, 167);font-style: italic;line-height: 26px;">//&nbsp;根据注释中的配置过滤问题</span><br>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(166, 38, 164);line-height: 26px;">return</span>&nbsp;applyDisableDirectives(lintingProblems,&nbsp;commentDirectives);<br>}<br><br></code></pre><p style="font-size: 16px;padding-top: 1em;padding-bottom: 8px;line-height: 1.75em;color: rgb(74, 74, 74);font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, &quot;PingFang SC&quot;, Cambria, Cochin, Georgia, Times, &quot;Times New Roman&quot;, serif;letter-spacing: 0.544px;text-align: left;white-space: normal;background-color: rgb(255, 255, 255);">可以看到，整体流程是：</p><ul style="margin-top: 8px;margin-bottom: 8px;padding-left: 25px;color: black;font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, &quot;PingFang SC&quot;, Cambria, Cochin, Georgia, Times, &quot;Times New Roman&quot;, serif;font-size: 16px;letter-spacing: 0.544px;text-align: left;white-space: normal;background-color: rgb(255, 255, 255);" class="list-paddingleft-2"><li><section style="margin-top: 5px;margin-bottom: 5px;line-height: 26px;color: rgb(1, 1, 1);">把源码 parse 成 AST</section></li><li><section style="margin-top: 5px;margin-bottom: 5px;line-height: 26px;color: rgb(1, 1, 1);">调用 rule 对 AST 做检查，拿到 lint 的 problems</section></li><li><section style="margin-top: 5px;margin-bottom: 5px;line-height: 26px;color: rgb(1, 1, 1);">通过 AST 拿到注释中的 diectives</section></li><li><section style="margin-top: 5px;margin-bottom: 5px;line-height: 26px;color: rgb(1, 1, 1);">通过 directives 过滤 problems，就是最终需要报出的问题</section></li></ul><p style="font-size: 16px;padding-top: 1em;padding-bottom: 8px;line-height: 1.75em;color: rgb(74, 74, 74);font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, &quot;PingFang SC&quot;, Cambria, Cochin, Georgia, Times, &quot;Times New Roman&quot;, serif;letter-spacing: 0.544px;text-align: left;white-space: normal;background-color: rgb(255, 255, 255);">也就是说&nbsp;<strong style="line-height: 1.75em;">eslint 的 inline config 是在 lint 完 AST，拿到各种 problems 之后生效的，对 problems 做一次过滤。</strong></p><p style="font-size: 16px;padding-top: 1em;padding-bottom: 8px;line-height: 1.75em;color: rgb(74, 74, 74);font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, &quot;PingFang SC&quot;, Cambria, Cochin, Georgia, Times, &quot;Times New Roman&quot;, serif;letter-spacing: 0.544px;text-align: left;white-space: normal;background-color: rgb(255, 255, 255);">那怎么从 AST 中取出 directives 的呢？又是怎么过滤 problems 的呢？</p><p style="font-size: 16px;padding-top: 1em;padding-bottom: 8px;line-height: 1.75em;color: rgb(74, 74, 74);font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, &quot;PingFang SC&quot;, Cambria, Cochin, Georgia, Times, &quot;Times New Roman&quot;, serif;letter-spacing: 0.544px;text-align: left;white-space: normal;background-color: rgb(255, 255, 255);">我们分别看一下。</p><p style="font-size: 16px;padding-top: 1em;padding-bottom: 8px;line-height: 1.75em;color: rgb(74, 74, 74);font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, &quot;PingFang SC&quot;, Cambria, Cochin, Georgia, Times, &quot;Times New Roman&quot;, serif;letter-spacing: 0.544px;text-align: left;white-space: normal;background-color: rgb(255, 255, 255);">从 AST 取出 directives 的源码简化以后是这样的：</p><pre style="font-size: 16px;font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace;margin-top: 10px;margin-bottom: 10px;overflow: auto;border-radius: 5px;box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;color: rgb(63, 63, 63);letter-spacing: 0.544px;text-align: left;background-color: rgb(255, 255, 255);"><code style="font-size: 12px;font-family: &quot;Operator Mono&quot;, Consolas, Monaco, Menlo, monospace;display: -webkit-box;overflow-x: auto;padding: 15px 16px 16px;color: rgb(56, 58, 66);background: rgb(250, 250, 250);border-radius: 5px;"><span style="line-height: 26px;"><span style="color: rgb(166, 38, 164);line-height: 26px;">function</span>&nbsp;<span style="color: rgb(64, 120, 242);line-height: 26px;">getDirectiveComments</span>(<span style="line-height: 26px;">ast</span>)</span>{<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(166, 38, 164);line-height: 26px;">const</span>&nbsp;directives&nbsp;=&nbsp;[];<br>&nbsp;&nbsp;&nbsp;&nbsp;ast.comments.forEach(<span style="line-height: 26px;"><span style="line-height: 26px;">comment</span>&nbsp;=&gt;</span>&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(166, 38, 164);line-height: 26px;">const</span>&nbsp;match&nbsp;=&nbsp;<span style="color: rgb(80, 161, 79);line-height: 26px;">/^[#@](eslint(?:-env|-enable|-disable(?:(?:-next)?-line)?)?|exported|globals?)(?:\s|$)/u</span>.exec(comment.trim());<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(166, 38, 164);line-height: 26px;">if</span>&nbsp;(match)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(166, 38, 164);line-height: 26px;">const</span>&nbsp;directiveText&nbsp;=&nbsp;match[<span style="color: rgb(152, 104, 1);line-height: 26px;">1</span>];<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;directives.push({&nbsp;<span style="color: rgb(152, 104, 1);line-height: 26px;">type</span>:&nbsp;xxx,&nbsp;<span style="color: rgb(152, 104, 1);line-height: 26px;">line</span>:&nbsp;loc.start.line,&nbsp;<span style="color: rgb(152, 104, 1);line-height: 26px;">column</span>:&nbsp;loc.start.column&nbsp;+&nbsp;<span style="color: rgb(152, 104, 1);line-height: 26px;">1</span>,&nbsp;ruleId&nbsp;});<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(166, 38, 164);line-height: 26px;">return</span>&nbsp;directives;<br>}<br></code></pre><p style="font-size: 16px;padding-top: 1em;padding-bottom: 8px;line-height: 1.75em;color: rgb(74, 74, 74);font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, &quot;PingFang SC&quot;, Cambria, Cochin, Georgia, Times, &quot;Times New Roman&quot;, serif;letter-spacing: 0.544px;text-align: left;white-space: normal;background-color: rgb(255, 255, 255);">其实就是对 AST 中所有的 comments 的内容做一下正则的匹配，如果是支持的 directive，就把它收集起来，并且记录下对应的行列号。</p><p style="font-size: 16px;padding-top: 1em;padding-bottom: 8px;line-height: 1.75em;color: rgb(74, 74, 74);font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, &quot;PingFang SC&quot;, Cambria, Cochin, Georgia, Times, &quot;Times New Roman&quot;, serif;letter-spacing: 0.544px;text-align: left;white-space: normal;background-color: rgb(255, 255, 255);">之后就是对 problems 的过滤了。</p><p style="font-size: 16px;padding-top: 1em;padding-bottom: 8px;line-height: 1.75em;color: rgb(74, 74, 74);font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, &quot;PingFang SC&quot;, Cambria, Cochin, Georgia, Times, &quot;Times New Roman&quot;, serif;letter-spacing: 0.544px;text-align: left;white-space: normal;background-color: rgb(255, 255, 255);">简化后的源码是这样的：</p><pre style="font-size: 16px;font-family: SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, Courier, monospace;margin-top: 10px;margin-bottom: 10px;overflow: auto;border-radius: 5px;box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 10px;color: rgb(63, 63, 63);letter-spacing: 0.544px;text-align: left;background-color: rgb(255, 255, 255);"><code style="font-size: 12px;font-family: &quot;Operator Mono&quot;, Consolas, Monaco, Menlo, monospace;display: -webkit-box;overflow-x: auto;padding: 15px 16px 16px;color: rgb(56, 58, 66);background: rgb(250, 250, 250);border-radius: 5px;"><span style="line-height: 26px;"><span style="color: rgb(166, 38, 164);line-height: 26px;">function</span>&nbsp;<span style="color: rgb(64, 120, 242);line-height: 26px;">applyDisableDirectives</span>(<span style="line-height: 26px;">problems,&nbsp;disableDirectives</span>)&nbsp;</span>{<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(166, 38, 164);line-height: 26px;">const</span>&nbsp;filteredProblems&nbsp;=&nbsp;[];<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(166, 38, 164);line-height: 26px;">const</span>&nbsp;disabledRuleMap&nbsp;=&nbsp;<span style="color: rgb(166, 38, 164);line-height: 26px;">new</span>&nbsp;<span style="color: rgb(193, 132, 1);line-height: 26px;">Map</span>();<br><br>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(166, 38, 164);line-height: 26px;">let</span>&nbsp;nextIndex&nbsp;=&nbsp;<span style="color: rgb(152, 104, 1);line-height: 26px;">0</span>;<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(166, 38, 164);line-height: 26px;">for</span>&nbsp;(<span style="color: rgb(166, 38, 164);line-height: 26px;">const</span>&nbsp;problem&nbsp;<span style="color: rgb(166, 38, 164);line-height: 26px;">of</span>&nbsp;problems)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(160, 161, 167);font-style: italic;line-height: 26px;">//&nbsp;对每一个&nbsp;probelm，都要找到当前被禁用的&nbsp;rule</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(166, 38, 164);line-height: 26px;">while</span>&nbsp;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nextIndex&nbsp;&lt;&nbsp;disableDirectives.length&nbsp;&amp;&amp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;compareLocations(disableDirectives[nextIndex],&nbsp;problem)&nbsp;&lt;=&nbsp;<span style="color: rgb(152, 104, 1);line-height: 26px;">0</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(166, 38, 164);line-height: 26px;">const</span>&nbsp;directive&nbsp;=&nbsp;disableDirectives[nextIndex++];<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(166, 38, 164);line-height: 26px;">switch</span>&nbsp;(directive.type)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(166, 38, 164);line-height: 26px;">case</span>&nbsp;<span style="color: rgb(80, 161, 79);line-height: 26px;">"disable"</span>:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;disabledRuleMap.set(directive.ruleId,&nbsp;directive);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(166, 38, 164);line-height: 26px;">break</span>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(166, 38, 164);line-height: 26px;">case</span>&nbsp;<span style="color: rgb(80, 161, 79);line-height: 26px;">"enable"</span>:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;disabledRuleMap.delete(directive.ruleId);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(166, 38, 164);line-height: 26px;">break</span>;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(160, 161, 167);font-style: italic;line-height: 26px;">//如果&nbsp;problem&nbsp;对应的&nbsp;rule&nbsp;没有被禁用，则返回</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(166, 38, 164);line-height: 26px;">if</span>&nbsp;(!disabledRuleMap.has(problem.ruleId))&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;filteredProblems.push(problem);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(166, 38, 164);line-height: 26px;">return</span>&nbsp;filteredProblems;<br>}<br><br><span style="line-height: 26px;"><span style="color: rgb(166, 38, 164);line-height: 26px;">function</span>&nbsp;<span style="color: rgb(64, 120, 242);line-height: 26px;">compareLocations</span>(<span style="line-height: 26px;">itemA,&nbsp;itemB</span>)&nbsp;</span>{<br>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: rgb(166, 38, 164);line-height: 26px;">return</span>&nbsp;itemA.line&nbsp;-&nbsp;itemB.line&nbsp;||&nbsp;itemA.column&nbsp;-&nbsp;itemB.column;<br>}<br></code></pre><p style="font-size: 16px;padding-top: 1em;padding-bottom: 8px;line-height: 1.75em;color: rgb(74, 74, 74);font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, &quot;PingFang SC&quot;, Cambria, Cochin, Georgia, Times, &quot;Times New Roman&quot;, serif;letter-spacing: 0.544px;text-align: left;white-space: normal;background-color: rgb(255, 255, 255);">我们理下思路：</p><p style="font-size: 16px;padding-top: 1em;padding-bottom: 8px;line-height: 1.75em;color: rgb(74, 74, 74);font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, &quot;PingFang SC&quot;, Cambria, Cochin, Georgia, Times, &quot;Times New Roman&quot;, serif;letter-spacing: 0.544px;text-align: left;white-space: normal;background-color: rgb(255, 255, 255);">我们要过滤掉 problems 中被 disabled 的 rule 报出的 problem，返回过滤后的 problems。</p><p style="font-size: 16px;padding-top: 1em;padding-bottom: 8px;line-height: 1.75em;color: rgb(74, 74, 74);font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, &quot;PingFang SC&quot;, Cambria, Cochin, Georgia, Times, &quot;Times New Roman&quot;, serif;letter-spacing: 0.544px;text-align: left;white-space: normal;background-color: rgb(255, 255, 255);">可以维护一个 disabledRuleMap，表示禁用的 rule。</p><p style="font-size: 16px;padding-top: 1em;padding-bottom: 8px;line-height: 1.75em;color: rgb(74, 74, 74);font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, &quot;PingFang SC&quot;, Cambria, Cochin, Georgia, Times, &quot;Times New Roman&quot;, serif;letter-spacing: 0.544px;text-align: left;white-space: normal;background-color: rgb(255, 255, 255);">对每一个 problem，都根据行列号来从 disableDirectives 中取出 directive 的信息，把对应的 rule 放入 disabledRuleMap。</p><p style="font-size: 16px;padding-top: 1em;padding-bottom: 8px;line-height: 1.75em;color: rgb(74, 74, 74);font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, &quot;PingFang SC&quot;, Cambria, Cochin, Georgia, Times, &quot;Times New Roman&quot;, serif;letter-spacing: 0.544px;text-align: left;white-space: normal;background-color: rgb(255, 255, 255);">然后看下该 problem 的 rule 是否是被禁用了，也就是是否在 disabledRuleMap 中，如果是，就过滤掉。</p><p style="font-size: 16px;padding-top: 1em;padding-bottom: 8px;line-height: 1.75em;color: rgb(74, 74, 74);font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, &quot;PingFang SC&quot;, Cambria, Cochin, Georgia, Times, &quot;Times New Roman&quot;, serif;letter-spacing: 0.544px;text-align: left;white-space: normal;background-color: rgb(255, 255, 255);">这样处理完一遍，返回的 problem 就是可以报出的了。</p><p style="font-size: 16px;padding-top: 1em;padding-bottom: 8px;line-height: 1.75em;color: rgb(74, 74, 74);font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, &quot;PingFang SC&quot;, Cambria, Cochin, Georgia, Times, &quot;Times New Roman&quot;, serif;letter-spacing: 0.544px;text-align: left;white-space: normal;background-color: rgb(255, 255, 255);">这就是 eslint 的 eslint-disable、eslint-enable、eslint-disable-next-line 等注释可以配置 rule 是否生效的原理。</p><p style="font-size: 16px;padding-top: 1em;padding-bottom: 8px;line-height: 1.75em;color: rgb(74, 74, 74);font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, &quot;PingFang SC&quot;, Cambria, Cochin, Georgia, Times, &quot;Times New Roman&quot;, serif;letter-spacing: 0.544px;text-align: left;white-space: normal;background-color: rgb(255, 255, 255);">eslint 是根据行列号找到对应的 comment 的，其实很多 AST 中会记录每个节点关联的 comment。</p><p style="font-size: 16px;padding-top: 1em;padding-bottom: 8px;line-height: 1.75em;color: rgb(74, 74, 74);font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, &quot;PingFang SC&quot;, Cambria, Cochin, Georgia, Times, &quot;Times New Roman&quot;, serif;letter-spacing: 0.544px;text-align: left;white-space: normal;background-color: rgb(255, 255, 255);">比如 babel 的 AST：</p><figure style="margin-top: 10px;margin-bottom: 10px;display: flex;flex-direction: column;justify-content: center;align-items: center;color: rgb(63, 63, 63);font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, &quot;PingFang SC&quot;, Cambria, Cochin, Georgia, Times, &quot;Times New Roman&quot;, serif;font-size: 16px;letter-spacing: 0.544px;text-align: left;white-space: normal;background-color: rgb(255, 255, 255);"><img data-ratio="0.9169184290030211" data-src="https://mmbiz.qpic.cn/mmbiz_png/YprkEU0TtGgNdHOOZHGnLYtym8iclGrH4v0YyCXC0WyAApl1h1TmJu3mwmvYpOcIVzVplic8pr0LibOj0H8gzo9HA/640?wx_fmt=png" data-type="png" data-w="1324" style="box-sizing: border-box; vertical-align: middle; border-style: none; display: block; margin-right: auto; margin-bottom: 25px; margin-left: auto; border-radius: 4px; width: 677px !important; height: auto !important; visibility: visible !important;" _width="677px" class="" src="https://mmbiz.qpic.cn/mmbiz_png/YprkEU0TtGgNdHOOZHGnLYtym8iclGrH4v0YyCXC0WyAApl1h1TmJu3mwmvYpOcIVzVplic8pr0LibOj0H8gzo9HA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" crossorigin="anonymous" alt="图片" data-fail="0"></figure><p style="font-size: 16px;padding-top: 1em;padding-bottom: 8px;line-height: 1.75em;color: rgb(74, 74, 74);font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, &quot;PingFang SC&quot;, Cambria, Cochin, Georgia, Times, &quot;Times New Roman&quot;, serif;letter-spacing: 0.544px;text-align: left;white-space: normal;background-color: rgb(255, 255, 255);">这样可以根据 AST 来取出注释，之后通过正则来判断是否是 directive。</p><p style="font-size: 16px;padding-top: 1em;padding-bottom: 8px;line-height: 1.75em;color: rgb(74, 74, 74);font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, &quot;PingFang SC&quot;, Cambria, Cochin, Georgia, Times, &quot;Times New Roman&quot;, serif;letter-spacing: 0.544px;text-align: left;white-space: normal;background-color: rgb(255, 255, 255);">通过行列号来查找 comment，通过 AST 找到关联的 comment，这是两种查找注释的方式。</p><h2 style="margin-top: 1em;margin-bottom: 10px;color: black;font-weight: bold;font-size: 22px;text-align: center;background: url(&quot;https://mmbiz.qpic.cn/mmbiz_png/YprkEU0TtGgNdHOOZHGnLYtym8iclGrH4zTWBHcbgKytzfPkBjrtia9XiaSYFwsL8xWYwJpiclY7YjImjHdR2lK3DA/640?wx_fmt=png&quot;) center center / 50px no-repeat rgb(255, 255, 255);font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, &quot;PingFang SC&quot;, Cambria, Cochin, Georgia, Times, &quot;Times New Roman&quot;, serif;letter-spacing: 0.544px;white-space: normal;"><span style="display: inline-block;height: 38px;line-height: 42px;color: rgb(72, 179, 120);background-position: left center;background-repeat: no-repeat;background-attachment: initial;background-origin: initial;background-clip: initial;background-size: 63px;margin-top: 38px;font-size: 18px;margin-bottom: 10px;">总结</span></h2><p style="font-size: 16px;padding-top: 1em;padding-bottom: 8px;line-height: 1.75em;color: rgb(74, 74, 74);font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, &quot;PingFang SC&quot;, Cambria, Cochin, Georgia, Times, &quot;Times New Roman&quot;, serif;letter-spacing: 0.544px;text-align: left;white-space: normal;background-color: rgb(255, 255, 255);">注释中的配置在 eslint、webpack、terser 等工具中都有应用，分别叫 inline config、magic comment、annotation，但都指的同一个东西。</p><p style="font-size: 16px;padding-top: 1em;padding-bottom: 8px;line-height: 1.75em;color: rgb(74, 74, 74);font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, &quot;PingFang SC&quot;, Cambria, Cochin, Georgia, Times, &quot;Times New Roman&quot;, serif;letter-spacing: 0.544px;text-align: left;white-space: normal;background-color: rgb(255, 255, 255);">它们都是找到 AST 中的 comments，通过正则匹配下是否是支持的 directive（指令），然后取出对应的信息。</p><p style="font-size: 16px;padding-top: 1em;padding-bottom: 8px;line-height: 1.75em;color: rgb(74, 74, 74);font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, &quot;PingFang SC&quot;, Cambria, Cochin, Georgia, Times, &quot;Times New Roman&quot;, serif;letter-spacing: 0.544px;text-align: left;white-space: normal;background-color: rgb(255, 255, 255);">找到 directive 之后，还要找到 directive 生效的地方，可以用两种方式来查找：一种是根据行列号的比较，一种是根据关联的 AST 来查找。</p><p style="font-size: 16px;padding-top: 1em;padding-bottom: 8px;line-height: 1.75em;color: rgb(74, 74, 74);font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, &quot;PingFang SC&quot;, Cambria, Cochin, Georgia, Times, &quot;Times New Roman&quot;, serif;letter-spacing: 0.544px;text-align: left;white-space: normal;background-color: rgb(255, 255, 255);">找到 directive 和对应生效的地方之后，就可以根据 directive 中的信息做各种处理了。</p><p style="font-size: 16px;padding-top: 1em;padding-bottom: 8px;line-height: 1.75em;color: rgb(74, 74, 74);font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, &quot;PingFang SC&quot;, Cambria, Cochin, Georgia, Times, &quot;Times New Roman&quot;, serif;letter-spacing: 0.544px;text-align: left;white-space: normal;background-color: rgb(255, 255, 255);">注释中的配置是一种比较常见的配置方式，适合一些局部的配置。理解了它们的实现原理，能够让我们更好的掌握这种机制。</p>
                 </div>
 
                 <script nonce="" type="text/javascript">
@@ -388,7 +382,77 @@ this[e](t,r);
                 </div>
 
                  
-                                                    
+                                            
+                        <div class="reward_area tc reward_area_primary reward_area_carry_whisper" id="js_reward_area" style="display:none;">
+                            <div class="reward-avatar" style="display: none;" id="js_reward_avatar">
+                                <img role="link" src="" aria-labelledby="js_reward_author" title="作者" id="js_reward_author_head">
+                            </div>
+
+                            
+                                                            <div class="reward-author" aria-hidden="true" style="display: none;" id="js_reward_author">神说要有光zxg</div>
+                                                                                    <p class="reward_button_wrp">
+                            <span id="js_author_reward_qrcode" class="reward_pop_panel">
+                                <img id="js_author_reward_qrcode_img" src="" alt="赞赏二维码">
+                                <strong>微信扫一扫赞赏作者</strong>
+                            </span>
+                                <a role="button" class="reward_button weui-btn" id="js_reward_link" href="##"><span id="js_reward_link_text">赞赏</span></a>
+                            </p>
+
+                            
+
+<div id="js_reward_whisper" class="reward_whisper_wrp" style="display: none;">
+  <div class="reward_whisper_word">已喜欢，<a id="js_show_whisper_dialog" href="javascript:;" class="reward_whisper_link">对作者说句悄悄话</a></div>
+</div>
+
+
+<div id="js_reward_whisper_dialog" style="display: none;">
+  <div class="like_comment_primary_wrp editing">
+    <div class="like_comment_primary_inner">
+      <div class="like_comment_primary_hd">
+        <div class="like_comment_primary_hd_side">
+          <button class="like_comment_primary_cancel" id="js_hide_whisper_dialog">
+            取消<i class="weui-icon-close-thin"></i>
+          </button>
+        </div>
+        <h4 class="like_comment_primary_title">发送给作者</h4>
+        <div class="like_comment_primary_hd_side">
+          <button id="js_whisper_send" class="like_comment_primary_btn" disabled="disabled">发送</button>
+        </div>
+      </div>
+      <div class="like_comment_primary_bd">
+        <textarea class="like_comment_textarea weui-textarea" placeholder="说句悄悄话" id="js_whisper_text"></textarea>
+      </div>
+      <span class="like_comment_msg" id="js_whisper_msg" style="visibility: hidden;">最多40字，当前共<span id="js_whisper_current_cnt"></span>字</span>
+    </div>
+  </div>
+  <div class="like_comment_primary_mask" id="js_whisper_dialog_mask"></div>
+</div>
+
+
+                            <div id="js_reward_inner" class="reward_area_inner" style="display: none; width: 540px;">
+                                <p class="weui-loadmore weui-loadmore_line reward_user_tips weui-loadmore_default" id="js_reward_total_parent">
+                                <span class="weui-loadmore__tips">
+                                    <a aria-labelledby="js_reward_total js_reward_total_text" href="javascript:;" id="js_reward_total"></a>&nbsp;<span id="js_reward_total_text" aria-hidden="true">人赞赏</span>
+                                </span>
+                                </p>
+                                
+                                <div id="js_reward_list" class="reward_user_list" aria-hidden="true"></div>
+                                <div id="js_reward_pagination" class="simple_pagination" aria-hidden="true" style="display: none;">
+                                <button disabled="" class="btn_sp_prev js_reward_pagination_prev">上一页</button>
+                                <span class="sp_page_num_area">
+                                    <a class="sp_page_current js_reward_pagination_curpage" href="javascript:;">1</a>/<span class="sp_page_num js_reward_pagination_totalpage">3</span>
+                                </span>
+                                <button class="btn_sp_next js_reward_pagination_next">下一页</button>
+                                </div>
+                            </div>
+                        </div>
+                                                    <div class="reward_qrcode_area reward_area tc" id="js_reward_qrcode" style="display:none;">
+                                <p class="tips_global" aria-hidden="true" id="js_a11y_reward_qr_title">长按二维码向我转账</p>
+                                                                <p role="option" aria-labelledby="js_a11y_reward_qr_word js_a11y_comma js_a11y_reward_qr_title js_a11y_reward_qr_money" aria-describedby="js_a11y_reward_qr_tips " class="reward_tips" id="js_a11y_reward_qr_word"></p>
+                                <span class="reward_qrcode_img_wrp"><img alt="赞赏二维码" class="reward_qrcode_img" id="js_reward_qrcode_img"></span>
+                                <p aria-hidden="true" id="js_a11y_reward_qr_tips" class="tips_global">受苹果公司新规定影响，微信 iOS 版的赞赏功能被关闭，可通过二维码转账支持公众号。</p>
+                            </div>
+                                                                            
                               
             </div>
                                         <div id="js_tags_preview_toast" class="article-tag__error-tips" style="display: none;">预览时标签不可点</div>
@@ -424,7 +488,49 @@ this[e](t,r);
 
 
 
+<div class="rich_media_tool" id="js_toobar3">
+  <div class="weui-flex">
+    <div class="weui-flex__item">
+      
+      
+      
+      
+            
+      <div id="js_read_area3" role="option" class="media_tool_meta tips_global_primary meta_primary" style="display:none;">
+        <span id="readTxt">阅读</span>
+        <span id="readNum3"></span>
+      </div>
 
+            
+              
+
+          </div>
+  </div>
+  <div class="weui-flex sns_opr_area" id="js_bottom_opr_right" style="display: none;">
+    <div class="weui-flex__item">
+      
+      <span style="display: none;" class="media_tool_meta meta_primary meta_share js_media_tool_meta" id="js_bottom_share" wah-hotarea="click">
+        <button class="sns_opr_btn sns_share_btn weui-wa-hotarea" id="js_bottom_share_btn"><span class="sns_opr_gap">分享</span></button>
+      </span>
+
+      
+      <span style="display: none;" class="media_tool_meta meta_primary meta_collect js_media_tool_meta" id="js_bottom_collect" wah-hotarea="click">
+        <button class="sns_opr_btn sns_collect_btn weui-wa-hotarea" id="js_bottom_collect_btn"><span class="sns_opr_gap">收藏</span></button>
+      </span>
+    </div>
+
+    
+    <span style="display:none;" class="media_tool_meta meta_extra meta_praise js_media_tool_meta" id="like_old" wah-hotarea="click">
+      <button class="sns_opr_btn sns_praise_btn weui-wa-hotarea" id="js_bottom_zan_btn" aria-labelledby="js_a11y_zan_btn_txt likeNum_old"><span aria-hidden="true" class="sns_opr_gap" id="js_parise_wording">赞</span><span class="sns_opr_num sns_opr_gap" id="likeNum_old" style="display: none;"></span></button>
+    </span>
+
+    
+    <span style="display:none;" class="media_tool_meta meta_extra meta_like js_media_tool_meta" id="like3">
+      
+      <button class="sns_opr_btn sns_like_btn weui-wa-hotarea" id="js_like_btn" aria-labelledby="js_a11y_like_btn_txt likeNum3"><span class="sns_opr_gap" id="js_like_wording" aria-hidden="true">在看</span><span class="sns_opr_num sns_opr_gap" id="likeNum3"></span></button>
+    </span>
+  </div>
+</div>
   
   <div class="like_comment_wrp" id="js_like_comment" style="display: none;" role="dialog" tabindex="0">
     <div class="like_comment_inner">
@@ -482,7 +588,7 @@ this[e](t,r);
       </div>
       <div class="like_comment_primary_bd">
         <div class="like_comment_media_title" id="js_panel_like_title">
-                      当谈及 Web 性能优化时，我们该关注哪些性能指标
+                      Eslint 的 disble、enable 的注释配置是怎么实现的
                   </div>
         <div class="like_comment_textarea_wrp">
           <textarea class="like_comment_textarea weui-textarea" placeholder="写下你的想法..." id="js_comment_text"></textarea>
@@ -625,7 +731,7 @@ window.logs.pagetime.page_begin = Date.now();
 		var node = document.createElement('SCRIPT');
 		node.type = 'text/javascript';
 		node.src = uri;
-		node.setAttribute('nonce', '2005862949');
+		node.setAttribute('nonce', '971160491');
 		if (cb) {
 			node.onload = cb;
 		}
@@ -673,7 +779,7 @@ return e&&"undefined"!=typeof Symbol&&e.constructor===Symbol?"symbol":typeof e;
 !function(e){
 if("object"===("undefined"==typeof module?"undefined":_typeof(module)))module.exports=e;else{
 if(window.__second_open__)return;
-var t="1632270298",n="1632199320",i="2021-09-21";
+var t="1632270369",n="1632225601",i="2021-09-21";
 e(t,n,i,document.getElementById("publish_time"));
 }
 window.__setPubTime=e;
@@ -998,9 +1104,9 @@ if (typeof getComputedStyle == 'undefined') {
                 xhr.send(data);
             }
 
-            var mid = "" || ""|| "2247493248";
-            var biz = ""||"MzIxNjgwMDIzMA==";
-            var sessionid = ""||"svr_0b459b1b57b";
+            var mid = "" || ""|| "2247485833";
+            var biz = ""||"Mzg3OTYzMDkzMg==";
+            var sessionid = ""||"svr_430a3c4f4f9";
             var idx = "";
 
             (function sendReq(parentNode, copyIframe, index, vid) {
@@ -1015,7 +1121,7 @@ if (typeof getComputedStyle == 'undefined') {
                         var hit_nickname = ret.hit_nickname;
                         var hit_username = ret.hit_username;
 
-                        var selfUserName = "gh_f100fe75c001";
+                        var selfUserName = "gh_7aed10cde089";
 
                         if (ori === 2 && selfUserName !== hit_username) {
                             var videoBar = document.createElement('div');
@@ -1359,62 +1465,62 @@ m.innerHTML=C,m.firstChild.setAttribute(e.idAttr,l),d.parentNode.insertBefore(m.
     var tid = "";
     var aid = "";
     var clientversion = "";
-    var appuin = ""||"MzIxNjgwMDIzMA==";
+    var appuin = ""||"Mzg3OTYzMDkzMg==";
     var voiceid = "";
 
     var source = "";
     var ascene = "";
     var subscene = "";
-    var sessionid = ""||"svr_0b459b1b57b";
+    var sessionid = ""||"svr_430a3c4f4f9";
     var abtest_cookie = "";
 
     var scene = 75;
 
     var itemidx = "";
     var appmsg_token   = "";
-    var _copyright_stat = "2";
-    var _ori_article_type = "";
+    var _copyright_stat = "1";
+    var _ori_article_type = "其他";
 
     var is_follow = "";
-    var nickname = "全栈前端精选";
+    var nickname = "神光的编程秘籍";
     var appmsg_type = "9";
-    var ct = "1632199320";
-    var user_name = "gh_f100fe75c001";
+    var ct = "1632225601";
+    var user_name = "gh_7aed10cde089";
     var fakeid   = "";
     var version   = "";
     var is_limit_user   = "0";
-    var round_head_img = "http://mmbiz.qpic.cn/mmbiz_png/udZl15qqib0OiahcrjrJncW0GOiclg6Jic6IQHYeIGzfXSbZicLUeUxNyQVmPSelMxQxTSu8wAibsyXjy9U3pVfic7FGA/0?wx_fmt=png";
-    var hd_head_img = "http://wx.qlogo.cn/mmhead/Q3auHgzwzM5Qo2awictKMWsWaW3ddRW10jKgfBcI0j40oGFYMWAepUA/0"||"";
-    var ori_head_img_url = "http://wx.qlogo.cn/mmhead/Q3auHgzwzM5Qo2awictKMWsWaW3ddRW10jKgfBcI0j40oGFYMWAepUA/132";
-    var msg_title = '当谈及 Web 性能优化时，我们该关注哪些性能指标'.html(false);
-    var msg_desc = htmlDecode("前端性能指标");
-    var msg_cdn_url = "http://mmbiz.qpic.cn/sz_mmbiz_jpg/udZl15qqib0Pn2N2hNqkcibnkSjMvlKEqUbLTZuwFVlvGWqNsVJic89J2lK0ibU5BeiaHmKPILql06wqHHTLoH2J5QQ/0?wx_fmt=jpeg"; 
-    var cdn_url_1_1  = "https://mmbiz.qlogo.cn/sz_mmbiz_jpg/udZl15qqib0Pn2N2hNqkcibnkSjMvlKEqUYegYUvPAX0GOdYMNBAhoBLRTEpcqNYFV3yv5c8hFLqOqtv5vKGbN6g/0?wx_fmt=jpeg"; 
-    var cdn_url_235_1 = "https://mmbiz.qlogo.cn/sz_mmbiz_jpg/udZl15qqib0Pn2N2hNqkcibnkSjMvlKEqUbLTZuwFVlvGWqNsVJic89J2lK0ibU5BeiaHmKPILql06wqHHTLoH2J5QQ/0?wx_fmt=jpeg"; 
+    var round_head_img = "http://mmbiz.qpic.cn/mmbiz_png/YprkEU0TtGjZxDia6Sv8z7aM3HuRSnr5lR8DMvib6XcApRX00pwd5Ewsf44nczNCF0MbNaiaKl3OVgP0aIXPGgu1A/0?wx_fmt=png";
+    var hd_head_img = "http://wx.qlogo.cn/mmhead/Q3auHgzwzM5jMzwMpn5BI0CDBBWT9SbpVkWHldQknsK9CH1XP91PHg/0"||"";
+    var ori_head_img_url = "http://wx.qlogo.cn/mmhead/Q3auHgzwzM5jMzwMpn5BI0CDBBWT9SbpVkWHldQknsK9CH1XP91PHg/132";
+    var msg_title = 'Eslint 的 disble、enable 的注释配置是怎么实现的'.html(false);
+    var msg_desc = htmlDecode("eslint-disable、eslint-enable 的实现原理");
+    var msg_cdn_url = "http://mmbiz.qpic.cn/mmbiz_jpg/YprkEU0TtGgNdHOOZHGnLYtym8iclGrH40XribQsj80YD3MIsbiat6xbLPSxy3SW9DkgicBYhUsFxdKOibLQVzYCexg/0?wx_fmt=jpeg"; 
+    var cdn_url_1_1  = "https://mmbiz.qlogo.cn/mmbiz_jpg/YprkEU0TtGgNdHOOZHGnLYtym8iclGrH4pbMR1sfOgmqfWTibj7JTKUtZ8umarFjzlIxzialicbDhjgcse1G8lmGyw/0?wx_fmt=jpeg"; 
+    var cdn_url_235_1 = "https://mmbiz.qlogo.cn/mmbiz_jpg/YprkEU0TtGgNdHOOZHGnLYtym8iclGrH40XribQsj80YD3MIsbiat6xbLPSxy3SW9DkgicBYhUsFxdKOibLQVzYCexg/0?wx_fmt=jpeg"; 
     
-    var msg_link = "http://mp.weixin.qq.com/s?__biz=MzIxNjgwMDIzMA==&amp;mid=2247493248&amp;idx=1&amp;sn=6e703de3c3ff30bce24f829741a83089&amp;chksm=97812809a0f6a11f2af0ffecb413b240bde090ef5bc095373533c24bc954b91ef25bf7d1200d#rd"; 
+    var msg_link = "http://mp.weixin.qq.com/s?__biz=Mzg3OTYzMDkzMg==&amp;mid=2247485833&amp;idx=1&amp;sn=8939e1e733e3b40997e112a874e0411e&amp;chksm=cf00c6b2f8774fa4e04f4cf44c243d790add0b708f3b7726fdbb06d73ff71d00c2e90948c7e6#rd"; 
     var user_uin = ""*1;
-    var msg_source_url = 'https://github.com/sisterAn/blog';
+    var msg_source_url = '';
     var img_format = 'jpeg';
     var srcid = '';
-    var req_id = '2208psEYNgKxMWwqYpm2WoSG';
+    var req_id = '2208gRKVFscGf6fknoTQn1Rc';
     var networkType;
-    var appmsgid = "2247493248" || '' || '';
-    var comment_id = "2056940560573054978" || "2056940560573054978" * 1;
+    var appmsgid = "2247485833" || '' || '';
+    var comment_id = "2057445867887951877" || "2057445867887951877" * 1;
     var comment_enabled = "" * 1;
     var is_https_res = ("" * 1) && (location.protocol == "https:");
     var msg_daily_idx = "1" || "";
     var profileReportInfo = "" || "";
 
     var devicetype = "";
-    var source_encode_biz = "Mzg2NjUxOTM2Mg=="; 
-    var source_username = "gh_09b26ae0ce4d";
+    var source_encode_biz = ""; 
+    var source_username = "";
     
-    var reprint_ticket = "jC3m6BqPUXYf9UpwhCgh8B0yQhzaroAs7eW29HNZoLftYsb05W9hZ%2BDtYf0FJ%2Bzm";
-    var source_mid = "2247486714";
-    var source_idx = "2";
-    var source_biz = "3866519362";
-    var author_id = "";
+    var reprint_ticket = "";
+    var source_mid = "";
+    var source_idx = "";
+    var source_biz = "";
+    var author_id = "ofMoI42oZp6pQY9ERfOe8rLwZL7A";
 
     
     var optimizing_flag = "0" * 1;
@@ -1429,10 +1535,10 @@ m.innerHTML=C,m.firstChild.setAttribute(e.idAttr,l),d.parentNode.insertBefore(m.
         show_msg_voice: "0"*1,
         can_use_page : ""*1,
         is_wxg_stuff_uin : "0"*1,
-        card_pos : "0",
-        copyright_stat : "2",
-        source_biz : "3866519362",
-        hd_head_img : "http://wx.qlogo.cn/mmhead/Q3auHgzwzM5Qo2awictKMWsWaW3ddRW10jKgfBcI0j40oGFYMWAepUA/0"||(window.location.protocol+"//"+window.location.host + "//res.wx.qq.com/mmbizwap/zh_CN/htmledition/images/pic/appmsg/pic_rumor_link.2x55871f.jpg"),
+        card_pos : "",
+        copyright_stat : "1",
+        source_biz : "",
+        hd_head_img : "http://wx.qlogo.cn/mmhead/Q3auHgzwzM5jMzwMpn5BI0CDBBWT9SbpVkWHldQknsK9CH1XP91PHg/0"||(window.location.protocol+"//"+window.location.host + "//res.wx.qq.com/mmbizwap/zh_CN/htmledition/images/pic/appmsg/pic_rumor_link.2x55871f.jpg"),
         has_red_packet_cover: "0" * 1 || 0,
         minishopCardData: ""
     };
@@ -1454,8 +1560,8 @@ m.innerHTML=C,m.firstChild.setAttribute(e.idAttr,l),d.parentNode.insertBefore(m.
         }
         return {};
     })();
-    var copyright_stat = "2" * 1;
-    var hideSource = "0" * 1;
+    var copyright_stat = "1" * 1;
+    var hideSource = "" * 1;
 
     var pay_fee = "" * 1;
     var pay_timestamp = "";
@@ -1495,7 +1601,7 @@ m.innerHTML=C,m.firstChild.setAttribute(e.idAttr,l),d.parentNode.insertBefore(m.
             };
     var voiceList={};
         voiceList={"voice_in_appmsg":[]}
-        var reprint_style = '0'*1;
+        var reprint_style = ''*1;
     var wxa_img_alert = "" != 'false';
 
     
@@ -1513,22 +1619,12 @@ m.innerHTML=C,m.firstChild.setAttribute(e.idAttr,l),d.parentNode.insertBefore(m.
     var video_snap_json = "" || "";
     
     var mp_profile = [
-                                                            {
-                    fakeid: 'MzIxNjgwMDIzMA==',
-                    nickname: '全栈前端精选',
-                    alias: 'Just_FED',
-                    round_head_img: 'http://mmbiz.qpic.cn/mmbiz_png/udZl15qqib0OiahcrjrJncW0GOiclg6Jic6IQHYeIGzfXSbZicLUeUxNyQVmPSelMxQxTSu8wAibsyXjy9U3pVfic7FGA/0?wx_fmt=png',
-                    signature: '内容为王，精选为则。从前端到全栈，定期分享前端、客户端、Node、面试、职场感悟等相关高质量文章。小白的大神养成记，你我共勉！',
-                    original_num: '55' * 1,
-                    is_biz_ban: '0' * 1,
-                    username: 'gh_f100fe75c001'
-                }
-                                        ]
+            ]
 
     
     var ban_scene = "0" * 1;
 
-    var svr_time = "1632270298" * 1;
+    var svr_time = "1632270369" * 1;
     
     var is_transfer_msg = ""*1||0;
 
@@ -1580,7 +1676,7 @@ m.innerHTML=C,m.firstChild.setAttribute(e.idAttr,l),d.parentNode.insertBefore(m.
         }
     }
         
-    var title ="全栈前端精选";
+    var title ="神光的编程秘籍";
 
     var is_new_msg=true;
     
@@ -1613,7 +1709,7 @@ m.innerHTML=C,m.firstChild.setAttribute(e.idAttr,l),d.parentNode.insertBefore(m.
     var jump2pay = '' * 1; 
 
     var isFans; 
-    var is_need_reward = (isPaySubscribe && !isPaid) ? 0 : "0" * 1; 
+    var is_need_reward = (isPaySubscribe && !isPaid) ? 0 : "1" * 1; 
     var is_teenager = '' * 1 || 0; 
 
     
@@ -1711,7 +1807,7 @@ attributeName:"undefined"
     _g.clientversion = "";
     _g.passparam = ""; 
     if(!_g.msg_link) {
-      _g.msg_link = "http://mp.weixin.qq.com/s?__biz=MzIxNjgwMDIzMA==&amp;mid=2247493248&amp;idx=1&amp;sn=6e703de3c3ff30bce24f829741a83089&amp;chksm=97812809a0f6a11f2af0ffecb413b240bde090ef5bc095373533c24bc954b91ef25bf7d1200d#rd";
+      _g.msg_link = "http://mp.weixin.qq.com/s?__biz=Mzg3OTYzMDkzMg==&amp;mid=2247485833&amp;idx=1&amp;sn=8939e1e733e3b40997e112a874e0411e&amp;chksm=cf00c6b2f8774fa4e04f4cf44c243d790add0b708f3b7726fdbb06d73ff71d00c2e90948c7e6#rd";
     }
     _g.appmsg_type = "9"; 
     _g.devicetype = ""; 
@@ -2417,4 +2513,4 @@ e.BadJs;
     <i class="weui-loading weui-icon_toast"></i>
     <p class="weui-toast__content js_loading_content"></p>
   </div>
-</div><div><div id="js_profile_ban" style="display: none;">     <div class="weui-mask_transparent"></div>     <div class="weui-toast">         <i class="weui-icon-warn weui-icon_toast"></i>         <p class="weui-toast__content">该账号因违规无法跳转</p>     </div> </div></div><!----></body></html>
+</div><!----></body></html>
