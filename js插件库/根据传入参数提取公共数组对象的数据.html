@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>数据合并Demo</title>
+  </head>
+  <body>
+    <input type="text" id="mergeKey" placeholder="关键字用英文逗号分隔" />
+    <button id="btn">点击查看输出</button>
+    <div id="show"></div>
+
+    <script>
+      var jsonArr = [
+        {
+          班级: "一班",
+          年级: "一年级",
+          人数: 1,
+          平均年龄:7
+        },
+        {
+          班级: "二班",
+          年级: "一年级",
+          人数: 2,
+          平均年龄:7
+        },
+        {
+          班级: "三班",
+          年级: "一年级",
+          人数: 3,
+          平均年龄:7
+        },
+        {
+          班级: "四班",
+          年级: "一年级",
+          人数: 4,
+          平均年龄:7
+        },
+        {
+          班级: "一班",
+          年级: "二年级",
+          人数: 5,
+          平均年龄:8
+        }
+      ];
+
+      var btn = document.getElementById("btn");
+      var inp = document.getElementById("mergeKey");
+      btn.onclick = function () {
+        let result = mergeFn(jsonArr, inp.value.split(","));
+        document.getElementById("show").innerText = JSON.stringify(result)+'\n\n\n控制台可以看的更详细哦';
+      };
+
+      function mergeFn(jsonArr, mergeKey) {
+        if(mergeKey[0]=='') return jsonArr
+
+        let result = [];
+
+        let objResult = {}
+        
+        jsonArr.forEach(item => {
+          let keyName = objResult[item[mergeKey[0]]]
+          if(!keyName){
+            objResult[item[mergeKey[0]]] = []
+            keyNamePush(objResult[item[mergeKey[0]]],item)
+          } else {
+            keyNamePush(keyName,item)
+          }
+        });
+
+        function keyNamePush(keyName,item){
+          keyName.push(item)
+        }
+
+        Object.keys(objResult).forEach((item,index) => {
+          result.push({})
+          mergeKey.forEach((i,keyIndex) => {
+            result[index][i]=objResult[item][0][i]
+          });
+
+          result[index].children=objResult[item]
+        });
+
+        result.forEach(item => {
+          item.children.forEach(obj => {
+            mergeKey.forEach((i,keyIndex) => {
+              delete obj[i]
+            });
+          });
+        });
+
+        console.log(result)
+        return result;
+      }
+    </script>
+  </body>
+</html>
