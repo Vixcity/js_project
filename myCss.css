@@ -198,7 +198,7 @@ img {
             rgba(109, 186, 130, 0.1) 100%);
 }
 
-.smallVerse {
+.smallVerse { 
     box-sizing: border-box;
     padding: 20px;
     border: 1px dashed var(--noticeFontColor, #969696);
