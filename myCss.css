@@ -1,19 +1,5 @@
 /*所有页面实现毛玻璃特效*/
-#aside-content {
-    background: rgba(255, 255, 255, 0);
-}
-
-#aside-content>.card-widget:first-child {
-    background: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(10px);
-}
-
-#aside-content .card-widget {
-    background: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(10px);
-}
-
-.layout>div:first-child:not(.recent-posts) {
+.light #sideRight .rightBgColort {
     background: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(10px);
 }
