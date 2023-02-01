@@ -6,11 +6,6 @@
   backdrop-filter: blur(10px);
 }
 
-#recent-posts > .recent-post-item {
-  background: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(10px);
-}
-
 /*标题栏*/
 #page-header.nav-visible #nav {
   background: rgba(255, 255, 255, 0.5);
