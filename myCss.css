@@ -94,22 +94,6 @@
     }
 }
 
-#footer {
-    -o-user-select: none;
-    -ms-user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
-}
-
-#footer:before {
-    background-color: rgba(0, 0, 0, 0);
-}
-
-#footer-wrap {
-    background-color: rgba(0, 0, 0, 0);
-}
-
 /* 滚动条 */
 ::-webkit-scrollbar {
     width: 10px;
