@@ -1,19 +1,5 @@
 /*所有页面实现毛玻璃特效*/
-#aside-content {
-    background: rgba(255, 255, 255, 0);
-}
-
-#aside-content>.card-widget:first-child {
-    background: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(10px);
-}
-
-#aside-content .card-widget {
-    background: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(10px);
-}
-
-.layout>div:first-child:not(.recent-posts) {
+.light #sideRight .rightBgColort {
     background: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(10px);
 }
@@ -94,22 +80,6 @@
     }
 }
 
-#footer {
-    -o-user-select: none;
-    -ms-user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
-}
-
-#footer:before {
-    background-color: rgba(0, 0, 0, 0);
-}
-
-#footer-wrap {
-    background-color: rgba(0, 0, 0, 0);
-}
-
 /* 滚动条 */
 ::-webkit-scrollbar {
     width: 10px;
@@ -158,7 +128,7 @@ img {
     }
 }
 
-#web_bg {
+#wrapper {
     background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
@@ -166,7 +136,7 @@ img {
 
 
 
-#web_bg {
+#wrapper {
     background: -webkit-linear-gradient(0deg,
             rgba(247, 149, 51, 0.1) 0,
             rgba(243, 112, 85, 0.1) 15%,
@@ -214,7 +184,7 @@ img {
             rgba(109, 186, 130, 0.1) 100%);
 }
 
-.smallVerse {
+.smallVerse { 
     box-sizing: border-box;
     padding: 20px;
     border: 1px dashed var(--noticeFontColor, #969696);
