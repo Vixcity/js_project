@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .loading {
+        width: 100vw;
+        height: 100vh;
+        background-color: #2c3e50;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .circle {
+        width: 150px;
+        height: 150px;
+        background-color: #7591ad;
+        border: 10px solid #2c3e50;
+        box-shadow: 0 0 0 5px #f97f51;
+        border-radius: 50%;
+      }
+
+      .wave {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background-color: #f97f51;
+        border-radius: 50%;
+        box-shadow: inset 0 0 50px #ec3e27;
+        overflow: hidden;
+        z-index: 0;
+      }
+
+      .wave::before,
+      .wave::after {
+        position: absolute;
+        content: "";
+        width: 200%;
+        height: 200%;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .wave::before {
+        border-radius: 30%;
+        background-color: #f0932b;
+        animation: animate 5s linear infinite;
+      }
+
+      .wave::after {
+        border-radius: 40%;
+        background-color: #ffbe76;
+        animation: animate 5s linear infinite;
+      }
+
+      @keyframes animate {
+        0% {
+          top: 0;
+          transform: translate(-50%, -50%) rotate(0deg);
+        }
+        100% {
+          top: -100px;
+          transform: translate(-50%, -50%) rotate(360deg);
+        }
+      }
+    </style>
+    <style>
+      .waveOther {
+        position: relative;
+        border: 1px solid silver;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        line-height: 50px;
+        margin: 0 auto;
+        font-size: 14px;
+        text-align: center;
+        overflow: hidden;
+        animation: water-wave linear infinite;
+      }
+      .wave1 {
+        position: absolute;
+        top: 40%;
+        left: -25%;
+        background: #33cfff;
+        opacity: 0.7;
+        width: 200%;
+        height: 200%;
+        border-radius: 40%;
+        animation: inherit;
+        animation-duration: 5s;
+      }
+      .wave2 {
+        position: absolute;
+        top: 40%;
+        left: -35%;
+        background: #0eaffe;
+        opacity: 0.7;
+        width: 200%;
+        height: 200%;
+        border-radius: 35%;
+        animation: inherit;
+        animation-duration: 7s;
+      }
+      .wave3 {
+        position: absolute;
+        top: 50%;
+        left: -35%;
+        background: #0f7ea4;
+        opacity: 0.3;
+        width: 200%;
+        height: 200%;
+        border-radius: 33%;
+        animation: inherit;
+        animation-duration: 11s;
+      }
+      @keyframes water-wave {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="loading">
+      <div class="circle">
+        <div class="wave"></div>
+      </div>
+    </div>
+    <div class="waveOther">
+      水波纹效果
+      <div class="wave1"></div>
+      <div class="wave2"></div>
+      <div class="wave3"></div>
+    </div>
+  </body>
+</html>
