@@ -1,0 +1,57 @@
+<aside id="sidebar" class="hidden-sm-md-lg fr">
+  <div class="theiaStickySidebar">
+    <section id="top10" class="widget widget_top10 sb br mb">
+      <ul class="widget-content top10">
+        <div class="table_card">
+          <ul class="tab">
+            <li class="active">热门应用</li>
+            <li>热门游戏</li>
+          </ul>
+          <div class="tabCon">
+            <ul class="list on">
+              {pboot:list order=visits scode=5 num=8}
+              <li class="item">
+                <div class="clearfix"> <span class="fl iconfont icon-top10 list list-[list:i]"><small>[list:i]</small></span> <a class="thumbnail fl" href="[list:link]" title="[list:title]"> <img class="img img-cover br" src="[list:ico]" alt="[list:title]" title="[list:title]"> </a>
+                  <div class="fr-wrap">
+                    <div class="title-wrap">
+                      <h2 class="title ellipsis"> <a href="[list:link]" title="[list:title]">[list:title]</a> </h2>
+                      <p class="intro br clearfix ellipsis"> [list:visits]人看过 </p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              {/pboot:list}
+            </ul>
+            <ul class="list">
+              {pboot:list order=visits scode=6 num=8}
+              <li class="item">
+                <div class="clearfix"> <span class="fl iconfont icon-top10 list list-[list:i]"><small>[list:i]</small></span> <a class="thumbnail fl" href="[list:link]" title="[list:title]"> <img class="img img-cover br" src="[list:ico]" alt="[list:title]" title="[list:title]"> </a>
+                  <div class="fr-wrap">
+                    <div class="title-wrap">
+                      <h2 class="title ellipsis"> <a href="[list:link]" title="[list:title]">[list:title]</a> </h2>
+                      <p class="intro br clearfix ellipsis"> [list:visits]人看过 </p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              {/pboot:list}
+            </ul>
+          </div>
+        </div>
+      </ul>
+    </section>
+    
+    <section id="divComments" class="widget widget_comments sb br mb">
+      <p class="c-title mb10"><span class="name">最新资讯</span></p>
+      <ul class="widget-content divComments">
+        {pboot:list order=date scode=2,3,4 num=10}
+        <li class="list clearfix"> <span class="avatar fl"><a href="[list:link]"><img src="[list:ico]" alt="[list:title]" title="[list:title]"></a></span>
+          <div class="title"> <a class="a ellipsis" href="[list:link]" title="查阅详情">[list:title]</a>
+            <div class="info ellipsis"> <span class="time"><i class="iconfont icon-time"></i>[list:date style=m-d]</span> </div>
+          </div>
+        </li>
+        {/pboot:list}
+      </ul>
+    </section>
+  </div>
+</aside>

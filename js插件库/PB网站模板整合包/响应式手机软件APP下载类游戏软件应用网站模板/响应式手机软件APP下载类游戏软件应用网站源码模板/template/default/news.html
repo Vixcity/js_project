@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="renderer" content="webkit">
+<meta name="force-rendering" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+<meta name="applicable-device" content="pc,mobile">
+<title>{content:title}-{pboot:sitetitle}</title>
+<meta name="keywords" content="{content:keywords}">
+<meta name="description" content="{content:description}">
+<link href="{pboot:sitedomain}/skin/css/font.css" rel="stylesheet">
+<link href="{pboot:sitedomain}/skin/css/style.css" rel="stylesheet">
+<link href="{pboot:sitedomain}/skin/css/swiper.min.css" rel="stylesheet">
+<link href="{pboot:sitedomain}/skin/css/lightgallery.min.css" rel="stylesheet">
+<script src="{pboot:sitedomain}/skin/js/jquery.min.js"></script>
+<script src="{pboot:sitedomain}/skin/js/zblogphp.js" type="text/javascript"></script>
+</head>
+<body>
+{include file=comm/header.html}
+{include file=comm/position.html}
+<div id="content" class="content container clearfix">
+  <div id="mainbox" class="article-box fl mb">
+    <article class="art-main sb br">
+      <div class="art-head mb">
+        <h1 class="art-title">{content:title}</h1>
+        <div class="head-info">
+			<span class="author"><i class="iconfont icon-user"></i>{content:author}</span>
+			<time class="time" datetime="{content:date}" title="{content:date}"> <i class="iconfont icon-time"></i>{content:date}</time>
+			<span class="view hidden-sm-md-lg"><i class="iconfont icon-view"></i>{content:visits}</span></div>
+      </div>
+      <!-- 广告位AD2  -->
+      <div class="art-content" id="maximg">
+		  {content:content}
+      </div>
+    </article>
+    <!-- 广告位AD3  -->
+    <div class="prev-next sb br mb clearfix">
+      <p class="post-prev fl ellipsis"> <span class="prev">上一篇</span><strong><a href="{content:prelink}">{content:pretitle}</a> </strong> </p>
+      <p class="post-next fr ellipsis"> <span class="next">下一篇</span><strong><a href="{content:nextlink}">{content:nexttitle}</a></strong> </p>
+    </div>
+    <!--优先调用同分类-->
+    <div class="related-art sb br mb">
+      <p class="c-title"><span class="name">相关文章</span></p>
+      <ul class="ul clearfix">
+		  {pboot:list num=8 scode={sort:scode}}
+		  <li class="related fl"><a href="[list:link]" title="[list:title]"><span class="title ellipsis"><i class="iconfont icon-dot"></i>[list:title]</span></a></li>
+		  {/pboot:list}
+      </ul>
+    </div>
+    <!--30天热榜app-->
+    <div class="related-art sb br mb">
+      <p class="c-title"><span class="name">热门推荐</span></p>
+      <ul class="ul clearfix">
+		  {pboot:list num=8 scode={sort:scode} order=visits}
+		  <li class="related fl"><a href="[list:link]" title="[list:title]"><span class="title ellipsis"><i class="iconfont icon-dot"></i>[list:title]</span></a></li>
+		  {/pboot:list}
+      </ul>
+    </div>
+  </div>
+  {include file=comm/sidebar_newscont.html}
+</div>
+{include file=comm/footer.html}
+
+<div id="mask-hidden" class="mask-hidden transition"></div>
+<script src="{pboot:sitedomain}/skin/js/common.js"></script> 
+<script src="{pboot:sitedomain}/skin/js/headroom.min.js"></script> 
+<script src="{pboot:sitedomain}/skin/js/swiper.min.js"></script> 
+<script type="text/javascript">
+	$(document).ready(function(e) {
+		$(".table_card .tab li").click(function() {
+			$(".table_card .tab li").eq($(this).index()).addClass("active").siblings().removeClass("active");
+			$(".table_card .tabCon ul").hide().eq($(this).index()).show();
+		})
+	});
+</script> 
+<script>
+    var swiper2 = new Swiper('.swiper-container', {
+    pagination: '.swiper-pagination',
+    nextButton: '.swiper-button-next',
+    prevButton: '.swiper-button-prev', 
+    slidesPerView: 3,
+    paginationClickable: true,
+    spaceBetween: 20
+});
+</script> 
+<script src="{pboot:sitedomain}/skin/js/lightgallery.min.js"></script> 
+<script src="{pboot:sitedomain}/skin/js/lg-thumbnail.min.js"></script> 
+<script src="{pboot:sitedomain}/skin/js/lg-zoom.min.js"></script> 
+<script>
+    lightGallery(document.getElementById('lightgallery'));
+</script> 
+<script>
+    $("#wrong-btn").click(function () {
+        $("html, body").animate({scrollTop: $($(this).attr("href")).offset().top -20+ "px"}, 500);
+        return false;
+    });
+</script> 
+<!--[if lt IE 9]><script src="{pboot:sitedomain}/skin/js/html5shiv.min.js"></script><![endif]-->
+</body>
+</html>

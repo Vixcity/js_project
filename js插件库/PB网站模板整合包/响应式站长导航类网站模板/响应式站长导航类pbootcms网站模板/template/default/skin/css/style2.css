@@ -1,0 +1,13 @@
+.page-tips{padding:10px;line-height: 2em; padding-left: 20px; background: rgb(255, 255, 249) none repeat scroll 0% 0%; border-radius: 6px; box-sizing: border-box; border: 1px solid rgb(249, 231, 224);}
+.art-main >p {display:none;}
+.submit-form{margin-top:20px;}
+.submit-form .item{margin-bottom:20px;}
+.post-btn{border:1px solid #dadfec;color:#6b7386;background:#f1f5f8;text-align:center;height:42px;line-height:42px;border-radius:3px;width:204px;display:block;margin-top: 5px;cursor:pointer}
+.post-btn:hover{border:1px solid #6b7386;background:#6b7386;color:#fff;}
+.submit-form input{height:36px;line-height:36px;width:40%;border-radius:3px;border:1px solid #dadada;padding-left:5px;}
+.submit-form .intro{opacity:.6;padding-left:10px;}
+input.z_vcode{width: calc(204px - 90px);}
+#reg_verfiycode{height: 38px!important;display:inline-block;border-radius: 3px;}
+@media (max-width:1200px){.submit-form input{width:100%;}input.z_vcode{width:50%!important;}}
+@media (max-width:768px){.post-btn{width:100%;}}
+.submit-form .item .edui-editor{z-index:1!important;}

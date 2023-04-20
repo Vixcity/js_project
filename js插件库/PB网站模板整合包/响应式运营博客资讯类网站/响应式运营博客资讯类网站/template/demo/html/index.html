@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="initial-scale=1.0,maximum-scale=5,width=device-width,viewport-fit=cover">
+<title>{pboot:pagetitle}</title>
+<meta name="description" content="{pboot:sitedescription}"/>
+<meta name="keywords" content="{pboot:sitekeywords}"/>
+<meta property="og:type" content="webpage">
+<meta name="applicable-device" content="pc,mobile">
+<meta http-equiv="Cache-Control" content="no-transform">
+<link rel="stylesheet" href="{pboot:sitetplpath}/skin/css/style.css" media="all">
+<script src='{pboot:sitetplpath}/skin/js/jquery.min.js'></script>
+<script src='{pboot:sitetplpath}/skin/js/icons-2.6.12.js'></script>
+<!--[if lte IE 9]><script src="{pboot:sitetplpath}/skin/js/update.js"></script><![endif]-->
+</head>
+<body class="home page-template page-template-page-home page-template-page-home-php page page-id-2 lang-cn">
+{include file=head.html}
+<div id="wrap">
+ <section class="section web-modules modules-feature-posts container feature-posts-style-1" id="modules-1">
+ <div class="feature-posts-wrap web-slider">
+ <ul class="post-loop post-loop-card cols-3 swiper-wrapper">
+ {pboot:list scode=0 num=10 istop=1 data=sorting desc}
+ <li class="item">
+  <div class="item-inner">
+  <div class="item-wrap-bg j-lazy" style="background-image: url([list:ico]);"></div>
+  <div class="item-container">
+  <div class="item-img j-lazy" style="background-image: url([list:ico]);"> <a class="item-wrap" href="[list:link]" title="[list:title]"> <span class="item-title"> [list:title] </span> <span class="item-meta"> <span class="item-meta-left">[list:date style=Y-m-d]</span> <span class="item-meta-right"> </span> </span> </a> </div>
+  </div>
+  </div>
+ </li>
+ {/pboot:list}
+ </ul>
+ <div class="swiper-pagination"></div>
+ <div class="swiper-button-prev"><i class="web-icon wi"><svg aria-hidden="true">
+ <use xlink:href="#wi-arrow-left-3"></use>
+ </svg></i></div>
+ <div class=swiper-button-next><i class="web-icon wi"><svg aria-hidden="true">
+ <use xlink:href="#wi-arrow-right-3"></use>
+ </svg></i></div>
+ </div>
+ <script>jQuery(document).ready(function() {
+  var _swiper_1 = {
+   onInit: function (el) {
+   if (el.slides.length < 4) {
+    this.autoplay = false;
+    this.touchRatio = 0;
+    el.stopAutoplay();
+   }
+   jQuery(el.container[0]).on('click', '.swiper-button-next', function () {
+    el.slideNext();
+   }).on('click', '.swiper-button-prev', function () {
+    el.slidePrev();
+   });
+   setTimeout(function () {
+    jQuery(window).trigger('scroll');
+   }, 800);
+   },
+   pagination: '.swiper-pagination',
+   slideClass: 'item',
+   paginationClickable: true,
+   simulateTouch: false,
+   loop: true,
+   autoplay: _web_js.slide_speed ? _web_js.slide_speed : 5000,
+   effect: 'slide',
+   onSlideChangeEnd: function(){
+   jQuery(window).trigger('scroll');
+   }
+  };
+  new Swiper('#modules-1 .feature-posts-wrap', _swiper_1);
+  });</script> </section>
+ <section class="section web-modules modules-sidebar-layout container j-modules-wrap" id="modules-13">
+ <div class="main j-modules-inner">
+ <section class="section web-modules modules-main-list" id="modules-12">
+ <div class="sec-panel main-list main-list-image" data-type=image>
+  <div class="sec-panel-head">
+  <ul class="list tabs j-newslist" data-type="image data-per_page=12">
+      
+  <li class="tab active"> <a href="javascript:;"> 推荐 </a> <i class="tab-underscore"></i> </li>
+  
+{pboot:nav num=15 parent=0}
+  <li class="tab"><a href="javascript:;">[nav:name]</a></li>
+{/pboot:nav}
+  </ul>
+  </div>
+  <ul class="post-loop post-loop-image cols-3 tab-wrap active">
+      
+  {pboot:list scode=0 num=12   srecommend=1}
+  <li class="item">
+  <div class="item-inner">
+  <div class="item-img"> <a class="item-thumb" href="[list:link]" title="[list:title]"> <img class="attachment-post-thumbnail size-post-thumbnail wp-post-image j-lazy" alt="[list:title]" src="[list:ico]"> </a> </div>
+  <h2 class="item-title"> <a href="[list:link]"> [list:title] </a></h2>
+  <div class="item-meta-author"> <a class="avatar j-user-card"> <span>点击:[list:visits]次</span> </a>
+   <div class="item-meta-right">时间：[list:date style=Y-m-d]</div>
+  </div>
+  </div>
+  </li>
+  {/pboot:list}
+  </ul>
+  
+  
+  {pboot:nav num=15 parent=0}
+  <ul class="post-loop post-loop-image cols-3 tab-wrap">
+  {pboot:list scode=[nav:scode] num=12 order=date}
+  <li class="item">
+  <div class="item-inner">
+  <div class="item-img"> <a class="item-thumb" href="[list:link]" title="[list:title]"> <img class="attachment-post-thumbnail size-post-thumbnail wp-post-image j-lazy" alt="[list:title]" src="[list:ico]"> </a> </div>
+  <h2 class="item-title"> <a href="[list:link]"> [list:title] </a></h2>
+  <div class="item-meta-author"> <a class="avatar j-user-card"> <span>点击:[list:visits]次</span> </a>
+   <div class=item-meta-right>时间：[list:date style=Y-m-d]</div>
+  </div>
+  </div>
+  </li>
+  {/pboot:list}
+  <li class="load-more-wrap">
+  <div class="btn load-more j-load-more"><a href="{sort:link}">点击查看更多</a></div>
+  </li>
+  </ul>
+  {/pboot:nav} </div>
+ </section>
+ </div>
+{include file=nei_right.html}
+ </section>
+ <section class="section web-modules modules-feature-posts container feature-posts-style-2" id="modules-2">
+ <div class="feature-posts-wrap web-slider">
+ <ul class="post-loop post-loop-card cols-3 swiper-wrapper">
+ {pboot:list scode=1,28,29,9,10,11,14,15,16 num=10 order=date}
+ <li class="item">
+  <div class="item-inner">
+  <div class="item-img j-lazy" style="background-image: url([list:ico]);"> <a class="item-wrap" href="[list:link]" title="[list:title]"> <span class="item-title"> [list:title] </span> <span class="item-meta"> <span class="item-meta-left">[list:date style=Y-m-d]</span> </span> </a> </div>
+  </div>
+ </li>
+ {/pboot:list}
+ </ul>
+ <div class="swiper-pagination"></div>
+ <div class="swiper-button-prev"><i class="web-icon wi"><svg aria-hidden="true">
+ <use xlink:href="#wi-arrow-left-3"></use>
+ </svg></i></div>
+ <div class=swiper-button-next><i class="web-icon wi"><svg aria-hidden="true">
+ <use xlink:href="#wi-arrow-right-3"></use>
+ </svg></i></div>
+ </div>
+ <script>jQuery(document).ready(function() {
+  var _swiper_2 = {
+   onInit: function (el) {
+   if (el.slides.length < 4) {
+    this.autoplay = false;
+    this.touchRatio = 0;
+    el.stopAutoplay();
+   }
+   jQuery(el.container[0]).on('click', '.swiper-button-next', function () {
+    el.slideNext();
+   }).on('click', '.swiper-button-prev', function () {
+    el.slidePrev();
+   });
+   setTimeout(function () {
+    jQuery(window).trigger('scroll');
+   }, 800);
+   },
+   pagination: '.swiper-pagination',
+   slideClass: 'item',
+   paginationClickable: true,
+   simulateTouch: false,
+   loop: true,
+   autoplay: _web_js.slide_speed ? _web_js.slide_speed : 5000,
+   effect: 'slide',
+   onSlideChangeEnd: function(){
+   jQuery(window).trigger('scroll');
+   }
+  };
+    _swiper_2.slidesPerView = 3;
+  _swiper_2.spaceBetween = 0;
+  _swiper_2.slidesPerGroup = 3;
+  _swiper_2.breakpoints = {
+   767: {
+   slidesPerView: 1,
+   slidesPerGroup: 1,
+   spaceBetween: 1
+   }
+  };
+  new Swiper('#modules-2 .feature-posts-wrap', _swiper_2);
+  });</script> </section>
+  
+ <section class="section web-modules modules-category-posts container" id="modules-10">
+ <div class="sec-panel">
+ <div class="sec-panel-head">
+  {pboot:sort scode=10}
+  <h3> <span><a href="[sort:link]">[sort:name]</a></span> <!--<small>根据分类获取文章</small>--> <a class="more" href="[sort:link]">更多 <i class="web-icon wi"><svg aria-hidden="true">
+  <use xlink:href="#wi-arrow-right"></use>
+  </svg></i></a></h3>{/pboot:sort}
+ </div>
+ <div class=sec-panel-body>
+ <ul class="post-loop post-loop-card cols-4">
+  {pboot:list scode=10 num=8 order=date}
+  <li class="item">
+  <div class="item-inner">
+  <div class="item-img j-lazy" style="background-image: url([list:ico]);"> <a class="item-wrap" href='[nav:link]' title="[list:title]"> <span class="item-title"> [list:title] </span> <span class="item-meta"> <span class="item-meta-left">[list:date style=Y-m-d]</span> </span> </a> </div>
+  </div>
+  </li>
+  {/pboot:list}
+ </ul>
+ </div>
+ </div>
+ </section>
+ 
+ <section class="section web-modules modules-gird container" id="modules-7">
+ <div class="row">
+     
+
+ <div class="j-modules-inner col-md-12 col-sm-48 col-xs-48">
+ <section class="section web-modules modules-category-posts" id="modules-8">
+  <div class="sec-panel">
+  <div class="sec-panel-head">
+  {pboot:sort scode=11}
+  <h3> <span><a href="[sort:link]">[sort:name]</a></span> <!--<small>根据分类获取文章</small>--> <a class="more" href="[sort:link]">更多 <i class="web-icon wi"><svg aria-hidden="true">
+  <use xlink:href="#wi-arrow-right"></use>
+  </svg></i></a></h3>{/pboot:sort}
+  
+  </div>
+  <div class="sec-panel-body">
+  <ul class="post-loop post-loop-list cols-4">
+  {pboot:list scode=11 num=6 order=date}
+  <li class="item"> <span class="date pull-right">[list:date style=Y-m-d]</span> <a href='[nav:link]'> [list:title] </a> </li>
+  {/pboot:list}
+  </ul>
+  </div>
+  </div>
+ </section>
+ </div>
+
+ 
+ <div class="j-modules-inner col-md-12 col-sm-48 col-xs-48">
+ <section class="section web-modules modules-category-posts" id="modules-5">
+  <div class="sec-panel">
+  <div class="sec-panel-head">
+  {pboot:sort scode=14}
+  <h3> <span><a href="[sort:link]">[sort:name]</a></span> <!--<small>根据分类获取文章</small>--> <a class="more" href="[sort:link]">更多 <i class="web-icon wi"><svg aria-hidden="true">
+  <use xlink:href="#wi-arrow-right"></use>
+  </svg></i></a></h3>{/pboot:sort}
+  </div>
+  <div class="sec-panel-body">
+  <ul class="post-loop post-loop-list cols-4">
+  {pboot:list scode=14 num=6 order=date}
+  <li class="item"> <span class="date pull-right">[list:date style=Y-m-d]</span> <a href='[nav:link]'> [list:title] </a> </li>
+  {/pboot:list}
+  </ul>
+  </div>
+  </div>
+ </section>
+ </div>
+ </div>
+ </section>
+ 
+ 
+ <section class="section web-modules modules-partner container" id="modules-11">
+ <div class="sec-panel">
+ <div class="sec-panel-head">
+ <h3> <span>{pboot:sort scode=27}[sort:name]{/pboot:sort}</span> <!--<small>这是合作伙伴</small>--></h3>
+ </div>
+ <div class="sec-panel-body">
+ <ul class="list list-partner">
+  {pboot:list scode=27 num=12 order=date}
+  <li style="width:16.66%"> <img class="j-lazy" src="[list:ico]" alt="[list:title]"> </li>
+  {/pboot:list}
+ </ul>
+ </div>
+ </div>
+ </section>
+</div>
+{include file=foot.html} 
+<script>var _web_js={};</script> 
+<script src="{pboot:sitetplpath}/skin/js/index.js"></script>
+</body>
+</html>

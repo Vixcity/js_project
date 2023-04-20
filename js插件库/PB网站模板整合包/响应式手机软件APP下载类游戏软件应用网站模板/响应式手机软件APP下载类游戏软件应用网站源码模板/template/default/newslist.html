@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="renderer" content="webkit">
+<meta name="force-rendering" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+<meta name="applicable-device" content="pc,mobile">
+<title>{sort:title}</title>
+<meta name="keywords" content="{sort:keywords}">
+<meta name="description" content="{sort:description}">
+<link href="{pboot:sitedomain}/skin/css/font.css" rel="stylesheet">
+<link href="{pboot:sitedomain}/skin/css/style.css" rel="stylesheet">
+<script src="{pboot:sitedomain}/skin/js/jquery.min.js"></script>
+<script src="{pboot:sitedomain}/skin/js/zblogphp.js" type="text/javascript"></script>
+</head>
+<body>
+{include file=comm/header.html}
+{include file=comm/position.html}
+<div id="content" class="content container clearfix">
+  <section id="mainbox" class="fl br mb">
+    <div class="new-post"> {pboot:list num=10}
+      <article class="article-list sb clearfix">
+        <figure class="figure fl"> <a class="thumbnail" href="[list:link]" alt="<b>[list:title]</b>"> <img class="img-cover br" src="[list:ico]" alt="<b>[list:title]</b>"> </a> </figure>
+        <div class="content">
+          <h2 class="title ellipsis m-multi-ellipsis"><a href="[list:link]" title="<b>[list:title]</b>"><b>[list:title]</b></a></h2>
+          <p class="intro hidden-sm">[list:content drophtml=1 dropblank=1 lencn=90]</p>
+          <p class="data clearfix"> <span class="hidden-sm-md-lg author fl"><i class="iconfont icon-user"></i>[list:sortname]</span>
+            <time class="time fl" datetime="2020-05-22" title="2020-05-22"> <i class="iconfont icon-time"></i>[list:date style=Y-m-d]</time>
+            <span class="view fl"><i class="iconfont icon-view"></i>[list:visits] 次查看</span> </p>
+        </div>
+      </article>
+      {/pboot:list} </div>
+    {include file=comm/pages.html}
+</section>
+{include file=comm/sidebar_list.html}
+</div>
+{include file=comm/footer.html}
+<div id="mask-hidden" class="mask-hidden transition"></div>
+<script src="{pboot:sitedomain}/skin/js/common.js"></script> 
+<script src="{pboot:sitedomain}/skin/js/headroom.min.js"></script> 
+<script type="text/javascript">
+			$(document).ready(function(e) {
+				$(".table_card .tab li").click(function() {
+					$(".table_card .tab li").eq($(this).index()).addClass("active").siblings().removeClass("active");
+					$(".table_card .tabCon ul").hide().eq($(this).index()).show();
+				})
+			});
+		</script> 
+<!--[if lt IE 9]><script src="{pboot:sitedomain}/skin/js/html5shiv.min.js"></script><![endif]-->
+</body>
+</html>

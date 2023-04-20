@@ -1,0 +1,23 @@
+<header id="header" class="header header-fixed sb">
+  <div class="h-wrap container clearfix">
+    <div class="logo-area fl"> <a href="{pboot:sitedomain}/" title="{pboot:sitetitle}"> <img class="img" src="{pboot:sitelogo}" alt="{pboot:sitetitle}" title="{pboot:sitetitle}"/> </a> </div>
+    <div class="m-nav-btn"><i class="iconfont icon-menu"></i></div>
+    <nav class="responsive-nav">
+      <div class="pc-nav m-nav fl" data-type="article"  data-infoid="9">
+		  <ul class="nav-ul">
+		    <li><a class="{pboot:if(0=='{sort:scode}')}active{/pboot:if}" href="{pboot:sitedomain}/">首页</a></li>
+		    {pboot:nav num=10 parent=0}
+		    <li><a {pboot:if('[nav:scode]'=='{sort:tcode}')} class="active"{/pboot:if} href="[nav:link]">[nav:name]</a></li>
+		    {/pboot:nav}
+		  </ul>
+      </div>
+    </nav>
+    <span id="search-button" class="search-button hidden fr"><i class="iconfont icon-search"></i></span>
+    <div id="search-area" class="container br">
+      <form  class="searchform clearfix" action="{pboot:scaction}" method="get">
+        <input class="s-input br fl" type="text" name="keyword" placeholder="请输入关键词...">
+        <button class="s-button fr br iconfont icon-search" type="submit" id="submit"></button>
+      </form>
+    </div>
+  </div>
+</header>

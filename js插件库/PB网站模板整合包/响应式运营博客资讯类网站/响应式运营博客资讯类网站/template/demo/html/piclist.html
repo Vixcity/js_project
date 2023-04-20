@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="initial-scale=1.0,maximum-scale=5,width=device-width,viewport-fit=cover">
+<title>{pboot:pagetitle}</title>
+<meta name="keywords" content="{pboot:pagekeywords}" />
+<meta name="description" content="{pboot:pagedescription}" />
+<meta name="applicable-device" content="pc,mobile">
+<meta http-equiv="Cache-Control" content="no-transform">
+<link rel="stylesheet" href="{pboot:sitetplpath}/skin/css/style.css" media="all">
+<script src='{pboot:sitetplpath}/skin/js/jquery.min.js'></script>
+<script src='{pboot:sitetplpath}/skin/js/icons-2.6.12.js'></script>
+<!--[if lte IE 9]><script src="{pboot:sitetplpath}/skin/js/update.js"></script><![endif]-->
+</head>
+<body class="archive category category-chanpin category-49 lang-cn">
+{include file=head.html}
+<div id="wrap">
+{include file=nei_banner.html}
+ <div class="container wrap">
+ <ol class="breadcrumb">
+ <li class="active"><i class="web-icon wi"></i>{pboot:position separator=>>} </li>
+ </ol>
+ <main class="main">
+ <section class="sec-panel sec-panel-card">
+ <div class="sec-panel-body">
+  <ul class="post-loop post-loop-card cols-2">
+  {pboot:list num=10 order=date}
+  <li class="item">
+  <div class="item-inner">
+  <div class="item-img j-lazy" style="background-image: url([list:ico]);"> <a class="item-wrap" href="[list:link]" title="[list:title]"> <span class="item-title"> [list:title] </span> <span class="item-meta"> <span class="item-meta-left">[list:date style=Y-m-d]</span> <span class="item-meta-right"> <span class="item-meta-li comments"><i class="web-icon wi"><svg aria-hidden="true">
+   <use xlink:href="#wi-eye"></use>
+   </svg></i> [list:visits]</span> </span> </span> </a> </div>
+  </div>
+  </li>
+  {/pboot:list}
+  </ul>
+  <div class="next1">{page:bar} </div>
+ </div>
+ </section>
+ </main>
+{include file=nei_right.html}
+ </div>
+</div>
+{include file=foot.html}
+</div>
+<script src="{pboot:sitetplpath}/skin/js/index.js"></script>
+</body>
+</html>

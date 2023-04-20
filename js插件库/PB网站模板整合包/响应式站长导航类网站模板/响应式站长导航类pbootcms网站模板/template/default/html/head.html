@@ -1,0 +1,34 @@
+<header class="header">
+    <div class="h-fix">
+        <div class="container">
+            <h1 class="logo"> <a href="{pboot:sitepath}/" title="{pboot:pagetitle}"> <img id="light-logo" src="{pboot:sitelogo}" alt="{pboot:pagetitle}" title="{pboot:pagetitle}" /> <img id="dark-logo" src="{label:logo2}" alt="{pboot:pagetitle}" title="{pboot:pagetitle}" /> </a> </h1>
+            <div id="m-btn" class="m-btn"><i class="fa fa-bars"></i></div>
+            <div class="search"> <i class="s-btn off fa fa-search"></i>
+                <div class="s-form"> <i class="arrow fa fa-caret-up"></i>
+                    <form action="{pboot:scaction}" method="get" class="sform">
+                        <input class="sinput" name="keyword" type="text" placeholder="请输入搜索词">
+                        <button><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="darkmode"> <a href="javascript:switchNightMode()" target="_self" class=""><i class="fa fa-moon-o"></i></a> </div>
+            <nav class="nav-bar" id="nav-box" data-type="index" data-infoid="">
+                <ul class="nav">
+                    <li {pboot:if(0=='{sort:scode}' )}class="active" {/pboot:if}> <a href="{pboot:sitepath}/">首页</a></li>
+                    {pboot:nav num=8 parent=0}
+                    <li {pboot:if('[nav:scode]'=='{sort:tcode}' )}class="active" {/pboot:if}> <a href="[nav:link]">[nav:name]</a>
+                        {pboot:if([nav:soncount]>0)}
+                        <ul class="sub-menu">
+                            {pboot:2nav num=10 parent=[nav:scode]}
+                            <li id="navbar-category-8" class="li-cate-8"><a href="[2nav:link]">[2nav:name]</a></li>
+                            {/pboot:2nav}
+                        </ul>
+                        {/pboot:if}
+                    </li>
+                    {/pboot:nav}
+                </ul>
+            </nav>
+            <div class="submit fr"> {pboot:sort scode=20}<a href="[sort:link]" target="_blank" class="a transition"><i class="fa fa-heart"></i>[sort:name]</a>{/pboot:sort} </div>
+        </div>
+    </div>
+</header>

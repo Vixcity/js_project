@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="initial-scale=1.0,maximum-scale=5,width=device-width,viewport-fit=cover">
+<title>{pboot:pagetitle}</title>
+<meta name="keywords" content="{content:keywords}" />
+<meta name="description" content="{content:description}" />
+<meta name="applicable-device" content="pc,mobile">
+<meta http-equiv="Cache-Control" content="no-transform">
+<link rel="stylesheet" href="{pboot:sitetplpath}/skin/css/style.css" media="all">
+<script src='{pboot:sitetplpath}/skin/js/jquery.min.js'></script>
+<script src='{pboot:sitetplpath}/skin/js/icons-2.6.12.js'></script>
+<!--[if lte IE 9]><script src="{pboot:sitetplpath}/skin/js/update.js"></script><![endif]-->
+</head>
+<body class="post-template-default single single-post postid-607 single-format-standard lang-cn">
+{include file=head.html}
+<div id="wrap">
+ <div class="wrap container">
+ <ol class="breadcrumb">
+ <li class="active"><i class="web-icon wi"></i>{pboot:position separator=>>} </li>
+ </ol>
+ <main class="main">
+ <article id="post-607" class="post-607 post type-post status-publish format-standard has-post-thumbnail hentry category-keji tag-19 tag-141">
+ <div class="entry">
+  <div class="entry-head">
+  <h1 class="entry-title">{content:title}</h1>
+  <div class="entry-info"> <span class="vcard"> <a class="nickname url fn j-user-card">{content:author}</a> </span> <span class="dot">•</span>
+  <time class="entry-date published"> {content:date} </time>
+  <span class="dot">•</span> <span>阅读 <script src="{dede:field name='phpurl'/}/count.php?view=yes&aid={dede:field name='id'/}&mid={dede:field name='mid'/}" type='text/javascript' language="javascript"></script></span></div>
+  </div>
+  <div class=entry-content> {content:content}
+  <div class=entry-copyright>
+  <p>主题测试文章，只做测试使用。发布者：{content:author}，转转请注明出处：<span>{dede:field name='arcurl'/}</span></p>
+  </div>
+  </div>
+  <div class="entry-footer">
+  <div class="entry-tag">{dede:tag row='10' sort='rand'} <a href='[field:link/]'>[field:tag/]</a>{/dede:tag}</div>
+  <div class="entry-page">
+  <div class="entry-page-prev j-lazy" style="background-image: url({pboot:sitetplpath}/skin/images/pre.jpg);"> {content:precontent}
+  <div class="entry-page-info"> <span class="pull-left"><i class="web-icon wi"><svg aria-hidden="true">
+   <use xlink:href="#wi-arrow-left-double"></use>
+   </svg></i> 上一篇</span> </div>
+  </div>
+  <div class="entry-page-next j-lazy" style="background-image: url({pboot:sitetplpath}/skin/images/next.jpg);"> {content:nextcontent}
+  <div class="entry-page-info"> <span class="pull-right">下一篇 <i class="web-icon wi"><svg aria-hidden="true">
+   <use xlink:href="#wi-arrow-right-double"></use>
+   </svg></i></span> </div>
+  </div>
+  </div>
+  <h3 class="entry-related-title">相关推荐</h3>
+  <ul class="entry-related cols-3 post-loop post-loop-image">
+  {pboot:list scode={sort:scode} num=6 order=date}
+  <li class="item">
+  <div class="item-inner">
+   <div class="item-img"> <a class="item-thumb" href="[list:link]" title="[list:title]"> <img width=480 height=300 class="attachment-post-thumbnail size-post-thumbnail wp-post-image j-lazy" alt="[list:title]" src="[list:ico]"> </a> </div>
+   <h4 class="item-title"> <a href="[list:link]"> [list:title] </a></h4>
+   <div class="item-meta-author"> <a lass="avatar j-user-card"> <span>点击:[list:visits]次</span> </a>
+   <div class="item-meta-right">[list:date style=Y-m-d]</div>
+   </div>
+  </div>
+  </li>
+  {/pboot:list}
+  </ul>
+  </div>
+ </div>
+ </article>
+ </main>
+{include file=nei_right.html}
+ </div>
+</div>
+{include file=foot.html}
+</div>
+<script src="{pboot:sitetplpath}/skin/js/index.js"></script>
+</body>
+</html>

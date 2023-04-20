@@ -1,0 +1,28 @@
+ <aside class="sidebar">
+ <div class="widget widget_post_thumb">
+ <h3 class="widget-title"><span>最新文章</span></h3>
+ <ul>
+  {pboot:list scode={sort:scode} num=5 order=sorting desc}
+  <li class="item">
+  <div class="item-img"> <a class="item-img-inner" href="[list:link]" title="[list:title]"> <img width="480" height="300" class="attachment-default size-default wp-post-image j-lazy" alt="[list:title]" src="[list:ico]"> </a></div>
+  <div class="item-content">
+  <p class="item-title"><a href="[list:link]" title="[list:title]">[list:title]</a></p>
+  <p class="item-date">[list:date style=Y-m-d]</p>
+  </div>
+  </li>
+  {/pboot:list}
+ </ul>
+ </div>
+ <div class="widget widget_lastest_products">
+ <h3 class="widget-title"><span>行业动态</span></h3>
+ <ul class="p-list">
+  {pboot:list scode=1 num=10 order=date}
+  <li class="col-xs-24 col-md-12 p-item">
+  <div class="p-item-wrap"> <a class="thumb" href="[list:link]"> <img width=480 height=300 class="attachment-default size-default wp-post-image j-lazy" alt="[list:title]" src="[list:ico]"> </a>
+  <h4 class="title"> <a href="[list:link]" title="[list:title]"> [list:title] </a></h4>
+  </div>
+  </li>
+  {/pboot:list}
+ </ul>
+ </div>
+ </aside>

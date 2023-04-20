@@ -1,0 +1,52 @@
+<aside id="sidebar" class="hidden-sm-md-lg fr">
+  <div class="theiaStickySidebar">
+    <section id="top10" class="widget widget_top10 sb br mb">
+      <ul class="widget-content top10">
+        <div class="table_card">
+          <ul class="tab">
+            <li class="active">热门应用</li>
+            <li>热门游戏</li>
+          </ul>
+          <div class="tabCon">
+            <ul class="list on">
+              {pboot:list order=visits scode=5 num=8}
+              <li class="item">
+                <div class="clearfix"> <span class="fl iconfont icon-top10 list list-[list:i]"><small>[list:i]</small></span> <a class="thumbnail fl" href="[list:link]" title="[list:title]"> <img class="img img-cover br" src="[list:ico]" alt="[list:title]" title="[list:title]"> </a>
+                  <div class="fr-wrap">
+                    <div class="title-wrap">
+                      <h2 class="title ellipsis"> <a href="[list:link]" title="[list:title]">[list:title]</a> </h2>
+                      <p class="intro br clearfix ellipsis"> [list:visits]人看过 </p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              {/pboot:list}
+            </ul>
+            <ul class="list">
+              {pboot:list order=visits scode=6 num=8}
+              <li class="item">
+                <div class="clearfix"> <span class="fl iconfont icon-top10 list list-[list:i]"><small>[list:i]</small></span> <a class="thumbnail fl" href="[list:link]" title="[list:title]"> <img class="img img-cover br" src="[list:ico]" alt="[list:title]" title="[list:title]"> </a>
+                  <div class="fr-wrap">
+                    <div class="title-wrap">
+                      <h2 class="title ellipsis"> <a href="[list:link]" title="[list:title]">[list:title]</a> </h2>
+                      <p class="intro br clearfix ellipsis"> [list:visits]人看过 </p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              {/pboot:list}
+            </ul>
+          </div>
+        </div>
+      </ul>
+    </section>
+    <section id="divTags" class="widget widget_tags sb br mb">
+      <p class="c-title mb10"><span class="name">标签列表</span></p>
+      <ul class="widget-content divTags">
+        {pboot:tags num=30}
+        <li><a target="_blank" href="[tags:link]" title="[tags:text]">[tags:text]</a></li>
+        {/pboot:tags}
+      </ul>
+    </section>
+  </div>
+</aside>
