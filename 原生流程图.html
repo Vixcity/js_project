@@ -9,6 +9,10 @@
       .flex {
         display: flex;
       }
+      .wapper {
+        height: calc(100vh - calc(5rem + 1px + 40px));
+        overflow: auto;
+      }
     </style>
     <title>Document</title>
   </head>
@@ -20,7 +24,9 @@
         <div data-type="polygon" class="dnd-polygon">条件</div>
         <div data-type="circleEnd" class="dnd-rect">结束</div>
       </div>
-      <div id="container"></div>
+      <div class="wapper">
+        <div id="container"></div>
+      </div>
       <!-- <div id="smallMap"></div> -->
     </div>
     <div class="layui-btn-group">
@@ -95,17 +101,10 @@
           enabled: true,
           ignoreChange: true,
         },
-        // 画布滚动
-        scroller: {
-          enabled: true,
-          autoResize: false,
-          width: 800,
-          height: 600,
-        },
+        width: 6000,
+        height: 6000,
       });
-
-      // 初始化画布样式
-      graph.setScrollbarPosition(0, 0);
+      
       graph.fromJSON(data);
 
       // 导出
