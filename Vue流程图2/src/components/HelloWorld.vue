@@ -1,6 +1,7 @@
 <template>
   <div class="diagram">
     <el-button @click="exportData">导出</el-button>
+    <el-button @click="watchJSON">查看JSON</el-button>
     <diagram-toolbar
       class="diagram-toolbar"
       v-if="lf"
@@ -70,6 +71,8 @@ export default {
       if (d) {
         data = JSON.parse(d);
       }
+    } else if (JSON.parse(localStorage.canvasData)) {
+      data = JSON.parse(localStorage.canvasData);
     }
     this.initLogicFlow(data);
   },
@@ -77,6 +80,9 @@ export default {
     exportData() {
       // 可以使用任意方式触发，然后将绘制的图形下载到本地磁盘上
       this.lf.getSnapshot();
+    },
+    watchJSON() {
+      console.log(this.lf.getGraphData());
     },
     initLogicFlow(data) {
       // 引入框选插件
@@ -100,6 +106,12 @@ export default {
           backgroundRepeat: "repeat",
         },
       });
+      lf.on(
+        "node:dnd-add,node:click,edge:click,edge:add,edge:adjust,edge:delete,edge:exchange-node,node:drop,node:add,node:delete,node:mousemove,anchor:dragstart,anchor:drop,edge:click,edge:mouseleave",
+        () => {
+          localStorage.canvasData = JSON.stringify(lf.getGraphData());
+        }
+      );
       lf.setTheme({
         baseEdge: { strokeWidth: 1 },
         baseNode: { strokeWidth: 1 },
