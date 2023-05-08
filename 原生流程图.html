@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/@antv/x6@1.31.0/dist/x6.js"></script>
+    <style>
+      .flex {
+        display: flex;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="flex">
+      <div class="dnd-wrap">
+        <div data-type="circle" class="dnd-circle">开始</div>
+        <div data-type="rect" class="dnd-rect">步骤</div>
+        <div data-type="polygon" class="dnd-polygon">条件</div>
+        <div data-type="circleEnd" class="dnd-rect">结束</div>
+      </div>
+      <div id="container"></div>
+      <!-- <div id="smallMap"></div> -->
+    </div>
+    <div class="layui-btn-group">
+      <button type="button" class="layui-btn" onclick="printNodeList('PNG')">
+        导出PNG
+      </button>
+      <button type="button" class="layui-btn" onclick="printNodeList('SVG')">
+        导出SVG
+      </button>
+      <button type="button" class="layui-btn">上一步 - 未做</button>
+      <button type="button" class="layui-btn">下一步 - 未做</button>
+    </div>
+    <script>
+      // 给他们默认添加一个事件
+      document.querySelectorAll(".dnd-wrap div").forEach((item) => {
+        item.addEventListener("mousedown", startDrag);
+      });
+      var { Graph, DataUri, Addon } = X6;
+
+      const data = {
+        // // 节点
+        // nodes: [
+        //   {
+        //     id: "node1", // String，可选，节点的唯一标识
+        //     x: 40, // Number，必选，节点位置的 x 值
+        //     y: 40, // Number，必选，节点位置的 y 值
+        //     width: 80, // Number，可选，节点大小的 width 值
+        //     height: 40, // Number，可选，节点大小的 height 值
+        //     label: "hello", // String，节点标签
+        //   },
+        //   {
+        //     id: "node2", // String，节点的唯一标识
+        //     x: 160, // Number，必选，节点位置的 x 值
+        //     y: 180, // Number，必选，节点位置的 y 值
+        //     width: 80, // Number，可选，节点大小的 width 值
+        //     height: 40, // Number，可选，节点大小的 height 值
+        //     label: "world", // String，节点标签
+        //   },
+        // ],
+        // // 边
+        // edges: [
+        //   {
+        //     source: "node1", // String，必须，起始节点 id
+        //     target: "node2", // String，必须，目标节点 id
+        //   },
+        // ],
+      };
+      const graph = new Graph({
+        container: document.getElementById("container"),
+        selecting: { enabled: true },
+        grid: {
+          size: 10, // 网格大小 10px
+          visible: true, // 渲染网格背景
+        },
+        // 小地图
+        // minimap: {
+        //   enabled: true,
+        //   container: document.querySelector("#smallMap"),
+        //   width: 200,
+        //   height: 200,
+        // },
+        // 框选
+        selecting: {
+          enabled: true,
+          multiple: true,
+          rubberband: true,
+          movable: true,
+          showNodeSelectionBox: true,
+        },
+        // 开启撤销/重做
+        history: {
+          enabled: true,
+          ignoreChange: true,
+        },
+        // 画布滚动
+        scroller: {
+          enabled: true,
+          autoResize: false,
+          width: 800,
+          height: 600,
+        },
+      });
+
+      // 初始化画布样式
+      graph.setScrollbarPosition(0, 0);
+      graph.fromJSON(data);
+
+      // 导出
+      function printNodeList(type) {
+        if (type === "PNG") {
+          graph.toPNG(
+            (dataUri) => {
+              // 下载
+              DataUri.downloadDataUri(dataUri, "chart.png");
+            },
+            {
+              padding: {
+                top: 20,
+                right: 30,
+                bottom: 40,
+                left: 50,
+              },
+            }
+          );
+        } else {
+          graph.toSVG(
+            (dataUri) => {
+              // 下载
+              DataUri.downloadDataUri(
+                DataUri.svgToDataUrl(dataUri),
+                "chart.svg"
+              );
+            },
+            {
+              copyStyles: false,
+            }
+          );
+        }
+      }
+      // 添加拖拽方法
+      function startDrag(e) {
+        const target = e.target;
+        const type = target.attributes["data-type"].value;
+        let node;
+        if (type === "rect") {
+          node = graph.createNode({
+            width: 100,
+            height: 40,
+            attrs: {
+              label: {
+                text: "步骤",
+                fill: "#262626",
+              },
+              body: {
+                fill: "#c7d9fc",
+                stroke: "#5f95ff",
+                strokeWidth: "2",
+              },
+            },
+          });
+        } else if (type === "circle") {
+          node = graph.createNode({
+            width: 60,
+            height: 60,
+            shape: "html",
+            shape: "circle",
+            ports: {
+              groups: {
+                // 输入链接桩群组定义
+                in: {
+                  position: "ellipseSpread",
+                  attrs: {
+                    circle: {
+                      r: 4,
+                      magnet: true,
+                      stroke: "#31d0c6",
+                      strokeWidth: 2,
+                      fill: "#fff",
+                    },
+                  },
+                },
+                // 输出链接桩群组定义
+                out: {
+                  position: "ellipseSpread",
+                  attrs: {
+                    circle: {
+                      r: 4,
+                      magnet: true,
+                      stroke: "#8d8d8d",
+                      strokeWidth: 2,
+                      fill: "#fdff00",
+                    },
+                  },
+                },
+              },
+              items: [
+                {
+                  id: "port1",
+                  group: "in",
+                },
+                {
+                  id: "port2",
+                  group: "in",
+                },
+                {
+                  id: "port3",
+                  group: "in",
+                },
+                {
+                  id: "port4",
+                  group: "in",
+                },
+                {
+                  id: "port5",
+                  group: "out",
+                },
+                {
+                  id: "port6",
+                  group: "out",
+                },
+                {
+                  id: "port7",
+                  group: "out",
+                },
+                {
+                  id: "port8",
+                  group: "out",
+                },
+              ],
+            },
+            attrs: {
+              label: {
+                text: "开始",
+                fill: "#2a7a22",
+              },
+              body: {
+                fill: "#88f299",
+                stroke: "#347527",
+                strokeWidth: "1",
+              },
+            },
+          });
+        } else if (type === "polygon") {
+          node = graph.createNode({
+            shape: "polygon",
+            width: 80,
+            height: 80,
+            attrs: {
+              label: {
+                text: "条件",
+                fill: "#6e3210",
+              },
+              body: {
+                fill: "#efdbff",
+                stroke: "#9254de",
+                refPoints: "0, 35 50, 0 100, 35 50, 70",
+                strokeWidth: "1",
+              },
+            },
+          });
+        } else if (type === "circleEnd") {
+          node = graph.createNode({
+            width: 60,
+            height: 60,
+            shape: "html",
+            shape: "circle",
+            attrs: {
+              label: {
+                text: "结束",
+                fill: "#ffffff",
+              },
+              body: {
+                fill: "#fa4e48",
+                stroke: "#8f2424",
+                strokeWidth: "1",
+              },
+            },
+          });
+        }
+
+        dnd.start(node, e);
+      }
+      let options = {
+        target: graph,
+        scaled: false,
+        animation: true,
+      };
+      const dnd = new Addon.Dnd(options);
+    </script>
+  </body>
+</html>
