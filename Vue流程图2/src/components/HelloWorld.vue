@@ -1,5 +1,6 @@
 <template>
   <div class="diagram">
+    <el-button @click="exportData">导出</el-button>
     <diagram-toolbar
       class="diagram-toolbar"
       v-if="lf"
@@ -30,7 +31,7 @@
 
 <script>
 import LogicFlow from "@logicflow/core";
-import { SelectionSelect } from "@logicflow/extension";
+import { SelectionSelect, Snapshot } from "@logicflow/extension";
 import "@logicflow/core/dist/style/index.css";
 import "@logicflow/extension/lib/style/index.css";
 import DiagramToolbar from "./DiagramToolbar.vue";
@@ -73,9 +74,14 @@ export default {
     this.initLogicFlow(data);
   },
   methods: {
+    exportData() {
+      // 可以使用任意方式触发，然后将绘制的图形下载到本地磁盘上
+      this.lf.getSnapshot();
+    },
     initLogicFlow(data) {
       // 引入框选插件
       LogicFlow.use(SelectionSelect);
+      LogicFlow.use(Snapshot);
       const lf = new LogicFlow({
         container: this.$refs.diagram,
         overlapMode: 1,
