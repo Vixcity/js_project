@@ -22,59 +22,49 @@
     <title>Document</title>
   </head>
   <body>
-    <div id="app">
-      <div class="layui-row">
-        <div class="layui-col-md1">
-          <div data-type="circle" class="dnd-wrap dnd-circle">开始</div>
-          <div data-type="rect" class="dnd-wrap dnd-rect">步骤</div>
-          <div data-type="polygon" class="dnd-wrap dnd-polygon">条件</div>
-          <div data-type="circleEnd" class="dnd-wrap dnd-rect">结束</div>
+    <div id="app" style="display: flex">
+      <div
+        class="selectNode"
+        style="width: 200px; sheight: calc(100vh - calc(5rem + 1px))"
+      >
+        <div data-type="circle" class="dnd-wrap dnd-circle">开始</div>
+        <div data-type="rect" class="dnd-wrap dnd-rect">步骤</div>
+        <div data-type="polygon" class="dnd-wrap dnd-polygon">条件</div>
+        <div data-type="circleEnd" class="dnd-wrap dnd-rect">结束</div>
+      </div>
+      <div style="width: calc(100vw - 200px)">
+        <div class="layui-btn-group">
+          <button type="button" class="layui-btn" @click="clearDraw">
+            清空画布
+          </button>
+          <button type="button" class="layui-btn" @click="doThing('canUndo')">
+            撤销
+          </button>
+          <button type="button" class="layui-btn" @click="doThing('canRedo')">
+            重做
+          </button>
+          <button type="button" class="layui-btn" @click="deleteSelect">
+            删除
+          </button>
+          <button type="button" class="layui-btn" @click="printNodeList('PNG')">
+            导出PNG
+          </button>
+          <button type="button" class="layui-btn" @click="printNodeList('SVG')">
+            导出SVG
+          </button>
+          <button type="button" class="layui-btn">检查 - 未做</button>
+          <button type="button" class="layui-btn">保存 - 未做</button>
         </div>
-        <div class="layui-col-md11">
-          <div class="layui-btn-group">
-            <button type="button" class="layui-btn" @click="clearDraw">
-              清空画布
-            </button>
-            <button type="button" class="layui-btn" @click="doThing('canUndo')">
-              撤销
-            </button>
-            <button type="button" class="layui-btn" @click="doThing('canRedo')">
-              重做
-            </button>
-            <button type="button" class="layui-btn" @click="deleteSelect">
-              删除
-            </button>
-            <button
-              type="button"
-              class="layui-btn"
-              @click="printNodeList('PNG')"
-            >
-              导出PNG
-            </button>
-            <button
-              type="button"
-              class="layui-btn"
-              @click="printNodeList('SVG')"
-            >
-              导出SVG
-            </button>
-            <button type="button" class="layui-btn">检查 - 未做</button>
-            <button type="button" class="layui-btn">保存 - 未做</button>
-          </div>
-          <div
-            class="wapper"
-            style="
-              height: calc(100vh - calc(5rem + 1px + 40px));
-              overflow: auto;
-            "
-          >
-            <div id="container"></div>
-          </div>
+        <div
+          class="wapper"
+          style="height: calc(100vh - calc(5rem + 1px + 40px)); overflow: auto"
+        >
+          <div id="container"></div>
         </div>
       </div>
     </div>
     <script>
-      var { Graph, DataUri, Addon } = X6;
+      var { Graph, DataUri, Addon, Shape } = X6;
       const { createApp } = Vue;
 
       // 创建vue节点
@@ -161,89 +151,6 @@
               );
             }
           },
-          // 添加
-          startDrag(e) {
-            const target = e.target;
-            const type = target.attributes["data-type"].value;
-            let node;
-            if (type === "rect") {
-              node = this.graph.createNode({
-                width: 100,
-                height: 40,
-                ports: this.ports,
-                attrs: {
-                  label: {
-                    text: "步骤",
-                    fill: "#262626",
-                  },
-                  body: {
-                    fill: "#c7d9fc",
-                    stroke: "#5f95ff",
-                    strokeWidth: "2",
-                  },
-                },
-              });
-            } else if (type === "circle") {
-              node = this.graph.createNode({
-                width: 60,
-                height: 60,
-                shape: "html",
-                shape: "circle",
-                ports: this.ports,
-                attrs: {
-                  label: {
-                    text: "开始",
-                    fill: "#2a7a22",
-                  },
-                  body: {
-                    fill: "#88f299",
-                    stroke: "#347527",
-                    strokeWidth: "1",
-                  },
-                },
-              });
-            } else if (type === "polygon") {
-              node = this.graph.createNode({
-                shape: "polygon",
-                width: 80,
-                height: 80,
-                ports: this.ports,
-                attrs: {
-                  label: {
-                    text: "条件",
-                    fill: "#6e3210",
-                  },
-                  body: {
-                    fill: "#efdbff",
-                    stroke: "#9254de",
-                    refPoints: "0, 35 50, 0 100, 35 50, 70",
-                    strokeWidth: "1",
-                  },
-                },
-              });
-            } else if (type === "circleEnd") {
-              node = this.graph.createNode({
-                width: 60,
-                height: 60,
-                shape: "html",
-                shape: "circle",
-                ports: this.ports,
-                attrs: {
-                  label: {
-                    text: "结束",
-                    fill: "#ffffff",
-                  },
-                  body: {
-                    fill: "#fa4e48",
-                    stroke: "#8f2424",
-                    strokeWidth: "1",
-                  },
-                },
-              });
-            }
-
-            this.dnd.start(node, e);
-          },
           // 清空画布
           clearDraw() {
             var index = layer.open({
@@ -280,10 +187,6 @@
         },
         mounted() {
           let _this = this;
-          // 初始化默认添加事件
-          document.querySelectorAll(".dnd-wrap").forEach((item) => {
-            item.addEventListener("mousedown", _this.startDrag);
-          });
           this.graph = new Graph({
             container: document.getElementById("container"),
             history: true,
@@ -348,12 +251,130 @@
             this.showPorts(ports, false);
           });
           this.graph.fromJSON(this.dataOption);
+
+          // 左侧边栏
           let options = {
             target: this.graph,
+            groups: [
+              {
+                name: "name", // 分组名称
+                title: "分组1", // 分组标题，缺省时使用 `name`
+                collapsable: false, // 分组是否可折叠，默认为 true
+                collapsed: false, // 初始状态是否为折叠状态
+                layoutOptions: {
+                  columns: 1,
+                  columnWidth: 180,
+                  rowHeight: "auto",
+                },
+              },
+            ],
             scaled: false,
             animation: true,
+            stencilGraphHeight: 600,
+            stencilGraphWidth: 200,
+            validateNode(a, b) {
+              let nodeList = b.targetGraph.renderer.views;
+              //   selectNode;
+              console.log(a, nodeList);
+              //   return false
+            },
           };
-          this.dnd = new Addon.Dnd(options);
+          // this.dnd = new Addon.Dnd(options);
+          this.dnd = new Addon.Stencil(options);
+          document.querySelector(".selectNode").appendChild(this.dnd.container);
+          // 创建一些模板节点
+          console.log(Shape)
+          const r1 = new Shape.Rect({
+            width: 100,
+            height: 40,
+            ports: this.ports,
+            attrs: {
+              label: {
+                text: "步骤",
+                fill: "#262626",
+              },
+              body: {
+                fill: "#c7d9fc",
+                stroke: "#5f95ff",
+                strokeWidth: "2",
+              },
+            },
+          });
+          const p1 = new Shape.Polygon({
+            shape: "polygon",
+            width: 80,
+            height: 80,
+            ports: this.ports,
+            attrs: {
+              label: {
+                text: "条件",
+                fill: "#6e3210",
+              },
+              body: {
+                fill: "#efdbff",
+                stroke: "#9254de",
+                refPoints: "0, 35 50, 0 100, 35 50, 70",
+                strokeWidth: "1",
+              },
+            },
+          });
+          const c1 = new Shape.Circle({
+            width: 60,
+            height: 60,
+            shape: "circle",
+            ports: this.ports,
+            attrs: {
+              label: {
+                text: "开始",
+                fill: "#2a7a22",
+              },
+              body: {
+                fill: "#88f299",
+                stroke: "#347527",
+                strokeWidth: "1",
+              },
+            },
+          });
+          const c2 = new Shape.HTML({
+            width: 60,
+            height: 60,
+            shape: 'html',
+            ports: this.ports,
+            html: () => {
+              const wrap = document.createElement('div')
+              wrap.style.width = '100%'
+              wrap.style.height = '100%'
+              wrap.style.display = 'flex'
+              wrap.style.alignItems = 'center'
+              wrap.style.justifyContent = 'center'
+              wrap.style.border = '1px solid #8f2424'
+              wrap.style.background = '#fa4e48'
+              wrap.style.color = '#ffffff'
+              wrap.style.borderRadius = '100%'
+              wrap.innerText = '结束'
+              return wrap
+            },
+          });
+        //   const c2 = new Shape.Circle({
+        //     width: 60,
+        //     height: 60,
+        //     shape: "circle",
+        //     ports: this.ports,
+        //     attrs: {
+        //       label: {
+        //         text: "结束",
+        //         fill: "#ffffff",
+        //       },
+        //       body: {
+        //         fill: "#fa4e48",
+        //         stroke: "#8f2424",
+        //         strokeWidth: "1",
+        //       },
+        //     },
+        //   });
+          console.log(c1, r1);
+          this.dnd.load([c1, r1, p1, c2], "name");
+
           this.history = this.graph.history;
           this.history.on("change", () => {
             this.canRedo = this.history.canRedo();
