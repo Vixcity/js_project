@@ -7,7 +7,7 @@
     <!-- 引入AntvX6 图形渲染引擎 -->
     <script src="https://unpkg.com/@antv/x6@1.31.0/dist/x6.js"></script>
     <!-- 引入 Vue -->
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
     <!-- 引入 layui -->
     <link
       href="https://unpkg.com/layui@2.7.6/dist/css/layui.css"
@@ -19,19 +19,28 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    <!-- 引入 Element -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"
+    />
+    <style>
+      .el-tabs__content {
+        height: 100% !important;
+      }
+    </style>
     <title>Document</title>
   </head>
   <body>
     <div id="app" style="display: flex">
       <div
         class="selectNode"
-        style="width: 200px; sheight: calc(100vh - calc(5rem + 1px))"
-      >
-        <div data-type="circle" class="dnd-wrap dnd-circle">开始</div>
-        <div data-type="rect" class="dnd-wrap dnd-rect">步骤</div>
-        <div data-type="polygon" class="dnd-wrap dnd-polygon">条件</div>
-        <div data-type="circleEnd" class="dnd-wrap dnd-rect">结束</div>
-      </div>
+        style="
+          width: 200px;
+          height: calc(100vh - calc(5rem + 1px));
+          position: relative;
+        "
+      ></div>
       <div style="width: calc(100vw - 200px)">
         <div class="layui-btn-group">
           <button type="button" class="layui-btn" @click="clearDraw">
@@ -53,7 +62,9 @@
             导出SVG
           </button>
           <button type="button" class="layui-btn">检查 - 未做</button>
-          <button type="button" class="layui-btn">保存 - 未做</button>
+          <button type="button" class="layui-btn" @click="saveLocal">
+            保存
+          </button>
         </div>
         <div
           class="wapper"
@@ -61,61 +72,271 @@
         >
           <div id="container"></div>
         </div>
+        <el-drawer
+          size="40%"
+          title="我是标题"
+          :with-header="false"
+          :visible.sync="drawer"
+        >
+          <div style="padding: 10px">
+            <el-tabs>
+              <el-tab-pane label="节点属性">
+                <el-card class="box-card">
+                  <div slot="header" class="clearfix">
+                    <span>基本属性</span>
+                  </div>
+                  <el-row
+                    type="flex"
+                    style="margin-bottom: 10px"
+                    :align="'middle'"
+                  >
+                    <el-col :span="5">
+                      <div style="text-align: right">节点名称：</div>
+                    </el-col>
+                    <el-col :span="19">
+                      <el-input
+                        style="width: 100%"
+                        :value="chooseNode.store.data.attrs.label.text"
+                        @input="updateNode($event,'name')"
+                      ></el-input>
+                    </el-col>
+                  </el-row>
+                  <el-row
+                    type="flex"
+                    style="margin-bottom: 10px"
+                    :align="'middle'"
+                  >
+                    <el-col :span="5">
+                      <div style="text-align: right">节点id：</div>
+                    </el-col>
+                    <el-col :span="19">
+                      <el-input
+                        style="width: 100%"
+                        :value="chooseNode.id"
+                        disabled
+                      ></el-input>
+                    </el-col>
+                  </el-row>
+                  <el-row type="flex" :align="'middle'">
+                    <el-col :span="5">
+                      <div style="text-align: right">节点类型：</div>
+                    </el-col>
+                    <el-col :span="19">
+                      <el-input
+                        style="width: 100%"
+                        :value="chooseNode.typeName"
+                        disabled
+                      ></el-input>
+                    </el-col>
+                  </el-row>
+                </el-card>
+                <el-card class="box-card" style="margin-top: 20px">
+                  <div slot="header" class="clearfix">
+                    <span>样式设置</span>
+                  </div>
+                  <el-row
+                    type="flex"
+                    style="margin-bottom: 10px"
+                    :align="'middle'"
+                  >
+                    <el-col :span="5">
+                      <div style="text-align: right">宽度：</div>
+                    </el-col>
+                    <el-col :span="19">
+                      <el-input-number
+                        style="width: 100%"
+                        :min="0"
+                        @change="updateNode($event,'width')"
+                        :value="chooseNode.width"
+                        type="number"
+                      ></el-input-number>
+                    </el-col>
+                  </el-row>
+                  <el-row
+                    type="flex"
+                    style="margin-bottom: 10px"
+                    :align="'middle'"
+                  >
+                    <el-col :span="5">
+                      <div style="text-align: right">高度：</div>
+                    </el-col>
+                    <el-col :span="19">
+                      <el-input-number
+                        style="width: 100%"
+                        :min="0"
+                        @change="updateNode($event,'height')"
+                        :value="chooseNode.height"
+                        type="number"
+                      ></el-input-number>
+                    </el-col>
+                  </el-row>
+                  <el-row
+                    type="flex"
+                    :align="'middle'"
+                    style="margin-bottom: 10px"
+                  >
+                    <el-col :span="5">
+                      <div style="text-align: right">主体颜色：</div>
+                    </el-col>
+                    <el-col :span="19">
+                      <el-input
+                        style="width: 100%"
+                        :value="chooseNode.store.data.attrs.body.fill"
+                        @input="updateNode($event,'fill')"
+                      >
+                        <el-color-picker
+                          slot="suffix"
+                          :value="chooseNode.store.data.attrs.body.fill"
+                          @change="updateNode($event,'fill')"
+                        ></el-color-picker>
+                      </el-input>
+                    </el-col>
+                  </el-row>
+                  <el-row
+                    type="flex"
+                    :align="'middle'"
+                    style="margin-bottom: 10px"
+                  >
+                    <el-col :span="5">
+                      <div style="text-align: right">边框颜色：</div>
+                    </el-col>
+                    <el-col :span="19">
+                      <el-input
+                        style="width: 100%"
+                        :value="chooseNode.store.data.attrs.body.stroke"
+                        @input="updateNode($event,'stroke')"
+                      >
+                        <el-color-picker
+                          slot="suffix"
+                          :value="chooseNode.store.data.attrs.body.stroke"
+                          @change="updateNode($event,'stroke')"
+                        ></el-color-picker>
+                      </el-input>
+                    </el-col>
+                  </el-row>
+                  <el-row
+                    type="flex"
+                    :align="'middle'"
+                    style="margin-bottom: 10px"
+                  >
+                    <el-col :span="5">
+                      <div style="text-align: right">文字颜色：</div>
+                    </el-col>
+                    <el-col :span="19">
+                      <el-input
+                        style="width: 100%"
+                        @input="updateNode($event,'textFill')"
+                        :value="chooseNode.store.data.attrs.label.fill"
+                      >
+                        <el-color-picker
+                          slot="suffix"
+                          :value="chooseNode.store.data.attrs.label.fill"
+                          @change="updateNode($event,'textFill')"
+                        ></el-color-picker>
+                      </el-input>
+                    </el-col>
+                  </el-row>
+                  <el-row
+                    type="flex"
+                    :align="'middle'"
+                    style="margin-bottom: 10px"
+                  >
+                    <el-col :span="5">
+                      <div style="text-align: right">边框宽度：</div>
+                    </el-col>
+                    <el-col :span="19">
+                      <el-input-number
+                        style="width: 100%"
+                        :min="0"
+                        :max="10"
+                        @change="updateNode($event,'strokeWidth')"
+                        :value="chooseNode.store.data.attrs.body.strokeWidth"
+                        type="number"
+                      ></el-input-number>
+                    </el-col>
+                  </el-row>
+                </el-card>
+              </el-tab-pane>
+              <el-tab-pane label="流程设置">配置管理</el-tab-pane>
+            </el-tabs>
+          </div>
+        </el-drawer>
       </div>
     </div>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
     <script>
       var { Graph, DataUri, Addon, Shape } = X6;
       const { createApp } = Vue;
+      Shape.Circle.define({
+        shape: "endCircle",
+      });
 
       // 创建vue节点
-      createApp({
-        data() {
-          return {
-            dataOption: {},
-            graph: {},
-            ports: {
-              groups: {
-                // 输入链接桩群组定义
-                in: {
-                  position: "ellipseSpread",
-                  attrs: {
-                    circle: {
-                      r: 4,
-                      magnet: true,
-                      stroke: "#8d8d8d",
-                      strokeWidth: 2,
-                      fill: "#fdff00",
-                      style: {
-                        visibility: "hidden",
-                      },
+      new Vue({
+        el: "#app",
+        data: {
+          dataOption: localStorage.graphJSON
+            ? JSON.parse(localStorage.graphJSON)
+            : {},
+          graph: {},
+          ports: {
+            groups: {
+              // 输入链接桩群组定义
+              in: {
+                position: "ellipseSpread",
+                attrs: {
+                  circle: {
+                    r: 4,
+                    magnet: true,
+                    stroke: "#8d8d8d",
+                    strokeWidth: 2,
+                    fill: "#fdff00",
+                    style: {
+                      visibility: "hidden",
                     },
                   },
                 },
               },
-              items: [
-                {
-                  id: "port1",
-                  group: "in",
-                },
-                {
-                  id: "port2",
-                  group: "in",
-                },
-                {
-                  id: "port3",
-                  group: "in",
-                },
-                {
-                  id: "port4",
-                  group: "in",
-                },
-              ],
             },
-            dnd: {},
-            history: {},
-            canRedo: false,
-            canUndo: false,
-          };
+            items: [
+              {
+                id: "port1",
+                group: "in",
+              },
+              {
+                id: "port2",
+                group: "in",
+              },
+              {
+                id: "port3",
+                group: "in",
+              },
+              {
+                id: "port4",
+                group: "in",
+              },
+            ],
+          },
+          dnd: {},
+          history: {},
+          chooseNode: {
+            store: {
+              data: {
+                attrs: {
+                  body: {
+                    fill: "",
+                    stroke: "",
+                  },
+                  label: {
+                    text: "",
+                  },
+                },
+              },
+            },
+          },
+          canRedo: false,
+          canUndo: false,
+          drawer: false,
         },
         methods: {
           // 导出
@@ -153,16 +374,24 @@
           },
           // 清空画布
           clearDraw() {
-            var index = layer.open({
-              title: "提示",
-              content: "是否清空画布",
-              btn: ["确认", "取消"],
-              yes: (index, layero) => {
+            this.$confirm("是否清空画布", "提示", {
+              confirmButtonText: "确定",
+              cancelButtonText: "取消",
+              type: "warning",
+            })
+              .then(() => {
                 this.graph.clearCells();
-                layer.close(layer.index);
-                layer.msg("操作成功");
-              },
-            });
+                this.$message({
+                  type: "success",
+                  message: "操作成功!",
+                });
+              })
+              .catch(() => {
+                this.$message({
+                  type: "info",
+                  message: "已取消删除",
+                });
+              });
           },
           // 撤销 和 重做
           doThing(type) {
@@ -184,6 +413,37 @@
           deleteSelect() {
             this.graph.removeCells(this.graph.getSelectedCells());
           },
+          // 更新节点
+          updateNode(val, type) {
+            console.log(this.chooseNode);
+            if (type === "name") {
+              this.chooseNode.attr("label/text", val);
+            } else if (type === "textFill") {
+              this.chooseNode.attr("label/fill", val);
+            } else if (type === "fill") {
+              this.chooseNode.attr("body/fill", val);
+            } else if (type === "stroke") {
+              this.chooseNode.attr("body/stroke", val);
+            } else if (type === "strokeWidth") {
+              this.chooseNode.attr("body/strokeWidth", val);
+            } else if (type === "width") {
+              this.chooseNode.width = val;
+              this.chooseNode.size(val, this.chooseNode.height);
+            } else if (type === "height") {
+              this.chooseNode.height = val;
+              this.chooseNode.size(this.chooseNode.width, val);
+            }
+            this.$forceUpdate();
+          },
+          // 保存
+          saveLocal() {
+            localStorage.graphJSON = JSON.stringify(this.graph.toJSON());
+            this.$notify({
+              title: "保存成功",
+              type: "success",
+              duration: 2000,
+            });
+          },
         },
         mounted() {
           let _this = this;
@@ -195,6 +455,7 @@
               size: 10, // 网格大小 10px
               visible: true, // 渲染网格背景
             },
+            // 放大缩小
             mousewheel: {
               enabled: true,
               zoomAtMousePosition: true,
@@ -215,9 +476,47 @@
               enabled: true,
               ignoreChange: true,
             },
+            // 连线规则限制
+            connecting: {
+              // https://x6.antv.vision/zh/docs/tutorial/basic/interacting/#connector
+              allowBlank: false,
+              allowMulti: false,
+              allowLoop: false,
+              allowPort: false,
+              highlight: true,
+              createEdge() {
+                return this.createEdge({
+                  shape: "edge",
+                  attrs: {
+                    line: {
+                      stroke: "#ffa500",
+                    },
+                  },
+                });
+              },
+            },
+            // 节点缩放
+            // resizing: {
+            //     enabled: true,
+            // },
+            highlighting: {
+              // 当链接桩可以被链接时，在链接桩外围渲染一个 2px 宽的红色矩形框
+              magnetAvailable: {
+                name: "stroke",
+                args: {
+                  padding: 4,
+                  attrs: {
+                    "stroke-width": 2,
+                    stroke: "#12bf18    ",
+                  },
+                },
+              },
+            },
             width: 6000,
             height: 6000,
           });
+
+          // 节点鼠标移入移出显示隐藏连接桩
           this.graph.on("cell:mouseenter", ({ cell }) => {
             if (cell.isNode()) {
               cell.addTools([
@@ -250,6 +549,38 @@
             );
             this.showPorts(ports, false);
           });
+          // 边鼠标移入移出显示路径锚点
+          this.graph.on("edge:mouseenter", ({ cell }) => {
+            cell.addTools([
+              {
+                name: "vertices",
+                snapRadius: 70,
+              },
+              {
+                name: "segments",
+                precision: 20,
+              },
+            ]);
+          });
+          this.graph.on("edge:mouseleave", ({ cell }) => {
+            cell.removeTools();
+          });
+          // 节点点击
+          this.graph.on("node:click", ({ cell }) => {
+            this.chooseNode = cell;
+            this.chooseNode.width = cell.store.data.size.width;
+            this.chooseNode.height = cell.store.data.size.height;
+            if (cell.shape === "circle") {
+              this.chooseNode.typeName = "开始";
+            } else if (cell.shape === "rect") {
+              this.chooseNode.typeName = "步骤";
+            } else if (cell.shape === "polygon") {
+              this.chooseNode.typeName = "条件";
+            } else if (cell.shape === "endCircle") {
+              this.chooseNode.typeName = "结束";
+            }
+            this.drawer = true;
+          });
           this.graph.fromJSON(this.dataOption);
 
           // 左侧边栏
@@ -272,20 +603,38 @@
             animation: true,
             stencilGraphHeight: 600,
             stencilGraphWidth: 200,
+            // 验证是否可以添加
             validateNode(a, b) {
+              let canDo = true;
               let nodeList = b.targetGraph.renderer.views;
-              //   selectNode;
-              console.log(a, nodeList);
-              //   return false
+              for (const key in nodeList) {
+                if (Object.hasOwnProperty.call(nodeList, key)) {
+                  const item = nodeList[key];
+                  if (
+                    item.cell.shape === a.shape &&
+                    (a.shape === "circle" || a.shape === "html")
+                  ) {
+                    _this.$notify({
+                      title: "警告",
+                      message:
+                        a.shape === "circle"
+                          ? "开始节点已存在"
+                          : "结束节点已存在",
+                      type: "warning",
+                    });
+                    canDo = false;
+                    break;
+                  }
+                }
+              }
+              return canDo;
             },
           };
-          // this.dnd = new Addon.Dnd(options);
           this.dnd = new Addon.Stencil(options);
           document.querySelector(".selectNode").appendChild(this.dnd.container);
           // 创建一些模板节点
-          console.log(Shape)
           const r1 = new Shape.Rect({
-            width: 100,
+            width: 120,
             height: 40,
             ports: this.ports,
             attrs: {
@@ -302,8 +651,8 @@
           });
           const p1 = new Shape.Polygon({
             shape: "polygon",
-            width: 80,
-            height: 80,
+            width: 100,
+            height: 70,
             ports: this.ports,
             attrs: {
               label: {
@@ -311,9 +660,9 @@
                 fill: "#6e3210",
               },
               body: {
+                refPointsKeepOffset: "0,35 50,0 100,35 50,70",
                 fill: "#efdbff",
                 stroke: "#9254de",
-                refPoints: "0, 35 50, 0 100, 35 50, 70",
                 strokeWidth: "1",
               },
             },
@@ -335,44 +684,22 @@
               },
             },
           });
-          const c2 = new Shape.HTML({
+          const c2 = new Shape.Circle({
             width: 60,
             height: 60,
-            shape: 'html',
-            ports: this.ports,
-            html: () => {
-              const wrap = document.createElement('div')
-              wrap.style.width = '100%'
-              wrap.style.height = '100%'
-              wrap.style.display = 'flex'
-              wrap.style.alignItems = 'center'
-              wrap.style.justifyContent = 'center'
-              wrap.style.border = '1px solid #8f2424'
-              wrap.style.background = '#fa4e48'
-              wrap.style.color = '#ffffff'
-              wrap.style.borderRadius = '100%'
-              wrap.innerText = '结束'
-              return wrap
+            shape: "endCircle",
+            attrs: {
+              label: {
+                text: "结束",
+                fill: "#ffffff",
+              },
+              body: {
+                fill: "#fa4e48",
+                stroke: "#8f2424",
+                strokeWidth: "1",
+              },
             },
           });
-        //   const c2 = new Shape.Circle({
-        //     width: 60,
-        //     height: 60,
-        //     shape: "circle",
-        //     ports: this.ports,
-        //     attrs: {
-        //       label: {
-        //         text: "结束",
-        //         fill: "#ffffff",
-        //       },
-        //       body: {
-        //         fill: "#fa4e48",
-        //         stroke: "#8f2424",
-        //         strokeWidth: "1",
-        //       },
-        //     },
-        //   });
-          console.log(c1, r1);
           this.dnd.load([c1, r1, p1, c2], "name");
 
           this.history = this.graph.history;
@@ -381,7 +708,7 @@
             this.canUndo = this.history.canUndo();
           });
         },
-      }).mount("#app");
+      });
     </script>
   </body>
 </html>
