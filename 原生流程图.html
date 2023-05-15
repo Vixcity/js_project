@@ -257,6 +257,109 @@
                   </el-row>
                 </el-card>
               </el-tab-pane>
+              <el-tab-pane
+                label="节点设置"
+                v-if="chooseNode.shape === 'polygon'"
+              >
+                <div
+                  v-if="chooseNode._model.outgoings[chooseNode.id].length >= 2"
+                >
+                  <el-card class="box-card">
+                    <div slot="header" class="clearfix">
+                      <span>条件转出</span>
+                    </div>
+                    <el-alert
+                      title="提示：该条件必须包含至少2个输出步骤，请先建立输出步骤的链接再进行设置"
+                      :closable="false"
+                      type="success"
+                    >
+                    </el-alert>
+                    <div style="margin-top: 20px"></div>
+                    <el-row
+                      type="flex"
+                      style="margin-bottom: 10px"
+                      :align="'middle'"
+                    >
+                      <el-col :span="5">
+                        <div style="text-align: center">单据字段</div>
+                      </el-col>
+                      <el-col :span="5">
+                        <div style="text-align: center">运算符</div>
+                      </el-col>
+                      <el-col :span="5">
+                        <div style="text-align: center">值</div>
+                      </el-col>
+                      <el-col :span="5">
+                        <div style="text-align: center">步骤</div>
+                      </el-col>
+                      <el-col :span="4"></el-col>
+                    </el-row>
+                    <el-row
+                      v-for="item in chooseNode.tiaojianList"
+                      type="flex"
+                      :gutter="10"
+                      style="margin-bottom: 10px"
+                      :align="'middle'"
+                    >
+                      <el-col :span="5">
+                        <el-select v-model="item.djzd" @change="$forceUpdate()">
+                          <el-option
+                            v-for="itemSon in djzdOptions"
+                            :key="itemSon.value"
+                            :label="itemSon.label"
+                            :value="itemSon.value"
+                          >
+                          </el-option>
+                        </el-select>
+                      </el-col>
+                      <el-col :span="5">
+                        <el-select v-model="item.ysf" @change="$forceUpdate()">
+                          <el-option
+                            v-for="itemSon in ysfOptions"
+                            :key="itemSon.value"
+                            :label="itemSon.label"
+                            :value="itemSon.value"
+                          >
+                          </el-option>
+                        </el-select>
+                      </el-col>
+                      <el-col :span="5">
+                        <el-input
+                          v-model="item.value"
+                          placeholder="请输入"
+                          @input="$forceUpdate()"
+                        />
+                      </el-col>
+                      <el-col :span="5">
+                        <el-select v-model="item.step" @change="$forceUpdate()">
+                          <el-option label="组长" value="组长"> </el-option>
+                          <el-option label="总监" value="总监"> </el-option>
+                        </el-select>
+                      </el-col>
+                      <el-col :span="4">
+                        <i
+                          class="el-icon-error"
+                          style="cursor: pointer; color: red;font-size: 22px;"
+                          @click="chooseNode.tiaojianList.splice(index,1);$forceUpdate()"
+                        ></i>
+                      </el-col>
+                    </el-row>
+                    <el-button
+                      @click="chooseNode.tiaojianList.push({djzd:'',ysf:'',value:'',step:''});$forceUpdate()"
+                      >追加</el-button
+                    >
+                  </el-card>
+                </div>
+                <div v-else>
+                  <el-alert
+                    title="提示：该条件必须包含至少2个输出步骤，请先建立输出步骤的链接再进行设置"
+                    :closable="false"
+                    type="error"
+                  >
+                  </el-alert>
+                </div>
+              </el-tab-pane>
+              <el-tab-pane label="流程设置">配置管理</el-tab-pane>
               <el-tab-pane label="流程设置">配置管理</el-tab-pane>
             </el-tabs>
           </div>
@@ -278,6 +381,62 @@
           dataOption: localStorage.graphJSON
             ? JSON.parse(localStorage.graphJSON)
             : {},
+          djzdOptions: [
+            {
+              label: "id[ID]",
+              value: "id[ID]",
+            },
+            {
+              label: "initiator_id[发起人]",
+              value: "initiator_id[发起人]",
+            },
+            {
+              label: "status[状态:0=待发起,1=流程中,2=通过,3=终止]",
+              value: "status[状态:0=待发起,1=流程中,2=通过,3=终止]",
+            },
+            {
+              label: "realname[姓名]",
+              value: "realname[姓名]",
+            },
+            {
+              label: "money[金额]",
+              value: "money[金额]",
+            },
+            {
+              label: "createtime[创建时间]",
+              value: "createtime[创建时间]",
+            },
+            {
+              label: "updatetime[更新时间]",
+              value: "updatetime[更新时间]",
+            },
+          ],
+          ysfOptions: [
+            {
+              label: "等于（=）",
+              value: "等于（=）",
+            },
+            {
+              label: "大于（>）",
+              value: "大于（>）",
+            },
+            {
+              label: "小于（<）",
+              value: "小于（<）",
+            },
+            {
+              label: "大于等于（>=）",
+              value: "大于等于（>=）",
+            },
+            {
+              label: "小于等于（<=）",
+              value: "小于等于（<=）",
+            },
+            {
+              label: "不等于（!=）",
+              value: "不等于（!=）",
+            },
+          ],
           graph: {},
           ports: {
             groups: {
@@ -568,6 +727,7 @@
           // 节点点击
           this.graph.on("node:click", ({ cell }) => {
             this.chooseNode = cell;
+            console.log(this.chooseNode);
             this.chooseNode.width = cell.store.data.size.width;
             this.chooseNode.height = cell.store.data.size.height;
             if (cell.shape === "circle") {
@@ -576,6 +736,13 @@
               this.chooseNode.typeName = "步骤";
             } else if (cell.shape === "polygon") {
               this.chooseNode.typeName = "条件";
+              this.chooseNode.tiaojianList = this.chooseNode.tiaojianList
+                ? this.chooseNode.tiaojianList
+                : [{ djzd: "", ysf: "", value: "", step: "" }];
+              this.chooseNode._model.outgoings[this.chooseNode.id] = this
+                .chooseNode._model.outgoings[this.chooseNode.id]
+                ? this.chooseNode._model.outgoings[this.chooseNode.id]
+                : [];
             } else if (cell.shape === "endCircle") {
               this.chooseNode.typeName = "结束";
             }
