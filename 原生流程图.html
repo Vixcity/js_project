@@ -800,6 +800,27 @@
           },
           // 保存
           saveLocal() {
+            let arr = this.graph.toJSON().cells;
+            let circleIndex = arr.findIndex((item) => item.shape === "circle");
+            let endCircleIndex = arr.findIndex(
+              (item) => item.shape === "endCircle"
+            );
+            let rectIndex = arr.findIndex((item) => item.shape === "rect");
+            let edgeIndex = arr.findIndex((item) => item.shape === "edge");
+            console.log(arr);
+            if (circleIndex === -1) {
+              this.$message.error('没有开始节点')
+              return
+            } else if (endCircleIndex === -1) {
+              this.$message.error('没有结束节点')
+              return
+            } else if (rectIndex === -1) {
+              this.$message.error('没有步骤节点')
+              return
+            } else if (edgeIndex === -1) {
+              this.$message.error('当前画布没有连线')
+              return
+            }
             localStorage.graphJSON = JSON.stringify(this.graph.toJSON());
             this.$notify({
               title: "保存成功",
