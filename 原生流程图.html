@@ -296,7 +296,7 @@
                       <el-col :span="4"></el-col>
                     </el-row>
                     <el-row
-                      v-for="item in chooseNode.tiaojianList"
+                      v-for="item in chooseNode.attrs.tiaojianList"
                       type="flex"
                       :gutter="10"
                       style="margin-bottom: 10px"
@@ -341,13 +341,13 @@
                         <i
                           class="el-icon-error"
                           style="cursor: pointer; color: red; font-size: 22px"
-                          @click="chooseNode.tiaojianList.splice(index,1);$forceUpdate()"
+                          @click="chooseNode.attrs.tiaojianList.splice(index,1);$forceUpdate()"
                         ></i>
                       </el-col>
                     </el-row>
                     <el-button
                       type="primary"
-                      @click="chooseNode.tiaojianList.push({djzd:'',ysf:'',value:'',step:''});$forceUpdate()"
+                      @click="chooseNode.attrs.tiaojianList.push({djzd:'',ysf:'',value:'',step:''});$forceUpdate()"
                     >
                       追加
                     </el-button>
@@ -376,12 +376,12 @@
                       <div style="text-align: right">会签权限</div>
                     </el-col>
                     <el-col :span="5">
-                      <el-radio v-model="chooseNode.isHq" label="1"
+                      <el-radio v-model="chooseNode.attrs.isHq" label="1"
                         >允许会签</el-radio
                       >
                     </el-col>
                     <el-col :span="5">
-                      <el-radio v-model="chooseNode.isHq" label="2"
+                      <el-radio v-model="chooseNode.attrs.isHq" label="2"
                         >禁止会签</el-radio
                       >
                     </el-col>
@@ -391,12 +391,12 @@
                       <div style="text-align: right">驳回权限</div>
                     </el-col>
                     <el-col :span="5">
-                      <el-radio v-model="chooseNode.isBh" label="1"
+                      <el-radio v-model="chooseNode.attrs.isBh" label="1"
                         >允许驳回</el-radio
                       >
                     </el-col>
                     <el-col :span="5">
-                      <el-radio v-model="chooseNode.isBh" label="2"
+                      <el-radio v-model="chooseNode.attrs.isBh" label="2"
                         >禁止驳回</el-radio
                       >
                     </el-col>
@@ -418,7 +418,7 @@
                     <el-col :span="15">
                       <el-select
                         style="width: 100%"
-                        v-model="chooseNode.chooseType"
+                        v-model="chooseNode.attrs.chooseType"
                         @change="$forceUpdate()"
                       >
                         <el-option value="1" label="指定人员"></el-option>
@@ -468,12 +468,12 @@
                       <div style="text-align: right">审批模式</div>
                     </el-col>
                     <el-col :span="5">
-                      <el-radio v-model="chooseNode.isSp" label="1">
+                      <el-radio v-model="chooseNode.attrs.isSp" label="1">
                         联合审批
                       </el-radio>
                     </el-col>
                     <el-col :span="5">
-                      <el-radio v-model="chooseNode.isSp" label="2">
+                      <el-radio v-model="chooseNode.attrs.isSp" label="2">
                         任一审批
                       </el-radio>
                     </el-col>
@@ -868,15 +868,19 @@
               this.chooseNode.typeName = "开始";
             } else if (cell.shape === "rect") {
               this.chooseNode.typeName = "步骤";
-              this.chooseNode.isHq = "1";
-              this.chooseNode.isBh = "1";
-              this.chooseNode.isSp = "1";
-              this.chooseNode.chooseType = "1";
+              console.log(this.chooseNode);
+              this.chooseNode.attr("isHq", "1");
+              this.chooseNode.attr("isBh", "1");
+              this.chooseNode.attr("isSp", "1");
+              this.chooseNode.attr("chooseType", "1");
             } else if (cell.shape === "polygon") {
               this.chooseNode.typeName = "条件";
-              this.chooseNode.tiaojianList = this.chooseNode.tiaojianList
-                ? this.chooseNode.tiaojianList
-                : [{ djzd: "", ysf: "", value: "", step: "" }];
+              this.chooseNode.attr(
+                "tiaojianList",
+                this.chooseNode.attrs.tiaojianList
+                  ? this.chooseNode.attrs.tiaojianList
+                  : [{ djzd: "", ysf: "", value: "", step: "" }]
+              );
               this.chooseNode._model.outgoings[this.chooseNode.id] = this
                 .chooseNode._model.outgoings[this.chooseNode.id]
                 ? this.chooseNode._model.outgoings[this.chooseNode.id]
