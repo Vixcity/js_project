@@ -376,12 +376,18 @@
                       <div style="text-align: right">会签权限</div>
                     </el-col>
                     <el-col :span="5">
-                      <el-radio v-model="chooseNode.attrs.isHq" label="1"
+                      <el-radio
+                        @input="changeRadio($event,'isHq')"
+                        v-model="chooseNode.attrs.isHq"
+                        label="1"
                         >允许会签</el-radio
                       >
                     </el-col>
                     <el-col :span="5">
-                      <el-radio v-model="chooseNode.attrs.isHq" label="2"
+                      <el-radio
+                        @input="changeRadio($event,'isHq')"
+                        v-model="chooseNode.attrs.isHq"
+                        label="2"
                         >禁止会签</el-radio
                       >
                     </el-col>
@@ -391,14 +397,22 @@
                       <div style="text-align: right">驳回权限</div>
                     </el-col>
                     <el-col :span="5">
-                      <el-radio v-model="chooseNode.attrs.isBh" label="1"
-                        >允许驳回</el-radio
+                      <el-radio
+                        v-model="chooseNode.attrs.isBh"
+                        @input="changeRadio($event,'isBh')"
+                        label="1"
                       >
+                        允许驳回
+                      </el-radio>
                     </el-col>
                     <el-col :span="5">
-                      <el-radio v-model="chooseNode.attrs.isBh" label="2"
-                        >禁止驳回</el-radio
+                      <el-radio
+                        v-model="chooseNode.attrs.isBh"
+                        @input="changeRadio($event,'isBh')"
+                        label="2"
                       >
+                        禁止驳回
+                      </el-radio>
                     </el-col>
                   </el-row>
                 </el-card>
@@ -419,7 +433,7 @@
                       <el-select
                         style="width: 100%"
                         v-model="chooseNode.attrs.chooseType"
-                        @change="$forceUpdate()"
+                        @change="changeRadio($event,'chooseType')"
                       >
                         <el-option value="1" label="指定人员"></el-option>
                         <el-option value="2" label="指定分组"></el-option>
@@ -455,7 +469,11 @@
                       <div style="text-align: right">审批人</div>
                     </el-col>
                     <el-col :span="15">
-                      <el-input placeholder="请输入" />
+                      <el-input
+                        v-model="chooseNode.attrs.spPeople"
+                        @input="changeRadio($event,'spPeople')"
+                        placeholder="请输入"
+                      />
                     </el-col>
                   </el-row>
                 </el-card>
@@ -468,28 +486,77 @@
                       <div style="text-align: right">审批模式</div>
                     </el-col>
                     <el-col :span="5">
-                      <el-radio v-model="chooseNode.attrs.isSp" label="1">
+                      <el-radio
+                        v-model="chooseNode.attrs.isSp"
+                        @input="changeRadio($event,'isSp')"
+                        label="1"
+                      >
                         联合审批
                       </el-radio>
                     </el-col>
                     <el-col :span="5">
-                      <el-radio v-model="chooseNode.attrs.isSp" label="2">
+                      <el-radio
+                        v-model="chooseNode.attrs.isSp"
+                        @input="changeRadio($event,'isSp')"
+                        label="2"
+                      >
                         任一审批
                       </el-radio>
                     </el-col>
                   </el-row>
                   <el-row>
-                    <el-alert title="联合审批" :closable="false" type="warning">
-                      所有成员均需审批（默认）
-                    </el-alert>
-                    <el-alert
-                      title="任一审批"
-                      style="margin-top: 10px"
-                      :closable="false"
-                      type="warning"
-                    >
-                      任一成员审批即可
-                    </el-alert>
+                    <el-col :span="5" style="text-align: right">
+                      <div
+                        style="
+                          background-color: #f39c12;
+                          display: inline;
+                          padding: 0.2em 0.6em 0.3em;
+                          font-size: 75%;
+                          font-weight: bold;
+                          line-height: 1;
+                          color: #fff;
+                          text-align: center;
+                          white-space: nowrap;
+                          vertical-align: baseline;
+                          border-radius: 0.25em;
+                          margin-right: 4px;
+                        "
+                      >
+                        联合审批
+                      </div>
+                    </el-col>
+                    <el-col :span="15">
+                      <span style="color: #18bc9c; vertical-align: middle">
+                        所有成员均需审批（默认）
+                      </span>
+                    </el-col>
+                  </el-row>
+                  <el-row style="padding-top: 7px">
+                    <el-col :span="5" style="text-align: right">
+                      <div
+                        style="
+                          background-color: #f39c12;
+                          display: inline;
+                          padding: 0.2em 0.6em 0.3em;
+                          font-size: 75%;
+                          font-weight: bold;
+                          line-height: 1;
+                          color: #fff;
+                          text-align: center;
+                          white-space: nowrap;
+                          vertical-align: baseline;
+                          border-radius: 0.25em;
+                          margin-right: 4px;
+                        "
+                      >
+                        任一审批
+                      </div>
+                    </el-col>
+                    <el-col :span="15">
+                      <span style="color: #18bc9c; vertical-align: middle">
+                        任一成员审批即可
+                      </span>
+                    </el-col>
                   </el-row>
                 </el-card>
               </el-tab-pane>
@@ -631,6 +698,10 @@
           drawer: false,
         },
         methods: {
+          changeRadio(e, type) {
+            this.chooseNode.attr(type, e);
+            this.$forceUpdate();
+          },
           // 导出
           printNodeList(type) {
             if (type === "PNG") {
@@ -868,11 +939,11 @@
               this.chooseNode.typeName = "开始";
             } else if (cell.shape === "rect") {
               this.chooseNode.typeName = "步骤";
-              console.log(this.chooseNode);
               this.chooseNode.attr("isHq", "1");
               this.chooseNode.attr("isBh", "1");
               this.chooseNode.attr("isSp", "1");
               this.chooseNode.attr("chooseType", "1");
+              this.chooseNode.attr("spPeople", "");
             } else if (cell.shape === "polygon") {
               this.chooseNode.typeName = "条件";
               this.chooseNode.attr(
