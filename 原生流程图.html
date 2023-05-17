@@ -960,11 +960,11 @@
               this.chooseNode.typeName = "开始";
             } else if (cell.shape === "rect") {
               this.chooseNode.typeName = "步骤";
-              this.chooseNode.attr("isHq", "1");
-              this.chooseNode.attr("isBh", "1");
-              this.chooseNode.attr("isSp", "1");
-              this.chooseNode.attr("chooseType", "1");
-              this.chooseNode.attr("spPeople", "");
+              this.chooseNode.attr("isHq", this.chooseNode.attrs.isHq || "1");
+              this.chooseNode.attr("isBh", this.chooseNode.attrs.isBh || "1");
+              this.chooseNode.attr("isSp", this.chooseNode.attrs.isSp || "1");
+              this.chooseNode.attr("chooseType", this.chooseNode.attrs.chooseType || "1");
+              this.chooseNode.attr("spPeople", this.chooseNode.attrs.spPeople || "");
             } else if (cell.shape === "polygon") {
               this.chooseNode.typeName = "条件";
               this.chooseNode.attr(
